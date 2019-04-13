@@ -1,0 +1,721 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
+		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
+		FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8022623F6900C30F61 /* WriteController.swift */; };
+		FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8222623F7C00C30F61 /* FavouriteController.swift */; };
+		FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8422623F8800C30F61 /* SettingsController.swift */; };
+		FB65BC872262408300C30F61 /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC862262408300C30F61 /* BoardController.swift */; };
+		FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC882262408A00C30F61 /* ThreadController.swift */; };
+		FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8E2262558300C30F61 /* ThreadOpC.swift */; };
+		FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC8F2262558300C30F61 /* ThreadOpC.xib */; };
+		FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* ThreadCommentC.swift */; };
+		FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC93226258A200C30F61 /* ThreadCommentC.xib */; };
+		FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment.swift */; };
+		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
+		FB65BC9F22625A2E00C30F61 /* CommentNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */; };
+		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
+		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
+		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
+		FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279F225FCCE1003B1406 /* Assets.xcassets */; };
+		FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */; };
+		FBEC27AE225FCCE1003B1406 /* LennachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27AD225FCCE1003B1406 /* LennachTests.swift */; };
+		FBEC27B9225FCCE1003B1406 /* LennachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBEC27AA225FCCE1003B1406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBEC278D225FCCE0003B1406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBEC2794225FCCE0003B1406;
+			remoteInfo = Lennach;
+		};
+		FBEC27B5225FCCE1003B1406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBEC278D225FCCE0003B1406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBEC2794225FCCE0003B1406;
+			remoteInfo = Lennach;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
+		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		FB65BC8022623F6900C30F61 /* WriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteController.swift; sourceTree = "<group>"; };
+		FB65BC8222623F7C00C30F61 /* FavouriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteController.swift; sourceTree = "<group>"; };
+		FB65BC8422623F8800C30F61 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		FB65BC862262408300C30F61 /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
+		FB65BC882262408A00C30F61 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
+		FB65BC8E2262558300C30F61 /* ThreadOpC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadOpC.swift; sourceTree = "<group>"; };
+		FB65BC8F2262558300C30F61 /* ThreadOpC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadOpC.xib; sourceTree = "<group>"; };
+		FB65BC92226258A200C30F61 /* ThreadCommentC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCommentC.swift; sourceTree = "<group>"; };
+		FB65BC93226258A200C30F61 /* ThreadCommentC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCommentC.xib; sourceTree = "<group>"; };
+		FB65BC9A22625A0700C30F61 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
+		FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetwork.swift; sourceTree = "<group>"; };
+		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
+		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FBEC279D225FCCE0003B1406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FBEC279F225FCCE1003B1406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBEC27A2225FCCE1003B1406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FBEC27A4225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBEC27A9225FCCE1003B1406 /* LennachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LennachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBEC27AD225FCCE1003B1406 /* LennachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LennachTests.swift; sourceTree = "<group>"; };
+		FBEC27AF225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBEC27B4225FCCE1003B1406 /* LennachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LennachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LennachUITests.swift; sourceTree = "<group>"; };
+		FBEC27BA225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBEC2792225FCCE0003B1406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27A6225FCCE1003B1406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27B1225FCCE1003B1406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB65BC7A2262223B00C30F61 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FBEC2798225FCCE0003B1406 /* AppDelegate.swift */,
+				FB65BC8D2262556C00C30F61 /* Cells */,
+				FB65BC7B2262224A00C30F61 /* Controllers */,
+				FB65BCA022625A6E00C30F61 /* Data */,
+				FB65BCA122625A7200C30F61 /* Domain */,
+				FB65BC96226259CD00C30F61 /* Model */,
+				FB65BC8A2262545800C30F61 /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FB65BC7B2262224A00C30F61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */,
+				FB65BC7E22623F5500C30F61 /* HomeController.swift */,
+				FB65BC8022623F6900C30F61 /* WriteController.swift */,
+				FB65BC8222623F7C00C30F61 /* FavouriteController.swift */,
+				FB65BC8422623F8800C30F61 /* SettingsController.swift */,
+				FB65BC862262408300C30F61 /* BoardController.swift */,
+				FB65BC882262408A00C30F61 /* ThreadController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FB65BC8A2262545800C30F61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC93226258A200C30F61 /* ThreadCommentC.xib */,
+				FB65BC8F2262558300C30F61 /* ThreadOpC.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FB65BC8D2262556C00C30F61 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC8E2262558300C30F61 /* ThreadOpC.swift */,
+				FB65BC92226258A200C30F61 /* ThreadCommentC.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FB65BC96226259CD00C30F61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC99226259F900C30F61 /* Database */,
+				FB65BC98226259E900C30F61 /* Models */,
+				FB65BC97226259D400C30F61 /* Network */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FB65BC97226259D400C30F61 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FB65BC98226259E900C30F61 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC9A22625A0700C30F61 /* Comment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FB65BC99226259F900C30F61 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC9C22625A2400C30F61 /* CommentDb.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		FB65BCA022625A6E00C30F61 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BCA222625AAF00C30F61 /* MainRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FB65BCA122625A7200C30F61 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		FBEC278C225FCCE0003B1406 = {
+			isa = PBXGroup;
+			children = (
+				FBEC2797225FCCE0003B1406 /* Lennach */,
+				FBEC27AC225FCCE1003B1406 /* LennachTests */,
+				FBEC27B7225FCCE1003B1406 /* LennachUITests */,
+				FBEC2796225FCCE0003B1406 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBEC2796225FCCE0003B1406 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBEC2795225FCCE0003B1406 /* Lennach.app */,
+				FBEC27A9225FCCE1003B1406 /* LennachTests.xctest */,
+				FBEC27B4225FCCE1003B1406 /* LennachUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBEC2797225FCCE0003B1406 /* Lennach */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC7A2262223B00C30F61 /* App */,
+				FBEC279F225FCCE1003B1406 /* Assets.xcassets */,
+				FBEC27A4225FCCE1003B1406 /* Info.plist */,
+				FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */,
+				FBEC279C225FCCE0003B1406 /* Main.storyboard */,
+			);
+			path = Lennach;
+			sourceTree = "<group>";
+		};
+		FBEC27AC225FCCE1003B1406 /* LennachTests */ = {
+			isa = PBXGroup;
+			children = (
+				FBEC27AD225FCCE1003B1406 /* LennachTests.swift */,
+				FBEC27AF225FCCE1003B1406 /* Info.plist */,
+			);
+			path = LennachTests;
+			sourceTree = "<group>";
+		};
+		FBEC27B7225FCCE1003B1406 /* LennachUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */,
+				FBEC27BA225FCCE1003B1406 /* Info.plist */,
+			);
+			path = LennachUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBEC2794225FCCE0003B1406 /* Lennach */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBEC27BD225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "Lennach" */;
+			buildPhases = (
+				FBEC2791225FCCE0003B1406 /* Sources */,
+				FBEC2792225FCCE0003B1406 /* Frameworks */,
+				FBEC2793225FCCE0003B1406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lennach;
+			productName = Lennach;
+			productReference = FBEC2795225FCCE0003B1406 /* Lennach.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBEC27A8225FCCE1003B1406 /* LennachTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBEC27C0225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachTests" */;
+			buildPhases = (
+				FBEC27A5225FCCE1003B1406 /* Sources */,
+				FBEC27A6225FCCE1003B1406 /* Frameworks */,
+				FBEC27A7225FCCE1003B1406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBEC27AB225FCCE1003B1406 /* PBXTargetDependency */,
+			);
+			name = LennachTests;
+			productName = LennachTests;
+			productReference = FBEC27A9225FCCE1003B1406 /* LennachTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FBEC27B3225FCCE1003B1406 /* LennachUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBEC27C3225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachUITests" */;
+			buildPhases = (
+				FBEC27B0225FCCE1003B1406 /* Sources */,
+				FBEC27B1225FCCE1003B1406 /* Frameworks */,
+				FBEC27B2225FCCE1003B1406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBEC27B6225FCCE1003B1406 /* PBXTargetDependency */,
+			);
+			name = LennachUITests;
+			productName = LennachUITests;
+			productReference = FBEC27B4225FCCE1003B1406 /* LennachUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBEC278D225FCCE0003B1406 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = CaramelHeaven;
+				TargetAttributes = {
+					FBEC2794225FCCE0003B1406 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					FBEC27A8225FCCE1003B1406 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = FBEC2794225FCCE0003B1406;
+					};
+					FBEC27B3225FCCE1003B1406 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = FBEC2794225FCCE0003B1406;
+					};
+				};
+			};
+			buildConfigurationList = FBEC2790225FCCE0003B1406 /* Build configuration list for PBXProject "Lennach" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBEC278C225FCCE0003B1406;
+			productRefGroup = FBEC2796225FCCE0003B1406 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBEC2794225FCCE0003B1406 /* Lennach */,
+				FBEC27A8225FCCE1003B1406 /* LennachTests */,
+				FBEC27B3225FCCE1003B1406 /* LennachUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBEC2793225FCCE0003B1406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */,
+				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
+				FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */,
+				FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */,
+				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27A7225FCCE1003B1406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27B2225FCCE1003B1406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBEC2791225FCCE0003B1406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
+				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
+				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
+				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
+				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
+				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
+				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
+				FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */,
+				FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */,
+				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
+				FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */,
+				FB65BC9F22625A2E00C30F61 /* CommentNetwork.swift in Sources */,
+				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
+				FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27A5225FCCE1003B1406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBEC27AE225FCCE1003B1406 /* LennachTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBEC27B0225FCCE1003B1406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBEC27B9225FCCE1003B1406 /* LennachUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBEC27AB225FCCE1003B1406 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBEC2794225FCCE0003B1406 /* Lennach */;
+			targetProxy = FBEC27AA225FCCE1003B1406 /* PBXContainerItemProxy */;
+		};
+		FBEC27B6225FCCE1003B1406 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBEC2794225FCCE0003B1406 /* Lennach */;
+			targetProxy = FBEC27B5225FCCE1003B1406 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FBEC279C225FCCE0003B1406 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBEC279D225FCCE0003B1406 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBEC27A2225FCCE1003B1406 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FBEC27BB225FCCE1003B1406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FBEC27BC225FCCE1003B1406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBEC27BE225FCCE1003B1406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Lennach/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.Lennach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBEC27BF225FCCE1003B1406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Lennach/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.Lennach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FBEC27C1225FCCE1003B1406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LennachTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.LennachTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lennach.app/Lennach";
+			};
+			name = Debug;
+		};
+		FBEC27C2225FCCE1003B1406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LennachTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.LennachTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lennach.app/Lennach";
+			};
+			name = Release;
+		};
+		FBEC27C4225FCCE1003B1406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LennachUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.LennachUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lennach;
+			};
+			name = Debug;
+		};
+		FBEC27C5225FCCE1003B1406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LennachUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.LennachUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lennach;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBEC2790225FCCE0003B1406 /* Build configuration list for PBXProject "Lennach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBEC27BB225FCCE1003B1406 /* Debug */,
+				FBEC27BC225FCCE1003B1406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBEC27BD225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "Lennach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBEC27BE225FCCE1003B1406 /* Debug */,
+				FBEC27BF225FCCE1003B1406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBEC27C0225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBEC27C1225FCCE1003B1406 /* Debug */,
+				FBEC27C2225FCCE1003B1406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBEC27C3225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBEC27C4225FCCE1003B1406 /* Debug */,
+				FBEC27C5225FCCE1003B1406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBEC278D225FCCE0003B1406 /* Project object */;
+}
