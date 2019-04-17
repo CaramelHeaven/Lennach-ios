@@ -22,6 +22,7 @@
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
 		FB65BC9F22625A2E00C30F61 /* CommentNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
+		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
 		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
 		FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279F225FCCE1003B1406 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
 		FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetwork.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
+		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBEC279D225FCCE0003B1406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FB7406062267847400402315 /* Base */,
 				FB740604226752F300402315 /* Home */,
 			);
 			path = Presentation;
@@ -219,6 +222,14 @@
 				FB65BC862262408300C30F61 /* BoardController.swift */,
 			);
 			path = Childs;
+			sourceTree = "<group>";
+		};
+		FB7406062267847400402315 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FB7406072267848600402315 /* BaseController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		FBEC278C225FCCE0003B1406 = {
@@ -411,6 +422,7 @@
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
+				FB7406082267848600402315 /* BaseController.swift in Sources */,
 				FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */,
 				FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
