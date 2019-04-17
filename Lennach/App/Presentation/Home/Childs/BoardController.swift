@@ -9,9 +9,14 @@ import UIKit
 
 class BoardController: UIViewController {
 
+    private var firstValue = false
+    private var initialX: CGFloat = 0, lastX: CGFloat = 0
+    private var controllingStateX: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print("inited board")
     }
 }
+
 

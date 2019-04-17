@@ -8,9 +8,17 @@
 
 import UIKit
 
+protocol ThreadDelegate: class {
+    func translateXState(threadX: CGFloat)
+
+    func dragState(flag: Bool, lastValueX: CGFloat)
+}
+
 class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView?
+
+    weak var threadDelegate: ThreadDelegate?
 
     var data = MainRepository.instance.provideCommentData()
 
@@ -26,13 +34,26 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
-        print("translation: \(translation)")
-        
+
+        //compute X
+        var updateX: CGFloat = 0
+
         if let view = recognizer.view {
-            view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y)
+            updateX = view.frame.origin.x + translation.x
+            print("view frame origin: \(view.frame.origin.x)")
         }
-        
-        recognizer.setTranslation(CGPoint.zero, in: self.view)
+
+        switch recognizer.state {
+        case .began, .changed:
+            threadDelegate?.translateXState(threadX: updateX)
+            recognizer.setTranslation(CGPoint.zero, in: self.view)
+        case .ended:
+            threadDelegate?.dragState(flag: false, lastValueX: updateX)
+        default:
+            print("default")
+        }
+
+
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

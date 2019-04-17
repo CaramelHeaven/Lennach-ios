@@ -105,6 +105,7 @@
 		FB65BC7A2262223B00C30F61 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FB740603226752E800402315 /* Presentation */,
 				FBEC2798225FCCE0003B1406 /* AppDelegate.swift */,
 				FB65BC8D2262556C00C30F61 /* Cells */,
 				FB65BC7B2262224A00C30F61 /* Controllers */,
@@ -120,12 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */,
-				FB65BC7E22623F5500C30F61 /* HomeController.swift */,
 				FB65BC8022623F6900C30F61 /* WriteController.swift */,
 				FB65BC8222623F7C00C30F61 /* FavouriteController.swift */,
 				FB65BC8422623F8800C30F61 /* SettingsController.swift */,
-				FB65BC862262408300C30F61 /* BoardController.swift */,
-				FB65BC882262408A00C30F61 /* ThreadController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -195,6 +193,32 @@
 			children = (
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		FB740603226752E800402315 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FB740604226752F300402315 /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FB740604226752F300402315 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FB7406052267530D00402315 /* Childs */,
+				FB65BC7E22623F5500C30F61 /* HomeController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FB7406052267530D00402315 /* Childs */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC882262408A00C30F61 /* ThreadController.swift */,
+				FB65BC862262408300C30F61 /* BoardController.swift */,
+			);
+			path = Childs;
 			sourceTree = "<group>";
 		};
 		FBEC278C225FCCE0003B1406 = {
