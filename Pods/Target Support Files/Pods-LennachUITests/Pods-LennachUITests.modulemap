@@ -1,0 +1,6 @@
+framework module Pods_LennachUITests {
+  umbrella header "Pods-LennachUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

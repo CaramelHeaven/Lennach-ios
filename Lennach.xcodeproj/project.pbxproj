@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AA209F0EEC756230185CD07 /* Pods_LennachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C733A19A0E6998776EFCCD /* Pods_LennachTests.framework */; };
+		4D0DF9516D1793C2EBFDEA71 /* Pods_LennachUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4CA2192BC948D8677A4132 /* Pods_LennachUITests.framework */; };
+		7EF5C86C3A26579C12E6B8EB /* Pods_Lennach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F63572AB38AED6A30974BED /* Pods_Lennach.framework */; };
+		FB0E6FA72268B4FF00954081 /* UsenetDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FA62268B4FF00954081 /* UsenetDb.swift */; };
+		FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FA82268B50D00954081 /* Usenet.swift */; };
+		FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAA2268B8A800954081 /* BoardResponse.swift */; };
+		FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */; };
+		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
+		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
+		FB2206242268CC13006F2CA8 /* BoardMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* BoardMapper.swift */; };
+		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
+		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
 		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
 		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
 		FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8022623F6900C30F61 /* WriteController.swift */; };
@@ -20,7 +32,6 @@
 		FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC93226258A200C30F61 /* ThreadCommentC.xib */; };
 		FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment.swift */; };
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
-		FB65BC9F22625A2E00C30F61 /* CommentNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE15EFA226876F6005A29FB /* BottomMenuView.swift */; };
@@ -50,6 +61,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		053CEF430B29E06B9B802025 /* Pods-LennachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LennachTests.debug.xcconfig"; path = "Target Support Files/Pods-LennachTests/Pods-LennachTests.debug.xcconfig"; sourceTree = "<group>"; };
+		32C733A19A0E6998776EFCCD /* Pods_LennachTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LennachTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F63572AB38AED6A30974BED /* Pods_Lennach.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lennach.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5129FCF5618136AD6F67FE30 /* Pods-LennachUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LennachUITests.debug.xcconfig"; path = "Target Support Files/Pods-LennachUITests/Pods-LennachUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA7672EC8D896991A4482D93 /* Pods-LennachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LennachTests.release.xcconfig"; path = "Target Support Files/Pods-LennachTests/Pods-LennachTests.release.xcconfig"; sourceTree = "<group>"; };
+		D85FCA8A34C0DC5626ED78F9 /* Pods-LennachUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LennachUITests.release.xcconfig"; path = "Target Support Files/Pods-LennachUITests/Pods-LennachUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DF4CA2192BC948D8677A4132 /* Pods_LennachUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LennachUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E039421C61EC5DBDC6215DC4 /* Pods-Lennach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lennach.debug.xcconfig"; path = "Target Support Files/Pods-Lennach/Pods-Lennach.debug.xcconfig"; sourceTree = "<group>"; };
+		E113C91ADAFE958BE5E90373 /* Pods-Lennach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lennach.release.xcconfig"; path = "Target Support Files/Pods-Lennach/Pods-Lennach.release.xcconfig"; sourceTree = "<group>"; };
+		FB0E6FA62268B4FF00954081 /* UsenetDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsenetDb.swift; sourceTree = "<group>"; };
+		FB0E6FA82268B50D00954081 /* Usenet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usenet.swift; sourceTree = "<group>"; };
+		FB0E6FAA2268B8A800954081 /* BoardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardResponse.swift; sourceTree = "<group>"; };
+		FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Usenet+Posts+Files.swift"; sourceTree = "<group>"; };
+		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
+		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		FB2206232268CC13006F2CA8 /* BoardMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardMapper.swift; sourceTree = "<group>"; };
+		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
 		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		FB65BC8022623F6900C30F61 /* WriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteController.swift; sourceTree = "<group>"; };
@@ -63,7 +92,6 @@
 		FB65BC93226258A200C30F61 /* ThreadCommentC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCommentC.xib; sourceTree = "<group>"; };
 		FB65BC9A22625A0700C30F61 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
-		FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetwork.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FBE15EFA226876F6005A29FB /* BottomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
@@ -86,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EF5C86C3A26579C12E6B8EB /* Pods_Lennach.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA209F0EEC756230185CD07 /* Pods_LennachTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +130,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0DF9516D1793C2EBFDEA71 /* Pods_LennachUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB15EFAC9D42DE2ABADB9FD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F63572AB38AED6A30974BED /* Pods_Lennach.framework */,
+				32C733A19A0E6998776EFCCD /* Pods_LennachTests.framework */,
+				DF4CA2192BC948D8677A4132 /* Pods_LennachUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB0E6FAE2268B9D600954081 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FB0E6FB32268BC0100954081 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */,
+				FB0E6FB12268BBFC00954081 /* LocalRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FB2206272268DAB0006F2CA8 /* Cell code */ = {
+			isa = PBXGroup;
+			children = (
+				FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */,
+			);
+			path = "Cell code";
+			sourceTree = "<group>";
+		};
 		FB65BC7A2262223B00C30F61 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +201,7 @@
 		FB65BC8A2262545800C30F61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FB2206272268DAB0006F2CA8 /* Cell code */,
 				FBE15EFC22687B92005A29FB /* Cells - xib */,
 				FBE15EF9226876BB005A29FB /* Custom */,
 			);
@@ -163,7 +230,8 @@
 		FB65BC97226259D400C30F61 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				FB65BC9E22625A2E00C30F61 /* CommentNetwork.swift */,
+				FB0E6FAE2268B9D600954081 /* Helpers */,
+				FB0E6FAA2268B8A800954081 /* BoardResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -172,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC9A22625A0700C30F61 /* Comment.swift */,
+				FB0E6FA82268B50D00954081 /* Usenet.swift */,
+				FB2206252268CE01006F2CA8 /* Board.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC9C22625A2400C30F61 /* CommentDb.swift */,
+				FB0E6FA62268B4FF00954081 /* UsenetDb.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -187,6 +258,7 @@
 		FB65BCA022625A6E00C30F61 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FB0E6FB32268BC0100954081 /* Repositories */,
 				FB65BCA222625AAF00C30F61 /* MainRepository.swift */,
 			);
 			path = Data;
@@ -195,6 +267,7 @@
 		FB65BCA122625A7200C30F61 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				FB2206232268CC13006F2CA8 /* BoardMapper.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -258,6 +331,8 @@
 				FBEC27AC225FCCE1003B1406 /* LennachTests */,
 				FBEC27B7225FCCE1003B1406 /* LennachUITests */,
 				FBEC2796225FCCE0003B1406 /* Products */,
+				FE7A45E57B8B5B89B7E4380C /* Pods */,
+				AB15EFAC9D42DE2ABADB9FD7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,6 +376,19 @@
 			path = LennachUITests;
 			sourceTree = "<group>";
 		};
+		FE7A45E57B8B5B89B7E4380C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E039421C61EC5DBDC6215DC4 /* Pods-Lennach.debug.xcconfig */,
+				E113C91ADAFE958BE5E90373 /* Pods-Lennach.release.xcconfig */,
+				053CEF430B29E06B9B802025 /* Pods-LennachTests.debug.xcconfig */,
+				CA7672EC8D896991A4482D93 /* Pods-LennachTests.release.xcconfig */,
+				5129FCF5618136AD6F67FE30 /* Pods-LennachUITests.debug.xcconfig */,
+				D85FCA8A34C0DC5626ED78F9 /* Pods-LennachUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -308,9 +396,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBEC27BD225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "Lennach" */;
 			buildPhases = (
+				CB760031F2CE00471B92E2FB /* [CP] Check Pods Manifest.lock */,
 				FBEC2791225FCCE0003B1406 /* Sources */,
 				FBEC2792225FCCE0003B1406 /* Frameworks */,
 				FBEC2793225FCCE0003B1406 /* Resources */,
+				42CC80B7BDBCE6150B5A220F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,6 +415,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBEC27C0225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachTests" */;
 			buildPhases = (
+				E3B670729DDD604ABB148030 /* [CP] Check Pods Manifest.lock */,
 				FBEC27A5225FCCE1003B1406 /* Sources */,
 				FBEC27A6225FCCE1003B1406 /* Frameworks */,
 				FBEC27A7225FCCE1003B1406 /* Resources */,
@@ -343,6 +434,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBEC27C3225FCCE1003B1406 /* Build configuration list for PBXNativeTarget "LennachUITests" */;
 			buildPhases = (
+				A83133A87CCE4587997F5B6C /* [CP] Check Pods Manifest.lock */,
 				FBEC27B0225FCCE1003B1406 /* Sources */,
 				FBEC27B1225FCCE1003B1406 /* Frameworks */,
 				FBEC27B2225FCCE1003B1406 /* Resources */,
@@ -429,6 +521,97 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		42CC80B7BDBCE6150B5A220F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lennach/Pods-Lennach-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lennach/Pods-Lennach-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A83133A87CCE4587997F5B6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LennachUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB760031F2CE00471B92E2FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lennach-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B670729DDD604ABB148030 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LennachTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FBEC2791225FCCE0003B1406 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -437,18 +620,26 @@
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
+				FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */,
 				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
+				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
+				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
 				FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */,
 				FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */,
+				FB2206262268CE01006F2CA8 /* Board.swift in Sources */,
+				FB2206242268CC13006F2CA8 /* BoardMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
 				FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */,
-				FB65BC9F22625A2E00C30F61 /* CommentNetwork.swift in Sources */,
+				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
+				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
+				FB0E6FA72268B4FF00954081 /* UsenetDb.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
+				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
 				FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +813,7 @@
 		};
 		FBEC27BE225FCCE1003B1406 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E039421C61EC5DBDC6215DC4 /* Pods-Lennach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -639,6 +831,7 @@
 		};
 		FBEC27BF225FCCE1003B1406 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E113C91ADAFE958BE5E90373 /* Pods-Lennach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -656,6 +849,7 @@
 		};
 		FBEC27C1225FCCE1003B1406 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 053CEF430B29E06B9B802025 /* Pods-LennachTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -676,6 +870,7 @@
 		};
 		FBEC27C2225FCCE1003B1406 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7672EC8D896991A4482D93 /* Pods-LennachTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -696,6 +891,7 @@
 		};
 		FBEC27C4225FCCE1003B1406 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5129FCF5618136AD6F67FE30 /* Pods-LennachUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -715,6 +911,7 @@
 		};
 		FBEC27C5225FCCE1003B1406 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D85FCA8A34C0DC5626ED78F9 /* Pods-LennachUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

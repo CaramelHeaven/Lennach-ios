@@ -52,8 +52,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         default:
             print("default")
         }
-
-
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
