@@ -8,16 +8,23 @@
 
 import UIKit
 
-class BaesController: UITabBarController {
+class BaseController: UIViewController {
+    
+    let bottomMenu: BottomMenuView = {
+        let menu = BottomMenuView()
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        
+        return menu
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-    }
-    override func tabBar(_ tabBar: UITabBar, willEndCustomizing items: [UITabBarItem], changed: Bool) {
-        print("tabBar: \(selectedIndex)")
+        view.addSubview(bottomMenu)
         
+        bottomMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bottomMenu.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomMenu.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
+        bottomMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
-
 }
