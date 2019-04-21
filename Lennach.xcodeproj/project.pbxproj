@@ -19,6 +19,7 @@
 		FB2206242268CC13006F2CA8 /* BoardMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* BoardMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
+		FB534440226C76AB004272E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB53443F226C76AB004272E5 /* Constants.swift */; };
 		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
 		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
 		FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8022623F6900C30F61 /* WriteController.swift */; };
@@ -79,6 +80,7 @@
 		FB2206232268CC13006F2CA8 /* BoardMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		FB53443F226C76AB004272E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
 		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		FB65BC8022623F6900C30F61 /* WriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteController.swift; sourceTree = "<group>"; };
@@ -172,16 +174,25 @@
 			path = "Cell code";
 			sourceTree = "<group>";
 		};
+		FB53443E226C7696004272E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FB53443F226C76AB004272E5 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		FB65BC7A2262223B00C30F61 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				FB740603226752E800402315 /* Presentation */,
 				FBEC2798225FCCE0003B1406 /* AppDelegate.swift */,
 				FB65BC8D2262556C00C30F61 /* Cells */,
 				FB65BC7B2262224A00C30F61 /* Controllers */,
 				FB65BCA022625A6E00C30F61 /* Data */,
 				FB65BCA122625A7200C30F61 /* Domain */,
 				FB65BC96226259CD00C30F61 /* Model */,
+				FB740603226752E800402315 /* Presentation */,
+				FB53443E226C7696004272E5 /* Utils */,
 				FB65BC8A2262545800C30F61 /* Views */,
 			);
 			path = App;
@@ -532,12 +543,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Lennach/Pods-Lennach-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -617,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB534440226C76AB004272E5 /* Constants.swift in Sources */,
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,

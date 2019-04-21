@@ -6,6 +6,7 @@
 //  Copyright © 2019 CaramelHeaven. All rights reserved.
 //
 import UIKit
+import Kingfisher
 
 class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -35,6 +36,8 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         print("usenet: \(usenet)")
         cell.dataLabel?.text = usenet.threadData
 
+        loadThumbnail(image: cell.threadImage!, url: usenet.thumbnail)
+
         //html converter
         guard let data = usenet.threadMsg.data(using: String.Encoding.unicode) else { return UITableViewCell() }
         do {
@@ -46,7 +49,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
 
-    //MARK load board data
+    //MARK: load board data
     private func initBoard() {
         print("RUN")
         MainRepository.instance.provideThreadsByBoard { (state, data, error) in
@@ -59,6 +62,21 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 print("error: \(error)")
             }
         }
+    }
+
+    //MARK: Load image to cell with kingfisher
+    private func loadThumbnail(image: UIImageView!, url: String) {
+        let processor = DownsamplingImageProcessor(size: CGSize(width: image.bounds.width, height: image.bounds.height))
+        
+        image.kf.indicatorType = .activity
+        image.kf.setImage(with: URL(string: Constants.baseUrl + url),
+            placeholder: UIImage(named: "placeholderImage"),
+            options: [
+                    .processor(processor),
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+            ])
     }
 }
 

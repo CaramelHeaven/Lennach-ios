@@ -7,6 +7,7 @@ target 'Lennach' do
 
   # Pods for Lennach
   pod 'Alamofire'
+  pod 'Kingfisher' #images
 
   target 'LennachTests' do
     inherit! :search_paths
