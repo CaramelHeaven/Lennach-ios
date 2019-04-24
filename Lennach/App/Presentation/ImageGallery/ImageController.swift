@@ -21,10 +21,6 @@ class ImageController: UIViewController {
 
     var urlThumbnail = ""
 
-    public override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     public init(configuration: ImageViewerConfiguration?) {
         self.configuration = configuration
         super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
@@ -33,6 +29,11 @@ class ImageController: UIViewController {
         modalTransitionStyle = .crossDissolve
         modalPresentationCapturesStatusBarAppearance = true
     }
+    
+    public override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,6 +43,8 @@ class ImageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageThread.image = configuration?.imageView?.image ?? configuration?.image
+        
+        print("image thread frame: \(imageThread.frame)")
 
         Utilities.loadAsynsImage(image: imageThread, url: Constants.baseUrl + urlThumbnail, fade: false)
 

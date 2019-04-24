@@ -23,7 +23,7 @@ class HomeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("GET INITIAL frame board: \(boardContainer.frame.origin.x), thread: \(threadContainer.frame.origin.x)")
+
         savedPositionsX()
     }
 
@@ -47,7 +47,7 @@ extension HomeController: ThreadDelegate {
         print("Drag ended, draggin: \(draggingStateX), lastValue: \(lastValueX)")
         print("frame board: \(boardContainer.frame.origin.x), thread: \(threadContainer.frame.origin.x)")
         savedPositionsX()
-        
+
         // if true - user opened thread, else - not
         if draggingStateX < lastValueX || draggingStateX == lastValueX {
             UIView.animate(withDuration: 0.5) {

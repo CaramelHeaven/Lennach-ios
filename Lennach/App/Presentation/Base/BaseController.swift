@@ -15,6 +15,11 @@ class BaseController: UIViewController {
     @IBOutlet weak var settingsContainer: UIView!
 
     private var arrayContainers: [UIView]?
+    
+    //FIXME: find answer in this bug
+    public override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
     let bottomMenu: BottomMenuView = {
         let menu = BottomMenuView()

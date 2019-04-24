@@ -44,6 +44,8 @@
 		FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */; };
 		FB9D0FAA227090300096A15C /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0FA8227090300096A15C /* ImageController.swift */; };
 		FB9D0FAB227090300096A15C /* ImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9D0FA9227090300096A15C /* ImageController.xib */; };
+		FB9D0FAE2270C95D0096A15C /* KekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0FAC2270C95D0096A15C /* KekViewController.swift */; };
+		FB9D0FAF2270C95D0096A15C /* KekViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9D0FAD2270C95D0096A15C /* KekViewController.xib */; };
 		FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE15EFA226876F6005A29FB /* BottomMenuView.swift */; };
 		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
 		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
@@ -114,6 +116,8 @@
 		FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
 		FB9D0FA8227090300096A15C /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		FB9D0FA9227090300096A15C /* ImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageController.xib; sourceTree = "<group>"; };
+		FB9D0FAC2270C95D0096A15C /* KekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KekViewController.swift; sourceTree = "<group>"; };
+		FB9D0FAD2270C95D0096A15C /* KekViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KekViewController.xib; sourceTree = "<group>"; };
 		FBE15EFA226876F6005A29FB /* BottomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
 		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				FB65BC9A22625A0700C30F61 /* Comment.swift */,
 				FB0E6FA82268B50D00954081 /* Usenet.swift */,
 				FB2206252268CE01006F2CA8 /* Board.swift */,
+				FB9D0FAC2270C95D0096A15C /* KekViewController.swift */,
+				FB9D0FAD2270C95D0096A15C /* KekViewController.xib */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 				FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */,
 				FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */,
 				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
+				FB9D0FAF2270C95D0096A15C /* KekViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +717,7 @@
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
+				FB9D0FAE2270C95D0096A15C /* KekViewController.swift in Sources */,
 				FB0E6FA72268B4FF00954081 /* UsenetDb.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,

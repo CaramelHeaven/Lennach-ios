@@ -12,20 +12,15 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     @IBOutlet weak var tableView: UITableView!
 
-    // for transition, inited in makeTransition()
-    private var selectedImage: UIImageView?
-    // animation
-
     private var present = true
     private var boardData = Board()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
-
-        print("FUCK YOU: \(view.frame)")
 
         initBoard()
     }
@@ -50,8 +45,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             print(error)
         }
 
-        cell.tapHandler = {
-            self.kek = indexPath
+        cell.tapHandler = { [unowned self] in
             self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
         }
 
@@ -62,8 +56,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
-        selectedImage = imageTapped
-
         let cell = tableView.cellForRow(at: path) as! BoardTableViewCell
 
         let configuration = ImageViewerConfiguration { config in
@@ -72,8 +64,9 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         let controller = ImageController(configuration: configuration)
         controller.urlThumbnail = boardData.usenets[path.row].thumbnail
-        
-        present(controller, animated: true)
+
+        //present(KekViewController(), animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
 
     var kek = IndexPath()
