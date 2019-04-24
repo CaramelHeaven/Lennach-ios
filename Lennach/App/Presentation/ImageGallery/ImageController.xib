@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageController" customModule="Lennach" customModuleProvider="target">
+            <connections>
+                <outlet property="imageThread" destination="w5M-uR-tRu" id="TnR-aq-bW6"/>
+                <outlet property="scrollView" destination="ZGy-6Q-elV" id="vJu-17-Uab"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGy-6Q-elV">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w5M-uR-tRu">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="w5M-uR-tRu" firstAttribute="centerX" secondItem="ZGy-6Q-elV" secondAttribute="centerX" id="0qf-Ag-OGs"/>
+                        <constraint firstItem="w5M-uR-tRu" firstAttribute="top" secondItem="ZGy-6Q-elV" secondAttribute="top" id="9FK-jY-Bqa"/>
+                        <constraint firstAttribute="bottom" secondItem="w5M-uR-tRu" secondAttribute="bottom" id="Crv-d1-2LQ"/>
+                        <constraint firstAttribute="trailing" secondItem="w5M-uR-tRu" secondAttribute="trailing" id="G3d-OE-BgK"/>
+                        <constraint firstItem="w5M-uR-tRu" firstAttribute="centerY" secondItem="ZGy-6Q-elV" secondAttribute="centerY" id="Tc7-9o-cu0"/>
+                        <constraint firstItem="w5M-uR-tRu" firstAttribute="leading" secondItem="ZGy-6Q-elV" secondAttribute="leading" id="Z4D-ZZ-IY5"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZGy-6Q-elV" secondAttribute="bottom" id="5Af-gY-Bon"/>
+                <constraint firstItem="ZGy-6Q-elV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Ehh-UN-EX0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZGy-6Q-elV" secondAttribute="trailing" id="b1P-Sy-2JI"/>
+                <constraint firstItem="ZGy-6Q-elV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kLW-Du-uqv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

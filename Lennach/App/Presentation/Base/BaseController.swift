@@ -35,8 +35,6 @@ class BaseController: UIViewController {
         bottomMenu.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         bottomMenu.heightAnchor.constraint(equalToConstant: CGFloat(50)).isActive = true
         bottomMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        //manageStateContainer(currentShowContainer: homeContainer)
     }
 
     func manageStateContainer(currentShowContainer container: UIView) {

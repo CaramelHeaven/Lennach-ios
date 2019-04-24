@@ -12,7 +12,12 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     @IBOutlet weak var tableView: UITableView!
 
-    var boardData = Board()
+    // for transition, inited in makeTransition()
+    private var selectedImage: UIImageView?
+    // animation
+
+    private var present = true
+    private var boardData = Board()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,23 +25,22 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.delegate = self
         tableView.dataSource = self
 
+        print("FUCK YOU: \(view.frame)")
+
         initBoard()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("counting: \(boardData.usenets.count)")
         return boardData.usenets.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
 
-
         let usenet = boardData.usenets[indexPath.row]
-        print("usenet: \(usenet)")
         cell.dataLabel?.text = usenet.threadData
 
-        loadThumbnail(image: cell.threadImage!, url: usenet.thumbnail)
+        Utilities.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
 
         //html converter
         guard let data = usenet.threadMsg.data(using: String.Encoding.unicode) else { return UITableViewCell() }
@@ -46,37 +50,44 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             print(error)
         }
 
+        cell.tapHandler = {
+            self.kek = indexPath
+            self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
+        }
+
         return cell
     }
 
+    private var imageVC: ImageController?
+
+    //MARK: make transition animation
+    func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
+        selectedImage = imageTapped
+
+        let cell = tableView.cellForRow(at: path) as! BoardTableViewCell
+
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = cell.threadImage!
+        }
+
+        let controller = ImageController(configuration: configuration)
+        controller.urlThumbnail = boardData.usenets[path.row].thumbnail
+        
+        present(controller, animated: true)
+    }
+
+    var kek = IndexPath()
     //MARK: load board data
     private func initBoard() {
-        print("RUN")
         MainRepository.instance.provideThreadsByBoard { (state, data, error) in
             if state {
-                print("data: \(data)")
+                //print("data: \(data)")
                 self.boardData = data as! Board
 
                 self.tableView.reloadData()
             } else {
-                print("error: \(error)")
+                //print("error: \(error)")
             }
         }
     }
-
-    //MARK: Load image to cell with kingfisher
-    private func loadThumbnail(image: UIImageView!, url: String) {
-        let processor = DownsamplingImageProcessor(size: CGSize(width: image.bounds.width, height: image.bounds.height))
-        
-        image.kf.indicatorType = .activity
-        image.kf.setImage(with: URL(string: Constants.baseUrl + url),
-            placeholder: UIImage(named: "placeholderImage"),
-            options: [
-                    .processor(processor),
-                    .scaleFactor(UIScreen.main.scale),
-                    .transition(.fade(1)),
-                    .cacheOriginalImage
-            ])
-    }
 }
-

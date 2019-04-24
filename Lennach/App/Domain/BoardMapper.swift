@@ -14,7 +14,7 @@ class BoardMapper {
 
         for item in response.threads! {
             let post = item.posts![0]
-            let usenet = Usenet(threadNum: item.threadNum!, threadMsg: post.comment!, thumbnail: post.files![0].thumbnail!, threadData: post.date!)
+            let usenet = Usenet(threadNum: item.threadNum!, threadMsg: post.comment!, thumbnail: post.files![0].path!, threadData: post.date!)
 
             board.usenets.append(usenet)
         }

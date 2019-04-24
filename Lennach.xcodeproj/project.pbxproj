@@ -35,6 +35,15 @@
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
+		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
+		FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8322706DDF0096A15C /* Utilities.swift */; };
+		FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */; };
+		FB9D0F92227084FA0096A15C /* ImageViewerTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F91227084FA0096A15C /* ImageViewerTransitioningHandler.swift */; };
+		FB9D0F942270850D0096A15C /* ImageViewerDismissallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F932270850D0096A15C /* ImageViewerDismissallInteractor.swift */; };
+		FB9D0F96227085190096A15C /* ImageViewerPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F95227085190096A15C /* ImageViewerPresentationTransition.swift */; };
+		FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */; };
+		FB9D0FAA227090300096A15C /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0FA8227090300096A15C /* ImageController.swift */; };
+		FB9D0FAB227090300096A15C /* ImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9D0FA9227090300096A15C /* ImageController.xib */; };
 		FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE15EFA226876F6005A29FB /* BottomMenuView.swift */; };
 		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
 		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
@@ -96,6 +105,15 @@
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
+		FB9D0F8322706DDF0096A15C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
+		FB9D0F91227084FA0096A15C /* ImageViewerTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerTransitioningHandler.swift; sourceTree = "<group>"; };
+		FB9D0F932270850D0096A15C /* ImageViewerDismissallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerDismissallInteractor.swift; sourceTree = "<group>"; };
+		FB9D0F95227085190096A15C /* ImageViewerPresentationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerPresentationTransition.swift; sourceTree = "<group>"; };
+		FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
+		FB9D0FA8227090300096A15C /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		FB9D0FA9227090300096A15C /* ImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageController.xib; sourceTree = "<group>"; };
 		FBE15EFA226876F6005A29FB /* BottomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
 		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,9 +192,20 @@
 			path = "Cell code";
 			sourceTree = "<group>";
 		};
+		FB3F600E226DD72700131764 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				FB9D0FA5227085750096A15C /* Transition */,
+				FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		FB53443E226C7696004272E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FB9D0F8322706DDF0096A15C /* Utilities.swift */,
+				FB3F600E226DD72700131764 /* Animation */,
 				FB53443F226C76AB004272E5 /* Constants.swift */,
 			);
 			path = Utils;
@@ -286,6 +315,7 @@
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FB9D0F7E22706B440096A15C /* ImageGallery */,
 				FB7406062267847400402315 /* Base */,
 				FB740604226752F300402315 /* Home */,
 			);
@@ -316,6 +346,27 @@
 				FB7406072267848600402315 /* BaseController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		FB9D0F7E22706B440096A15C /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+				FB9D0FA8227090300096A15C /* ImageController.swift */,
+				FB9D0FA9227090300096A15C /* ImageController.xib */,
+				FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */,
+			);
+			path = ImageGallery;
+			sourceTree = "<group>";
+		};
+		FB9D0FA5227085750096A15C /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				FB9D0F91227084FA0096A15C /* ImageViewerTransitioningHandler.swift */,
+				FB9D0F932270850D0096A15C /* ImageViewerDismissallInteractor.swift */,
+				FB9D0F95227085190096A15C /* ImageViewerPresentationTransition.swift */,
+				FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */,
+			);
+			path = Transition;
 			sourceTree = "<group>";
 		};
 		FBE15EF9226876BB005A29FB /* Custom */ = {
@@ -509,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */,
+				FB9D0FAB227090300096A15C /* ImageController.xib in Resources */,
 				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
 				FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */,
 				FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */,
@@ -630,16 +682,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB9D0F96227085190096A15C /* ImageViewerPresentationTransition.swift in Sources */,
 				FB534440226C76AB004272E5 /* Constants.swift in Sources */,
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
+				FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */,
+				FB9D0F942270850D0096A15C /* ImageViewerDismissallInteractor.swift in Sources */,
+				FB9D0F92227084FA0096A15C /* ImageViewerTransitioningHandler.swift in Sources */,
 				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
 				FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */,
 				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
+				FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
+				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
@@ -651,8 +709,10 @@
 				FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */,
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
+				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB0E6FA72268B4FF00954081 /* UsenetDb.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
+				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
 				FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */,
 			);
