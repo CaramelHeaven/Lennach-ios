@@ -13,13 +13,10 @@ class HomeController: UIViewController {
     @IBOutlet weak var boardContainer: UIView!
     @IBOutlet weak var threadContainer: UIView!
 
+    private weak var threadController: ThreadController?
+
     private var draggingStateX: CGFloat = 0
     private var initialThreadX: CGFloat = 0, initialBoardX: CGFloat = 0
-
-    //from board controlle
-    private var firstValue = false
-    private var initialX: CGFloat = 0, lastX: CGFloat = 0
-    private var controllingStateX: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +25,14 @@ class HomeController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepeare")
-        if let threadController = segue.destination as? ThreadController {
-            threadController.threadDelegate = self
+        if let threadVC = segue.destination as? ThreadController {
+            threadVC.threadDelegate = self
+
+            self.threadController = threadVC
+        }
+
+        if let boardController = segue.destination as? BoardController {
+            boardController.boardDelegatable = self
         }
 
         print("destination: \(segue.destination)")
@@ -39,6 +41,19 @@ class HomeController: UIViewController {
     func savedPositionsX() {
         initialBoardX = boardContainer.frame.origin.x
         initialThreadX = threadContainer.frame.origin.x
+    }
+}
+
+//Swap from board to thread and send callback for load data from network
+extension HomeController: BoardTapDelegatable {
+    func itemTapped(data: (boardName: String, numThread: String)) {
+
+        UIView.animate(withDuration: 0.3) {
+            self.boardContainer.frame.origin.x = -315
+            self.threadContainer.frame.origin.x = 0
+
+            self.threadController?.callbackFromTapAction(data: data)
+        }
     }
 }
 

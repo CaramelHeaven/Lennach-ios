@@ -8,13 +8,18 @@
 import UIKit
 import Kingfisher
 
+protocol BoardTapDelegatable: class {
+    func itemTapped(data: (boardName: String, numThread: String))
+}
+
 class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
 
     private var present = true
     private var boardData = Board()
-
+    
+    weak var boardDelegatable: BoardTapDelegatable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         Utilities.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
 
         //html converter
+        //FIXME: fix to if let
         guard let data = usenet.threadMsg.data(using: String.Encoding.unicode) else { return UITableViewCell() }
         do {
             cell.threadLabel?.attributedText = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
@@ -50,6 +56,10 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        boardDelegatable?.itemTapped(data: ("pr", boardData.usenets[indexPath.row].threadNum))
     }
 
     private var imageVC: ImageController?

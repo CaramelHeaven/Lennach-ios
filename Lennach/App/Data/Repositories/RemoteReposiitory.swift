@@ -33,23 +33,39 @@ enum AlamofireRouter: URLRequestConvertible {
 
 class RemoteRepository {
     static let instance = RemoteRepository()
-    
-    let boardMapper = BoardMapper()
+
+    let mainMapper = RemoteMainMapper()
 
     private init() { }
 
     func getThreadsByBoard(boardName name: String, page: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        let url = "https://2ch.hk/" + name + "/" + page + ".json"
+        let url = Constants.baseUrl + name + "/" + page + ".json"
+        print("BOARD URL: \(url)")
 
-        Alamofire.request(url).responseJSON { (response) in
+        Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
-                let board = self.boardMapper.mapResponseToBoardUseCase(response: data)
-                
+                let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
+
                 completion(true, board, nil)
             } catch {
                 completion(false, nil, error)
                 print(error)
+            }
+        }
+    }
+
+    func getCommentsByThread(boardName name: String, threadNum: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+        let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_thread&board=" + name + "&thread=" + threadNum + "&post=0"
+        print("URL POSTS: \(url)")
+        Alamofire.request(url).responseJSON { response in
+            do {
+                let data = try JSONDecoder().decode([ThreadResponse].self, from: response.data!)
+                let comments = self.mainMapper.mapResponseToThreadCommentsUseCase(response: data)
+
+                completion(true, comments, nil)
+            } catch {
+                completion(false, nil, error)
             }
         }
     }

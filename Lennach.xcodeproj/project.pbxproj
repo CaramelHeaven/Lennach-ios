@@ -16,9 +16,12 @@
 		FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */; };
 		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
 		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
-		FB2206242268CC13006F2CA8 /* BoardMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* BoardMapper.swift */; };
+		FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
+		FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */; };
+		FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */; };
+		FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D7052271834800D7D75D /* LocalMainMapper.swift */; };
 		FB534440226C76AB004272E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB53443F226C76AB004272E5 /* Constants.swift */; };
 		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
 		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
@@ -31,7 +34,7 @@
 		FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC8F2262558300C30F61 /* ThreadOpC.xib */; };
 		FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* ThreadCommentC.swift */; };
 		FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC93226258A200C30F61 /* ThreadCommentC.xib */; };
-		FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment.swift */; };
+		FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */; };
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
@@ -86,9 +89,12 @@
 		FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Usenet+Posts+Files.swift"; sourceTree = "<group>"; };
 		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
 		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
-		FB2206232268CC13006F2CA8 /* BoardMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardMapper.swift; sourceTree = "<group>"; };
+		FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMainMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadResponse.swift; sourceTree = "<group>"; };
+		FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesThreadResponse.swift; sourceTree = "<group>"; };
+		FB29D7052271834800D7D75D /* LocalMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMainMapper.swift; sourceTree = "<group>"; };
 		FB53443F226C76AB004272E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
 		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -101,7 +107,7 @@
 		FB65BC8F2262558300C30F61 /* ThreadOpC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadOpC.xib; sourceTree = "<group>"; };
 		FB65BC92226258A200C30F61 /* ThreadCommentC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCommentC.swift; sourceTree = "<group>"; };
 		FB65BC93226258A200C30F61 /* ThreadCommentC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCommentC.xib; sourceTree = "<group>"; };
-		FB65BC9A22625A0700C30F61 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Picture.swift"; sourceTree = "<group>"; };
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -170,7 +176,8 @@
 		FB0E6FAE2268B9D600954081 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */,
+				FB29D702227181AE00D7D75D /* BoardResponse */,
+				FB29D701227181A700D7D75D /* ThreadResponse */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -190,6 +197,22 @@
 				FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */,
 			);
 			path = "Cell code";
+			sourceTree = "<group>";
+		};
+		FB29D701227181A700D7D75D /* ThreadResponse */ = {
+			isa = PBXGroup;
+			children = (
+				FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */,
+			);
+			path = ThreadResponse;
+			sourceTree = "<group>";
+		};
+		FB29D702227181AE00D7D75D /* BoardResponse */ = {
+			isa = PBXGroup;
+			children = (
+				FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */,
+			);
+			path = BoardResponse;
 			sourceTree = "<group>";
 		};
 		FB3F600E226DD72700131764 /* Animation */ = {
@@ -272,6 +295,7 @@
 			children = (
 				FB0E6FAE2268B9D600954081 /* Helpers */,
 				FB0E6FAA2268B8A800954081 /* BoardResponse.swift */,
+				FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -279,7 +303,7 @@
 		FB65BC98226259E900C30F61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FB65BC9A22625A0700C30F61 /* Comment.swift */,
+				FB8165392271EF000017B97B /* Posts */,
 				FB0E6FA82268B50D00954081 /* Usenet.swift */,
 				FB2206252268CE01006F2CA8 /* Board.swift */,
 			);
@@ -307,7 +331,8 @@
 		FB65BCA122625A7200C30F61 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				FB2206232268CC13006F2CA8 /* BoardMapper.swift */,
+				FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */,
+				FB29D7052271834800D7D75D /* LocalMainMapper.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -346,6 +371,14 @@
 				FB7406072267848600402315 /* BaseController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		FB8165392271EF000017B97B /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */,
+			);
+			path = Posts;
 			sourceTree = "<group>";
 		};
 		FB9D0F7E22706B440096A15C /* ImageGallery */ = {
@@ -684,6 +717,7 @@
 			files = (
 				FB9D0F96227085190096A15C /* ImageViewerPresentationTransition.swift in Sources */,
 				FB534440226C76AB004272E5 /* Constants.swift in Sources */,
+				FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */,
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */,
@@ -694,6 +728,7 @@
 				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
 				FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
+				FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
@@ -701,12 +736,13 @@
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
+				FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */,
 				FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */,
 				FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */,
 				FB2206262268CE01006F2CA8 /* Board.swift in Sources */,
-				FB2206242268CC13006F2CA8 /* BoardMapper.swift in Sources */,
+				FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
-				FB65BC9B22625A0700C30F61 /* Comment.swift in Sources */,
+				FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */,
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,

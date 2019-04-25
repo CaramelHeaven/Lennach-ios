@@ -9,5 +9,15 @@
 import Foundation
 
 struct Comment {
-    var kek: String = "fuck you"
+    var num = ""
+    var name = ""
+    var comment = ""
+    var date = ""
+    
+    var files: [Picture]?
+}
+
+struct Picture {
+    var displayName = ""
+    var path = ""
 }

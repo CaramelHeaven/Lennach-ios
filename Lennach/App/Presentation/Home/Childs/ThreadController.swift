@@ -15,12 +15,11 @@ protocol ThreadDelegate: class {
 }
 
 class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
     @IBOutlet weak var tableView: UITableView?
 
     weak var threadDelegate: ThreadDelegate?
-
-    var data = MainRepository.instance.provideCommentData()
+    
+    var data: (boardName: String, numberThread: String)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,33 +54,45 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch data[indexPath.row].kek {
-        case "1":
-            let cell = Bundle.main.loadNibNamed("ThreadOpC", owner: self, options: nil)?.first as! ThreadOpC
-
-            cell.textLabel!.text = data[indexPath.row].kek
-
-            return cell
-        case "2":
-            let cell = Bundle.main.loadNibNamed("ThreadCommentC", owner: self, options: nil)?.first as! ThreadCommentC
-            cell.labelComment.text = data[indexPath.row].kek
-
-            return cell
-        default:
-            return UITableViewCell()
-        }
+        //        switch data[indexPath.row].kek {
+        //        case "1":
+        //            //let cell = Bundle.main.loadNibNamed("ThreadOpC", owner: self, options: nil)?.first as! ThreadOpC
+        //
+        //            //cell.textLabel!.text = data[indexPath.row].kek
+        //
+        //            return return UITableViewCell()
+        //        case "2":
+        //            let cell = Bundle.main.loadNibNamed("ThreadCommentC", owner: self, options: nil)?.first as! ThreadCommentC
+        //            //cell.labelComment.text = data[indexPath.row].kek
+        //
+        //            return UITableViewCell()
+        //        default:
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if data[indexPath.row].kek == "1" {
-            return 255
-        } else {
-            return 174
-        }
+        //        if data[indexPath.row].kek == "1" {
+        //            return 255
+        //        } else {
+        //            return 174
+        //        }
+        return 255
     }
 }
 
+//MARK: Load comments from network
+extension ThreadController {
+    func callbackFromTapAction(data: (boardName: String, numThread: String)){
+        MainRepository.instance.provideMessagesByThread(data.boardName, data.numThread) { (result, objects, error) in
+            if result {
+                print("objects: \(objects as! [Comment])")
+            } else {
+                fatalError()
+            }
+        }
+    }
+}

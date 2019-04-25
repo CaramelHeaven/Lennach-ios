@@ -22,22 +22,9 @@ class MainRepository {
         }
     }
 
-    public func provideCommentData() -> [Comment] {
-        let comment = Comment(kek: "1")
-
-        data.append(comment)
-        data.append(comment)
-        data.append(comment)
-        data.append(comment)
-        data.append(comment)
-        data.append(comment)
-        data.append(comment)
-
-        let com = Comment(kek: "2")
-        data.append(com)
-        data.append(com)
-        data.append(com)
-
-        return data
+    public func provideMessagesByThread(_ board: String, _ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+        RemoteRepository.instance.getCommentsByThread(boardName: board, threadNum: num) { (result, data, error) in
+            completion(result, data, error)
+        }
     }
 }
