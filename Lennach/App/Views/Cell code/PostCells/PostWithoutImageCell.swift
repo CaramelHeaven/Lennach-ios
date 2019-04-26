@@ -1,5 +1,5 @@
 //
-//  ThreadCommentC.swift
+//  PostWithoutImageCell.swift
 //  Lennach
 //
 //  Created by Sergey Fominov on 13/04/2019.
@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ThreadCommentC: UITableViewCell {
+class PostWithoutImageCell: UITableViewCell {
 
-    @IBOutlet weak var labelComment: UILabel!
+    @IBOutlet weak var labelNumberAndDate: UILabel!
+    @IBOutlet weak var tvComment: UITextView!
+    @IBOutlet weak var btnReplies: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

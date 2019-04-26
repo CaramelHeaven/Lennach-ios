@@ -31,9 +31,7 @@
 		FB65BC872262408300C30F61 /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC862262408300C30F61 /* BoardController.swift */; };
 		FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC882262408A00C30F61 /* ThreadController.swift */; };
 		FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8E2262558300C30F61 /* ThreadOpC.swift */; };
-		FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC8F2262558300C30F61 /* ThreadOpC.xib */; };
-		FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* ThreadCommentC.swift */; };
-		FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB65BC93226258A200C30F61 /* ThreadCommentC.xib */; };
+		FB65BC94226258A200C30F61 /* PostWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */; };
 		FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */; };
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
@@ -104,9 +102,7 @@
 		FB65BC862262408300C30F61 /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		FB65BC882262408A00C30F61 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
 		FB65BC8E2262558300C30F61 /* ThreadOpC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadOpC.swift; sourceTree = "<group>"; };
-		FB65BC8F2262558300C30F61 /* ThreadOpC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadOpC.xib; sourceTree = "<group>"; };
-		FB65BC92226258A200C30F61 /* ThreadCommentC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCommentC.swift; sourceTree = "<group>"; };
-		FB65BC93226258A200C30F61 /* ThreadCommentC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCommentC.xib; sourceTree = "<group>"; };
+		FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithoutImageCell.swift; sourceTree = "<group>"; };
 		FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Picture.swift"; sourceTree = "<group>"; };
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
@@ -194,6 +190,7 @@
 		FB2206272268DAB0006F2CA8 /* Cell code */ = {
 			isa = PBXGroup;
 			children = (
+				FB3FD3E6227317C700AF87E1 /* PostCells */,
 				FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */,
 			);
 			path = "Cell code";
@@ -222,6 +219,21 @@
 				FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		FB3FD3E52273154C00AF87E1 /* PostCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PostCells;
+			sourceTree = "<group>";
+		};
+		FB3FD3E6227317C700AF87E1 /* PostCells */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */,
+			);
+			path = PostCells;
 			sourceTree = "<group>";
 		};
 		FB53443E226C7696004272E5 /* Utils */ = {
@@ -275,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC8E2262558300C30F61 /* ThreadOpC.swift */,
-				FB65BC92226258A200C30F61 /* ThreadCommentC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -413,8 +424,7 @@
 		FBE15EFC22687B92005A29FB /* Cells - xib */ = {
 			isa = PBXGroup;
 			children = (
-				FB65BC93226258A200C30F61 /* ThreadCommentC.xib */,
-				FB65BC8F2262558300C30F61 /* ThreadOpC.xib */,
+				FB3FD3E52273154C00AF87E1 /* PostCells */,
 			);
 			path = "Cells - xib";
 			sourceTree = "<group>";
@@ -595,8 +605,6 @@
 				FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */,
 				FB9D0FAB227090300096A15C /* ImageController.xib in Resources */,
 				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
-				FB65BC912262558300C30F61 /* ThreadOpC.xib in Resources */,
-				FB65BC95226258A200C30F61 /* ThreadCommentC.xib in Resources */,
 				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,7 +746,7 @@
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
 				FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */,
 				FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */,
-				FB65BC94226258A200C30F61 /* ThreadCommentC.swift in Sources */,
+				FB65BC94226258A200C30F61 /* PostWithoutImageCell.swift in Sources */,
 				FB2206262268CE01006F2CA8 /* Board.swift in Sources */,
 				FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,

@@ -18,14 +18,16 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var tableView: UITableView?
 
     weak var threadDelegate: ThreadDelegate?
-    
-    var data: (boardName: String, numberThread: String)?
+
+    private var dataThread: [Comment] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView?.dataSource = self
         tableView?.delegate = self
+//        tableView?.estimatedRowHeight = 30
+//        tableView?.rowHeight = UITableView.automaticDimension
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
         self.view.addGestureRecognizer(panGesture)
@@ -53,11 +55,23 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 
+    internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return dataThread.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
+
+        cell.tvComment.text = dataThread[indexPath.row].comment
+
         //        switch data[indexPath.row].kek {
         //        case "1":
         //            //let cell = Bundle.main.loadNibNamed("ThreadOpC", owner: self, options: nil)?.first as! ThreadOpC
@@ -71,25 +85,17 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         //
         //            return UITableViewCell()
         //        default:
-        return UITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //        if data[indexPath.row].kek == "1" {
-        //            return 255
-        //        } else {
-        //            return 174
-        //        }
-        return 255
+        return cell
     }
 }
 
 //MARK: Load comments from network
 extension ThreadController {
-    func callbackFromTapAction(data: (boardName: String, numThread: String)){
+    func callbackFromTapAction(data: (boardName: String, numThread: String)) {
         MainRepository.instance.provideMessagesByThread(data.boardName, data.numThread) { (result, objects, error) in
             if result {
-                print("objects: \(objects as! [Comment])")
+                self.dataThread = objects as! [Comment]
+                self.tableView?.reloadData()
             } else {
                 fatalError()
             }
