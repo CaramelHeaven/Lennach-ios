@@ -66,16 +66,27 @@ struct Utilities {
         return CGPoint(x: insideSize.width - size.width / 2, y: insideSize.height - size.height / 2)
     }
 
-    static func loadAsynsImage(image: UIImageView!, url: String, fade: Bool) {
-        let processor = DownsamplingImageProcessor(size: CGSize(width: image.bounds.width, height: image.bounds.height))
-        
-        image.kf.indicatorType = .activity
-        image.kf.setImage(with: URL(string: url),
-            placeholder: UIImage(named: url),
-            options: [
-                    .processor(processor),
-                    .scaleFactor(UIScreen.main.scale),
-                    .cacheOriginalImage
-            ])
+    //MARK: Utilities for UI
+    struct WorkWithUI {
+        static func textHtmlConvert(text: String) -> NSAttributedString? {
+            if let textHtml = text.data(using: String.Encoding.unicode) {
+                return try? NSAttributedString(data: textHtml, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            }
+
+            return nil
+        }
+
+        static func loadAsynsImage(image: UIImageView!, url: String, fade: Bool) {
+            let processor = DownsamplingImageProcessor(size: CGSize(width: image.bounds.width, height: image.bounds.height))
+
+            image.kf.indicatorType = .activity
+            image.kf.setImage(with: URL(string: url),
+                placeholder: UIImage(named: url),
+                options: [
+                        .processor(processor),
+                        .scaleFactor(UIScreen.main.scale),
+                        .cacheOriginalImage
+                ])
+        }
     }
 }

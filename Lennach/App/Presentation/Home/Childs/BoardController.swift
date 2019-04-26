@@ -18,7 +18,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     private var present = true
     private var boardData = Board()
-    
+
     weak var boardDelegatable: BoardTapDelegatable?
 
     override func viewDidLoad() {
@@ -38,18 +38,19 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
 
         let usenet = boardData.usenets[indexPath.row]
-        cell.dataLabel?.text = usenet.threadData
+        print("usenet: \(usenet)")
+        print("-------------------------------------------")
+        cell.labelDate?.text = usenet.date
 
-        Utilities.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+        Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+        var lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
-        //html converter
-        //FIXME: fix to if let
-        guard let data = usenet.threadMsg.data(using: String.Encoding.unicode) else { return UITableViewCell() }
-        do {
-            cell.threadLabel?.attributedText = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-        } catch {
-            print(error)
+        if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
+            cell.threadLabel?.attributedText = kek
+        } else {
+            cell.threadLabel?.text = lol
         }
+
 
         cell.tapHandler = { [unowned self] in
             self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
@@ -57,7 +58,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         boardDelegatable?.itemTapped(data: ("pr", boardData.usenets[indexPath.row].threadNum))
     }
@@ -87,6 +88,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 //print("data: \(data)")
                 self.boardData = data as! Board
 
+                print("checkign: \(self.boardData.usenets)")
                 self.tableView.reloadData()
             } else {
                 //print("error: \(error)")

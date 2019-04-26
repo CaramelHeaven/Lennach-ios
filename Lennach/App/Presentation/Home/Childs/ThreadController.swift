@@ -26,8 +26,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         tableView?.dataSource = self
         tableView?.delegate = self
-//        tableView?.estimatedRowHeight = 30
-//        tableView?.rowHeight = UITableView.automaticDimension
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
         self.view.addGestureRecognizer(panGesture)
@@ -68,24 +66,39 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
+        if let files = dataThread[indexPath.row].files {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
 
-        cell.tvComment.text = dataThread[indexPath.row].comment
+            print("KEK")
+            let post = dataThread[indexPath.row]
 
-        //        switch data[indexPath.row].kek {
-        //        case "1":
-        //            //let cell = Bundle.main.loadNibNamed("ThreadOpC", owner: self, options: nil)?.first as! ThreadOpC
-        //
-        //            //cell.textLabel!.text = data[indexPath.row].kek
-        //
-        //            return return UITableViewCell()
-        //        case "2":
-        //            let cell = Bundle.main.loadNibNamed("ThreadCommentC", owner: self, options: nil)?.first as! ThreadCommentC
-        //            //cell.labelComment.text = data[indexPath.row].kek
-        //
-        //            return UITableViewCell()
-        //        default:
-        return cell
+            let exclusionPath: UIBezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: cell.imagePost.frame.width, height: cell.imagePost.frame.height))
+
+            cell.tvComment.textContainer.exclusionPaths = [exclusionPath]
+
+            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
+                cell.tvComment.attributedText = text
+            } else {
+                cell.tvComment.text = post.comment
+            }
+
+            //load picture
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
+
+            let post = dataThread[indexPath.row]
+
+            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
+                cell.tvComment.attributedText = text
+            } else {
+                cell.tvComment.text = post.comment
+            }
+
+            return cell
+        }
     }
 }
 

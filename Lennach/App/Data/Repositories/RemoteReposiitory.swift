@@ -39,15 +39,18 @@ class RemoteRepository {
     private init() { }
 
     func getThreadsByBoard(boardName name: String, page: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        let url = Constants.baseUrl + name + "/" + page + ".json"
+        let url = Constants.baseUrl + name + "/catalog.json"
         print("BOARD URL: \(url)")
 
         Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
-                let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
 
-                completion(true, board, nil)
+                DispatchQueue.main.async {
+                    var board = self.mainMapper.mapResponseToBoardUseCase(response: data)
+                    print("usenets count: \(board.usenets.count)")
+                    completion(true, board, nil)
+                }
             } catch {
                 completion(false, nil, error)
                 print(error)

@@ -46,7 +46,7 @@ class ImageController: UIViewController {
         
         print("image thread frame: \(imageThread.frame)")
 
-        Utilities.loadAsynsImage(image: imageThread, url: Constants.baseUrl + urlThumbnail, fade: false)
+        Utilities.WorkWithUI.loadAsynsImage(image: imageThread, url: Constants.baseUrl + urlThumbnail, fade: false)
 
         setupScrollView()
         setupGestureRecognizers()

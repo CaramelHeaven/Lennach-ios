@@ -22,10 +22,7 @@ struct BoardResponse: Codable {
     let advertTopLink: String?
     let boardBannerImage: String?
     let boardBannerLink: String?
-    let boardSpeed: Int?
     let bumpLimit: Int?
-    let currentPage: Int?
-    let currentThread: Int?
     let defaultName: String?
     let enableDices: Int?
     let enableFlags: Int?
@@ -41,12 +38,10 @@ struct BoardResponse: Codable {
     let enableThreadTags: Int?
     let enableTrips: Int?
     let enableVideo: Int?
-    let isBoard: Int?
-    let isIndex: Int?
+    let filter: String?
     let maxComment: Int?
     let maxFilesSize: Int?
-    let pages: [Int]?
-    let threads: [UsenetsNetwork]?
+    let threads: [UsenetsBoardResponse]?
     
     private enum CodingKeys: String, CodingKey {
         case Board = "Board"
@@ -61,10 +56,7 @@ struct BoardResponse: Codable {
         case advertTopLink = "advert_top_link"
         case boardBannerImage = "board_banner_image"
         case boardBannerLink = "board_banner_link"
-        case boardSpeed = "board_speed"
         case bumpLimit = "bump_limit"
-        case currentPage = "current_page"
-        case currentThread = "current_thread"
         case defaultName = "default_name"
         case enableDices = "enable_dices"
         case enableFlags = "enable_flags"
@@ -80,14 +72,10 @@ struct BoardResponse: Codable {
         case enableThreadTags = "enable_thread_tags"
         case enableTrips = "enable_trips"
         case enableVideo = "enable_video"
-        case isBoard = "is_board"
-        case isIndex = "is_index"
+        case filter = "filter"
         case maxComment = "max_comment"
         case maxFilesSize = "max_files_size"
-        case newsAbu = "news_abu"
-        case pages = "pages"
         case threads = "threads"
-        case top = "top"
     }
     
     init(from decoder: Decoder) throws {
@@ -104,10 +92,7 @@ struct BoardResponse: Codable {
         advertTopLink = try values.decodeIfPresent(String.self, forKey: .advertTopLink)
         boardBannerImage = try values.decodeIfPresent(String.self, forKey: .boardBannerImage)
         boardBannerLink = try values.decodeIfPresent(String.self, forKey: .boardBannerLink)
-        boardSpeed = try values.decodeIfPresent(Int.self, forKey: .boardSpeed)
         bumpLimit = try values.decodeIfPresent(Int.self, forKey: .bumpLimit)
-        currentPage = try values.decodeIfPresent(Int.self, forKey: .currentPage)
-        currentThread = try values.decodeIfPresent(Int.self, forKey: .currentThread)
         defaultName = try values.decodeIfPresent(String.self, forKey: .defaultName)
         enableDices = try values.decodeIfPresent(Int.self, forKey: .enableDices)
         enableFlags = try values.decodeIfPresent(Int.self, forKey: .enableFlags)
@@ -123,12 +108,10 @@ struct BoardResponse: Codable {
         enableThreadTags = try values.decodeIfPresent(Int.self, forKey: .enableThreadTags)
         enableTrips = try values.decodeIfPresent(Int.self, forKey: .enableTrips)
         enableVideo = try values.decodeIfPresent(Int.self, forKey: .enableVideo)
-        isBoard = try values.decodeIfPresent(Int.self, forKey: .isBoard)
-        isIndex = try values.decodeIfPresent(Int.self, forKey: .isIndex)
+        filter = try values.decodeIfPresent(String.self, forKey: .filter)
         maxComment = try values.decodeIfPresent(Int.self, forKey: .maxComment)
         maxFilesSize = try values.decodeIfPresent(Int.self, forKey: .maxFilesSize)
-        pages = try values.decodeIfPresent([Int].self, forKey: .pages)
-        threads = try values.decodeIfPresent([UsenetsNetwork].self, forKey: .threads)
+        threads = try values.decodeIfPresent([UsenetsBoardResponse].self, forKey: .threads)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -145,10 +128,7 @@ struct BoardResponse: Codable {
         try container.encodeIfPresent(advertTopLink, forKey: .advertTopLink)
         try container.encodeIfPresent(boardBannerImage, forKey: .boardBannerImage)
         try container.encodeIfPresent(boardBannerLink, forKey: .boardBannerLink)
-        try container.encodeIfPresent(boardSpeed, forKey: .boardSpeed)
         try container.encodeIfPresent(bumpLimit, forKey: .bumpLimit)
-        try container.encodeIfPresent(currentPage, forKey: .currentPage)
-        try container.encodeIfPresent(currentThread, forKey: .currentThread)
         try container.encodeIfPresent(defaultName, forKey: .defaultName)
         try container.encodeIfPresent(enableDices, forKey: .enableDices)
         try container.encodeIfPresent(enableFlags, forKey: .enableFlags)
@@ -164,12 +144,9 @@ struct BoardResponse: Codable {
         try container.encodeIfPresent(enableThreadTags, forKey: .enableThreadTags)
         try container.encodeIfPresent(enableTrips, forKey: .enableTrips)
         try container.encodeIfPresent(enableVideo, forKey: .enableVideo)
-        try container.encodeIfPresent(isBoard, forKey: .isBoard)
-        try container.encodeIfPresent(isIndex, forKey: .isIndex)
+        try container.encodeIfPresent(filter, forKey: .filter)
         try container.encodeIfPresent(maxComment, forKey: .maxComment)
         try container.encodeIfPresent(maxFilesSize, forKey: .maxFilesSize)
-        try container.encodeIfPresent(pages, forKey: .pages)
         try container.encodeIfPresent(threads, forKey: .threads)
     }
 }
-

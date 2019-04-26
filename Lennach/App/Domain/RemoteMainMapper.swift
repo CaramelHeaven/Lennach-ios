@@ -12,9 +12,8 @@ class RemoteMainMapper {
     func mapResponseToBoardUseCase(response: BoardResponse) -> Board {
         var board = Board()
 
-        for item in response.threads! {
-            let post = item.posts![0]
-            let usenet = Usenet(threadNum: item.threadNum!, threadMsg: post.comment!, thumbnail: post.files![0].path!, threadData: post.date!)
+        for item in Array(response.threads![0..<10]) {
+            let usenet = Usenet(threadNum: item.num!, threadMsg: item.comment!, thumbnail: item.files![0].path!, date: item.date!)
 
             board.usenets.append(usenet)
         }
@@ -27,15 +26,15 @@ class RemoteMainMapper {
 
         for item in response {
             //Fill files
-            var pictures: [Picture]?
+            var pictures = [Picture]()
             if let files = item.files {
                 for file in files {
-                    pictures?.append(Picture(displayName: file.displayname!, path: file.path!))
+                    pictures.append(Picture(displayName: file.displayname!, path: file.path!))
                 }
             }
 
             //Fill base data in comment
-            comments.append(Comment(num: item.num!, name: item.name!, comment: item.comment!, date: item.date!, files: pictures))
+            comments.append(Comment(num: item.num!, name: item.name!, comment: item.comment!, date: item.date!, files: pictures.count != 0 ? pictures : nil))
         }
 
         return comments

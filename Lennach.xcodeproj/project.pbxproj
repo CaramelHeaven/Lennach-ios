@@ -36,6 +36,7 @@
 		FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9C22625A2400C30F61 /* CommentDb.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
+		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
 		FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8322706DDF0096A15C /* Utilities.swift */; };
 		FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */; };
@@ -107,6 +108,7 @@
 		FB65BC9C22625A2400C30F61 /* CommentDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDb.swift; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
 		FB9D0F8322706DDF0096A15C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */,
+				FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */,
 			);
 			path = PostCells;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				FB9D0F96227085190096A15C /* ImageViewerPresentationTransition.swift in Sources */,
 				FB534440226C76AB004272E5 /* Constants.swift in Sources */,
 				FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */,
+				FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */,
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */,

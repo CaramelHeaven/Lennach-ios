@@ -12,7 +12,7 @@ class BoardTableViewCell: UITableViewCell {
 
     @IBOutlet var threadImage: UIImageView?
     @IBOutlet var threadLabel: UILabel?
-    @IBOutlet var dataLabel: UILabel?
+    @IBOutlet var labelDate: UILabel?
 
     //MARK: image click listener
     var tapHandler: (() -> Void)? = nil

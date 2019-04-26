@@ -10,38 +10,7 @@
 
 import Foundation
 
-struct UsenetsNetwork: Codable {
-    
-    let filesCount: Int?
-    let posts: [PostsNetwork]?
-    let postsCount: Int?
-    let threadNum: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        case filesCount = "files_count"
-        case posts = "posts"
-        case postsCount = "posts_count"
-        case threadNum = "thread_num"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        filesCount = try values.decodeIfPresent(Int.self, forKey: .filesCount)
-        posts = try values.decodeIfPresent([PostsNetwork].self, forKey: .posts)
-        postsCount = try values.decodeIfPresent(Int.self, forKey: .postsCount)
-        threadNum = try values.decodeIfPresent(String.self, forKey: .threadNum)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(filesCount, forKey: .filesCount)
-        try container.encodeIfPresent(posts, forKey: .posts)
-        try container.encodeIfPresent(postsCount, forKey: .postsCount)
-        try container.encodeIfPresent(threadNum, forKey: .threadNum)
-    }
-}
-
-struct PostsNetwork: Codable {
+struct UsenetsBoardResponse: Codable {
     
     let banned: Int?
     let closed: Int?
@@ -49,7 +18,7 @@ struct PostsNetwork: Codable {
     let date: String?
     let email: String?
     let endless: Int?
-    let files: [FilesNetwork]?
+    let files: [FilesBoardResponse]?
     let filesCount: Int?
     let lasthit: Int?
     let name: String?
@@ -93,7 +62,7 @@ struct PostsNetwork: Codable {
         date = try values.decodeIfPresent(String.self, forKey: .date)
         email = try values.decodeIfPresent(String.self, forKey: .email)
         endless = try values.decodeIfPresent(Int.self, forKey: .endless)
-        files = try values.decodeIfPresent([FilesNetwork].self, forKey: .files)
+        files = try values.decodeIfPresent([FilesBoardResponse].self, forKey: .files)
         filesCount = try values.decodeIfPresent(Int.self, forKey: .filesCount)
         lasthit = try values.decodeIfPresent(Int.self, forKey: .lasthit)
         name = try values.decodeIfPresent(String.self, forKey: .name)
@@ -133,7 +102,7 @@ struct PostsNetwork: Codable {
     
 }
 
-struct FilesNetwork: Codable {
+struct FilesBoardResponse: Codable {
     
     let displayname: String?
     let fullname: String?
