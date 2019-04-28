@@ -12,7 +12,7 @@ class RemoteMainMapper {
     func mapResponseToBoardUseCase(response: BoardResponse) -> Board {
         var board = Board()
 
-        for item in Array(response.threads![0..<10]) {
+        for item in response.threads! {
             let usenet = Usenet(threadNum: item.num!, threadMsg: item.comment!, thumbnail: item.files![0].path!, date: item.date!)
 
             board.usenets.append(usenet)
