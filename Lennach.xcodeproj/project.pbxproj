@@ -53,6 +53,7 @@
 		FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */; };
 		FBEC27AE225FCCE1003B1406 /* LennachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27AD225FCCE1003B1406 /* LennachTests.swift */; };
 		FBEC27B9225FCCE1003B1406 /* LennachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */; };
+		FBEE746422783CE6007DF632 /* NavigationExpandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE746322783CE6007DF632 /* NavigationExpandView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		FBEC27B4225FCCE1003B1406 /* LennachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LennachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LennachUITests.swift; sourceTree = "<group>"; };
 		FBEC27BA225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBEE746322783CE6007DF632 /* NavigationExpandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExpandView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +356,7 @@
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FBEE746222783A24007DF632 /* Navigation */,
 				FB9D0F7E22706B440096A15C /* ImageGallery */,
 				FB7406062267847400402315 /* Base */,
 				FB740604226752F300402315 /* Home */,
@@ -482,6 +485,14 @@
 				FBEC27BA225FCCE1003B1406 /* Info.plist */,
 			);
 			path = LennachUITests;
+			sourceTree = "<group>";
+		};
+		FBEE746222783A24007DF632 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				FBEE746322783CE6007DF632 /* NavigationExpandView.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		FE7A45E57B8B5B89B7E4380C /* Pods */ = {
@@ -740,6 +751,7 @@
 				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
 				FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
+				FBEE746422783CE6007DF632 /* NavigationExpandView.swift in Sources */,
 				FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,

@@ -15,7 +15,8 @@ class BaseController: UIViewController {
     @IBOutlet weak var settingsContainer: UIView!
 
     private var arrayContainers: [UIView]?
-    
+    private let navigationBoard = NavigationExpandView()
+
     //FIXME: find answer in this bug
     public override var prefersStatusBarHidden: Bool {
         return true
@@ -56,7 +57,9 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
-            manageStateContainer(currentShowContainer: settingsContainer)
+            print("check: \(UIApplication.shared.keyWindow)")
+            //manageStateContainer(currentShowContainer: settingsContainer)
+            navigationBoard.showNavigation()
             break
         case 1:
             manageStateContainer(currentShowContainer: homeContainer)
