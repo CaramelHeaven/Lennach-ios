@@ -57,9 +57,8 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
-            print("check: \(UIApplication.shared.keyWindow)")
-            //manageStateContainer(currentShowContainer: settingsContainer)
             navigationBoard.showNavigation()
+            navigationBoard.btnClickProvider = self
             break
         case 1:
             manageStateContainer(currentShowContainer: homeContainer)
@@ -71,5 +70,12 @@ extension BaseController: BottomListenable {
             print("error")
         }
         print("item: \(position)")
+    }
+}
+
+//MARK: click listener from navigation expand view
+extension BaseController: NavigationButtonClickProvider {
+    func pressedOnItem(boardName: String) {
+        print("pressed: \(boardName)")
     }
 }
