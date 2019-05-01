@@ -22,6 +22,9 @@
 		FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */; };
 		FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */; };
 		FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D7052271834800D7D75D /* LocalMainMapper.swift */; };
+		FB51F4B92279C833006080F4 /* TableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4B82279C833006080F4 /* TableViewControllerTest.swift */; };
+		FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */; };
+		FB51F4BD2279D9BE006080F4 /* Kek.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BC2279D9BE006080F4 /* Kek.swift */; };
 		FB534440226C76AB004272E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB53443F226C76AB004272E5 /* Constants.swift */; };
 		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
 		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
@@ -95,6 +98,9 @@
 		FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadResponse.swift; sourceTree = "<group>"; };
 		FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesThreadResponse.swift; sourceTree = "<group>"; };
 		FB29D7052271834800D7D75D /* LocalMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMainMapper.swift; sourceTree = "<group>"; };
+		FB51F4B82279C833006080F4 /* TableViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTest.swift; sourceTree = "<group>"; };
+		FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBackgroundView.swift; sourceTree = "<group>"; };
+		FB51F4BC2279D9BE006080F4 /* Kek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kek.swift; sourceTree = "<group>"; };
 		FB53443F226C76AB004272E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
 		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -491,6 +497,9 @@
 			isa = PBXGroup;
 			children = (
 				FBEE746322783CE6007DF632 /* NavigationExpandView.swift */,
+				FB51F4B82279C833006080F4 /* TableViewControllerTest.swift */,
+				FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */,
+				FB51F4BC2279D9BE006080F4 /* Kek.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -745,6 +754,7 @@
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */,
 				FB9D0F942270850D0096A15C /* ImageViewerDismissallInteractor.swift in Sources */,
+				FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */,
 				FB9D0F92227084FA0096A15C /* ImageViewerTransitioningHandler.swift in Sources */,
 				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
 				FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */,
@@ -770,11 +780,13 @@
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
+				FB51F4BD2279D9BE006080F4 /* Kek.swift in Sources */,
 				FB0E6FA72268B4FF00954081 /* UsenetDb.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
 				FB65BC9D22625A2400C30F61 /* CommentDb.swift in Sources */,
+				FB51F4B92279C833006080F4 /* TableViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

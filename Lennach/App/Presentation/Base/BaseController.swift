@@ -15,7 +15,8 @@ class BaseController: UIViewController {
     @IBOutlet weak var settingsContainer: UIView!
 
     private var arrayContainers: [UIView]?
-    private let navigationBoard = NavigationExpandView()
+    private var bottomSheetNavigation: Lol?
+    // private let navigationBoard = NavigationExpandView()
 
     //FIXME: find answer in this bug
     public override var prefersStatusBarHidden: Bool {
@@ -28,6 +29,7 @@ class BaseController: UIViewController {
 
         return menu
     }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,11 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
+            bottomSheetNavigation = Lol()
+            bottomSheetNavigation!.tableController.didMove(toParent: self)
+            bottomSheetNavigation!.tableController.bottomSheetDelegate = self
+            bottomSheetNavigation!.showLayout()
+
 //            navigationBoard.showNavigation()
 //            navigationBoard.btnClickProvider = self
             break
@@ -73,10 +80,8 @@ extension BaseController: BottomListenable {
     }
 }
 
-//MARK: click listener from navigation expand view
-extension BaseController: NavigationButtonClickProvider {
-    func pressedOnItem(boardName: String) {
-        print("pressed: \(boardName)")
-        
+extension BaseController: BottomSheetDelegate {
+    func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint) {
+        bottomSheetNavigation?.kek.topDistance = max(0, -contentOffset.y)
     }
 }
