@@ -15,6 +15,7 @@ protocol BoardTapDelegatable: class {
 class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressAIV: UIActivityIndicatorView!
 
     private var present = true
     private var boardData = Board()
@@ -40,21 +41,21 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let usenet = boardData.usenets[indexPath.row]
         print("usenet: \(usenet)")
         print("-------------------------------------------")
-        cell.labelDate?.text = usenet.date
+        //cell.labelDate?.text = usenet.date
 
-        Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+        //Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
         var lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
-        if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
-            cell.threadLabel?.attributedText = kek
-        } else {
-            cell.threadLabel?.text = lol
-        }
-
-
-        cell.tapHandler = { [unowned self] in
-            self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
-        }
+//        if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
+//            cell.threadLabel?.attributedText = kek
+//        } else {
+//            cell.threadLabel?.text = lol
+//        }
+//
+//
+//        cell.tapHandler = { [unowned self] in
+//            self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
+//        }
 
         return cell
     }
@@ -78,6 +79,8 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         //present(KekViewController(), animated: true, completion: nil)
         present(controller, animated: true, completion: nil)
+
+
     }
 
     var kek = IndexPath()
@@ -90,9 +93,17 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
                 print("checkign: \(self.boardData.usenets)")
                 self.tableView.reloadData()
+                self.progressAIV.stopAnimating()
+
+                self.startedNewBoard(boardName: "pr")
             } else {
                 //print("error: \(error)")
             }
         }
+    }
+
+    public func startedNewBoard(boardName: String) {
+        tableView.alpha = 0.5
+        progressAIV.startAnimating()
     }
 }

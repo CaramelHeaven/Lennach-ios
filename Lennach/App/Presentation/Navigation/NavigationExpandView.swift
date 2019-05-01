@@ -69,7 +69,7 @@ class NavigationExpandView: NSObject, UICollectionViewDelegate, UICollectionView
             self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 0)
             // self.collectionView.isScrollEnabled = false
             //   collectionView.contentOffset
-            //scrollView.delegate = self
+            scrollView.delegate = self
 
             UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.collectionView.frame = CGRect(x: 0, y: self.controlVisibleHeight, width: self.collectionView.frame.width, height: (self.blackView.frame.height - self.controlVisibleHeight) + self.controlVisibleHeight)
@@ -81,14 +81,19 @@ class NavigationExpandView: NSObject, UICollectionViewDelegate, UICollectionView
         }
     }
 
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        //scrollView.isColl
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //scrollView.isColl
+        if self.scrollView.contentOffset.y > 120 {
+            self.blackView.insertSubview(collectionView, at: 0)
+        }
 //        self.scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
-//        if self.scrollView.contentOffset.y < 420 {
+//        if self.scrollView.contentOffset.y > 420 {
+//
 //
 //        }
-//        print("col: \(collectionView.contentOffset), scrollView: \(scrollView.contentOffset)")
-//    }
+        //  scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        print("col: \(collectionView.contentOffset), scrollView: \(scrollView.contentOffset)")
+    }
 
     //MARK: dismissing navigation
     @objc private func dismissNavigation() {
@@ -108,8 +113,9 @@ class NavigationExpandView: NSObject, UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NavigationBoardCell
-        cell.labelBoardName.text = boards[indexPath.item]
+        cell.labelBoardName.text = "q"
         cell.btnBoard.addTarget(self, action: #selector(kek), for: .touchUpInside)
+
 
         return cell
     }
@@ -117,7 +123,7 @@ class NavigationExpandView: NSObject, UICollectionViewDelegate, UICollectionView
     @objc private func kek(_ sender: UIButton) {
         if let pos = collectionView.indexPath(for: sender.superview! as! NavigationBoardCell)?.item {
             btnClickProvider?.pressedOnItem(boardName: boards[pos])
-            
+
             dismissNavigation()
         }
     }

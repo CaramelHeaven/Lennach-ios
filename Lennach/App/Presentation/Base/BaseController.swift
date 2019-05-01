@@ -57,8 +57,8 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
-            navigationBoard.showNavigation()
-            navigationBoard.btnClickProvider = self
+//            navigationBoard.showNavigation()
+//            navigationBoard.btnClickProvider = self
             break
         case 1:
             manageStateContainer(currentShowContainer: homeContainer)
@@ -77,5 +77,6 @@ extension BaseController: BottomListenable {
 extension BaseController: NavigationButtonClickProvider {
     func pressedOnItem(boardName: String) {
         print("pressed: \(boardName)")
+        
     }
 }

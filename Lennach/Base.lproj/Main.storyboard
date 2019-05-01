@@ -219,10 +219,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Enu-an-DaN">
+                                <rect key="frame" x="147.5" y="278.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xrz-K7-c5r" firstAttribute="leading" secondItem="qnn-ti-IRF" secondAttribute="leading" id="3I0-Zk-LVI"/>
+                            <constraint firstItem="Enu-an-DaN" firstAttribute="centerY" secondItem="ngU-My-PqP" secondAttribute="centerY" id="4UT-rx-ve0"/>
+                            <constraint firstItem="Enu-an-DaN" firstAttribute="centerX" secondItem="ngU-My-PqP" secondAttribute="centerX" id="6bU-s8-ahE"/>
                             <constraint firstItem="qnn-ti-IRF" firstAttribute="trailing" secondItem="xrz-K7-c5r" secondAttribute="trailing" id="f4J-A8-w5r"/>
                             <constraint firstItem="xrz-K7-c5r" firstAttribute="top" secondItem="ngU-My-PqP" secondAttribute="top" constant="20" id="fTa-xx-ATY"/>
                             <constraint firstItem="qnn-ti-IRF" firstAttribute="bottom" secondItem="xrz-K7-c5r" secondAttribute="bottom" id="ypG-hK-ELV"/>
@@ -230,6 +235,7 @@
                         <viewLayoutGuide key="safeArea" id="qnn-ti-IRF"/>
                     </view>
                     <connections>
+                        <outlet property="progressAIV" destination="Enu-an-DaN" id="Tvf-Ca-9zX"/>
                         <outlet property="tableView" destination="xrz-K7-c5r" id="6cy-vp-DXd"/>
                     </connections>
                 </viewController>
@@ -319,7 +325,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NXS-OC-DdH">
                                                     <rect key="frame" x="10" y="19" width="357" height="171.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" smartInsertDeleteType="no"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
