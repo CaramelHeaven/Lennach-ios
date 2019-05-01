@@ -8,15 +8,25 @@
 
 import UIKit
 
-class Tap: UICollectionViewCell {
+class ItemCell: UICollectionViewCell {
 
-    private let test: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .blue
+    fileprivate let btnBoard: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = UIColor.lightGray
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.layer.cornerRadius = 4
 
-        return view
+        return btn
     }()
+
+    fileprivate let labelBoardName: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.red
+
+        return label
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -27,25 +37,28 @@ class Tap: UICollectionViewCell {
     }
 
     private func setupViews() {
-        addSubview(test)
+        addSubview(btnBoard)
+        addSubview(labelBoardName)
 
-        NSLayoutConstraint.activate([
-            test.heightAnchor.constraint(equalToConstant: 30),
-            test.widthAnchor.constraint(equalToConstant: 30),
-            test.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            test.topAnchor.constraint(equalTo: topAnchor, constant: 8)
-            ])
+        // btnBoard.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        btnBoard.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        btnBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
+        btnBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+        btnBoard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
+
+        addConstraint(NSLayoutConstraint(item: labelBoardName, attribute: .centerX, relatedBy: .equal, toItem: btnBoard, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: labelBoardName, attribute: .centerY, relatedBy: .equal, toItem: btnBoard, attribute: .centerY, multiplier: 1, constant: 0))
     }
 }
 
-class Kekable: UICollectionViewController, BottomSheet {
+class Kekable: UICollectionViewController, BottomSheet, UICollectionViewDelegateFlowLayout {
     var bottomSheetDelegate: BottomSheetDelegate?
     private let maxVisibleContentHeight: CGFloat = 400
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.register(Tap.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(ItemCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.contentInset.top = maxVisibleContentHeight
 
         collectionView.backgroundColor = .clear
@@ -59,78 +72,33 @@ class Kekable: UICollectionViewController, BottomSheet {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Tap
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
         cell.backgroundColor = .clear
+        cell.labelBoardName.text = "/b"
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print("viewDidLayout: \(collectionView.contentOffset)")
         bottomSheetDelegate?.bottomSheetScrolling(self, didScrollTO: collectionView!.contentOffset)
-
+        print("collection view: \(collectionView.contentSize), bounds height: \(collectionView.bounds.height)")
         if collectionView!.contentSize.height < collectionView!.bounds.height {
             collectionView!.contentSize.height = collectionView!.bounds.height
         }
     }
-
 }
 
-class TableViewControllerTest: UITableViewController, BottomSheet {
-
-    private let reuseIdentifier = "cell"
-    private let countries = Locale.isoRegionCodes.prefix(40).map(Locale.current.localizedString(forRegionCode:))
-    private let maxVisibleContentHeight: CGFloat = 400
-
-    var bottomSheetDelegate: BottomSheetDelegate?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-
-        tableView.contentInset.top = maxVisibleContentHeight
-        tableView.backgroundColor = .clear
-        tableView.showsVerticalScrollIndicator = false
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 40
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)!
-        cell.textLabel?.text = countries[indexPath.row]
-        cell.backgroundColor = .clear
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-//    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let targetOffset = targetContentOffset.pointee.y
-//        let pulledUpOffset: CGFloat = 0
-//        let pulledDownOffset: CGFloat = -maxVisibleContentHeight
-//
-//        if (pulledDownOffset...pulledUpOffset).contains(targetOffset) {
-//            if velocity.y < 0 {
-//                targetContentOffset.pointee.y = pulledDownOffset
-//            } else {
-//                targetContentOffset.pointee.y = pulledUpOffset
-//            }
-//        }
-//    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        bottomSheetDelegate?.bottomSheetScrolling(self, didScrollTO: tableView.contentOffset)
-
-        if tableView.contentSize.height < tableView.bounds.height {
-            tableView.contentSize.height = tableView.bounds.height
-        }
-    }
-}

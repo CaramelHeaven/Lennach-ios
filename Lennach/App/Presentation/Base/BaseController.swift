@@ -82,6 +82,7 @@ extension BaseController: BottomListenable {
 
 extension BaseController: BottomSheetDelegate {
     func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint) {
-        bottomSheetNavigation?.kek.topDistance = max(0, -contentOffset.y)
+        print("contentOffset: \(contentOffset.y)")
+        bottomSheetNavigation?.kek.topDistance = max(30, -contentOffset.y)
     }
 }

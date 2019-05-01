@@ -18,15 +18,19 @@ class BottomSheetBackgroundView: UIView {
         layer.cornerRadius = 12
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 1
+        print("layouer: \(layer.bounds), frame: \(frame)")
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        print("bounds origin: \(bounds.origin)")
         layer.bounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width + 1 * 2, height: bounds.size.height))
+
+        print("STEP 2 layouer: \(layer.bounds), frame: \(frame)")
     }
 }

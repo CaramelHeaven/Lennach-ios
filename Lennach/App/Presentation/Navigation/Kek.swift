@@ -42,6 +42,14 @@ class Kek: UIView {
         return view
     }()
 
+    private let menuBar: UIView = {
+        let menu = UIView()
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.backgroundColor = .blue
+
+        return menu
+    }()
+
     private let sheetBackground: BottomSheetBackgroundView = {
         let view = BottomSheetBackgroundView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,11 +65,11 @@ class Kek: UIView {
         print("kek")
     }
 
-    //change constant for sheet background view
+    //Distance between top sheetBackground and sheet view. We set 36 because on the top we have a menuBar
     var topDistance: CGFloat = 0 {
         didSet {
             print("topDistance: \(topDistance)")
-            sheetBackgroundTopConstraint?.constant = topDistance
+            sheetBackgroundTopConstraint?.constant = topDistance - 30
         }
     }
 
@@ -82,14 +90,16 @@ class Kek: UIView {
 
         addSubview(sheetBackground)
 
-        let topConstraint = sheetBackground.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
 
+        let topConstraint = sheetBackground.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+        print("check: \(topConstraint.constant)")
         NSLayoutConstraint.activate([
             topConstraint,
             sheetBackground.heightAnchor.constraint(equalTo: heightAnchor),
             sheetBackground.leftAnchor.constraint(equalTo: leftAnchor),
             sheetBackground.rightAnchor.constraint(equalTo: rightAnchor)
             ])
+
         sheetBackgroundTopConstraint = topConstraint
 
         //the sheet table veiw
@@ -98,9 +108,26 @@ class Kek: UIView {
         NSLayoutConstraint.activate([
             sheetView!.leftAnchor.constraint(equalTo: leftAnchor),
             sheetView!.rightAnchor.constraint(equalTo: rightAnchor),
-            sheetView!.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            sheetView!.topAnchor.constraint(equalTo: topAnchor),
             sheetView!.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
+
+        addSubview(menuBar)
+        NSLayoutConstraint.activate([
+            topConstraint,
+            menuBar.heightAnchor.constraint(equalToConstant: 30),
+            menuBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            menuBar.trailingAnchor.constraint(equalTo: trailingAnchor)
+            ])
+        print("memu: \(menuBar.frame)")
+    }
+
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        print("SHEET FUCK YOU: \(sheetBackground.frame)")
+        menuBar.frame = CGRect(x: 0, y: sheetBackground.frame.minY, width: sheetBackground.frame.width, height: 30)
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
