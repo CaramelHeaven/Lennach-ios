@@ -60,8 +60,8 @@ extension BaseController: BottomListenable {
         switch position {
         case 0:
             bottomSheetNavigation = Lol()
-            bottomSheetNavigation!.tableController.didMove(toParent: self)
-            bottomSheetNavigation!.tableController.bottomSheetDelegate = self
+            bottomSheetNavigation!.tableController!.didMove(toParent: self)
+            bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
             bottomSheetNavigation!.showLayout()
 
 //            navigationBoard.showNavigation()

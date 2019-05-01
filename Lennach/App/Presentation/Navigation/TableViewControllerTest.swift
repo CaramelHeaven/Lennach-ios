@@ -8,6 +8,75 @@
 
 import UIKit
 
+class Tap: UICollectionViewCell {
+
+    private let test: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .blue
+
+        return view
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupViews() {
+        addSubview(test)
+
+        NSLayoutConstraint.activate([
+            test.heightAnchor.constraint(equalToConstant: 30),
+            test.widthAnchor.constraint(equalToConstant: 30),
+            test.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            test.topAnchor.constraint(equalTo: topAnchor, constant: 8)
+            ])
+    }
+}
+
+class Kekable: UICollectionViewController, BottomSheet {
+    var bottomSheetDelegate: BottomSheetDelegate?
+    private let maxVisibleContentHeight: CGFloat = 400
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        collectionView.register(Tap.self, forCellWithReuseIdentifier: "cell")
+        collectionView.contentInset.top = maxVisibleContentHeight
+
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+    }
+
+    private let countries = Locale.isoRegionCodes.prefix(490).map(Locale.current.localizedString(forRegionCode:))
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return countries.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Tap
+        cell.backgroundColor = .clear
+
+        return cell
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayout: \(collectionView.contentOffset)")
+        bottomSheetDelegate?.bottomSheetScrolling(self, didScrollTO: collectionView!.contentOffset)
+
+        if collectionView!.contentSize.height < collectionView!.bounds.height {
+            collectionView!.contentSize.height = collectionView!.bounds.height
+        }
+    }
+
+}
+
 class TableViewControllerTest: UITableViewController, BottomSheet {
 
     private let reuseIdentifier = "cell"

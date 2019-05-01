@@ -25,7 +25,7 @@ protocol BottomSheet: AnyObject {
 
 class Kek: UIView {
 
-    var tableController: TableViewControllerTest? {
+    var tableController: Kekable? {
         didSet {
             sheetView = tableController!.view
         }
@@ -123,14 +123,17 @@ class Kek: UIView {
     }
 }
 
-class Lol {
+class Lol: NSObject, UICollectionViewDelegateFlowLayout {
 
-    var tableController = TableViewControllerTest()
     let kek = Kek()
+    var tableController: Kekable?
     private var blackView = UIView()
 
-    init() {
+    override init() {
+        super.init()
         print("inited lol")
+        let layout = UICollectionViewFlowLayout()
+        tableController = Kekable(collectionViewLayout: layout)
         kek.tableController = tableController
         //kek
     }
