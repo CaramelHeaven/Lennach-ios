@@ -63,6 +63,10 @@ extension BaseController: BottomListenable {
             bottomSheetNavigation!.tableController!.didMove(toParent: self)
             bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
             bottomSheetNavigation!.showLayout()
+//            let k = SettingsLaucher()
+//            k.showSettings()
+
+
 
 //            navigationBoard.showNavigation()
 //            navigationBoard.btnClickProvider = self
