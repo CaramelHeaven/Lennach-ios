@@ -68,45 +68,19 @@ class PopupBoardView: NSObject {
                 backgroundView.bottomAnchor.constraint(equalTo: blackView.bottomAnchor, constant: -36)
                 ])
 
+
             backgroundView.addSubview(childController.view)
-            print("child controller frame: \(childController.view.bounds)")
+
             parentController?.addChild(childController)
 
-            //tableView.frame = CGRect(x: backgroundView.frame.minX, y: backgroundView.frame.minY, width: backgroundView.frame.width, height: backgroundView.frame.height)
-            //print("tableView frame: \(tableView.frame), back: \(backgroundView.frame)")
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.0) {
                 self.blackView.alpha = 1
                 self.backgroundView.alpha = 1
+
+                print("background FRAME: \(self.backgroundView.frame)")
                 //self.backgroundView.layer.cornerRadius = 8
             }
         }
-    }
-
-}
-
-class ItemBoardCell: UICollectionViewCell {
-
-    private let view: UIView = {
-        let view = UIView()
-        view.backgroundColor = .green
-
-        return view
-    }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        setupViews()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupViews() {
-        addSubview(view)
-
-        view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height - 4)
     }
 }
 
@@ -114,9 +88,12 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
 
     private let myArray: NSArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
     private var tableView: UITableView!
+    private var containerHeightMax: CGFloat = 430 //FIXME: fix that
 
     private let btnAdd: UIButton = {
         let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .black
 
         return btn
     }()
@@ -151,19 +128,17 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.addSubview(titleMenuLabel)
+
+        print("frame: \(view.frame)")
+        tableView = UITableView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 430)) // 568 - 36 - 36 - 30 (height menu bar) and esho - 30 for buttons
 
 
-        //  titleMenuLabel.addConstraint(NSLayoutConstraint(item: titleMenuLabel, attribute: .centerY, relatedBy: .equal, toItem: menuBar, attribute: .centerY, multiplier: 1, constant: 0))
-        //  titleMenuLabel.addConstraint(NSLayoutConstraint(item: titleMenuLabel, attribute: .centerX, relatedBy: .equal, toItem: menuBar, attribute: .centerX, multiplier: 1, constant: 0))
-
-        //-100 it's hardcode)
-        tableView = UITableView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: self.view.frame.height - 100))
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+        tableView.register(ItemBoardCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
+        // tableView.translatesAutoresizingMaskIntoConstraints = false
+        //tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 30)
 
         self.view.addSubview(menuBar)
         NSLayoutConstraint.activate([
@@ -178,20 +153,98 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
             titleMenuLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -26),
             titleMenuLabel.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor)
             ])
-    }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(myArray[indexPath.row])")
+        view.addSubview(btnAdd)
+        NSLayoutConstraint.activate([
+            btnAdd.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            btnAdd.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -54),
+            btnAdd.widthAnchor.constraint(equalToConstant: 40),
+            btnAdd.heightAnchor.constraint(equalToConstant: 30),
+            ])
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myArray.count
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(myArray[indexPath.row])"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! ItemBoardCell
+        //cell.textLabel!.text = "\(myArray[indexPath.row])"
+
         return cell
+    }
+}
+
+class ItemBoardCell: UITableViewCell {
+
+    fileprivate let idLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = label.font.withSize(14)
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 1
+
+        label.text = "/an/ - Animals & Nature"
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
+    fileprivate let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray
+        label.font = label.font.withSize(11)
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 2
+
+        label.text = "an - is 4chans imageboard for posting pictures of animals, pets, and nature"
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
+    fileprivate let switchView: UISwitch = {
+        let view = UISwitch()
+        view.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupViews() {
+        addSubview(switchView)
+        print("frame: \(frame)")
+        NSLayoutConstraint.activate([
+            switchView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            switchView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            switchView.widthAnchor.constraint(equalToConstant: 50)
+            ])
+
+        addSubview(idLabel)
+        addSubview(descriptionLabel)
+
+        NSLayoutConstraint.activate([
+            //TODO: fix this -60
+            idLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
+            idLabel.leadingAnchor.constraint(equalTo: switchView.trailingAnchor),
+            idLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -52),
+
+            descriptionLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: switchView.trailingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -52),
+            ])
     }
 }
