@@ -13,8 +13,7 @@ class MainRepository {
 
     var data = [Comment]()
 
-    private init() {
-    }
+    private init() { }
 
     public func provideThreadsByBoard(completion: @escaping (Bool, Any?, Error?) -> Void) {
         RemoteRepository.instance.getThreadsByBoard(boardName: "pr", page: "1") { (state, data, error) in
@@ -27,5 +26,15 @@ class MainRepository {
         RemoteRepository.instance.getCommentsByThread(boardName: board, threadNum: num) { (result, data, error) in
             completion(result, data, error)
         }
+    }
+
+    public func provideAllBoards(completion: @escaping (Bool, Any?) -> Void) {
+        RemoteRepository.instance.getAllBoards { (result, data) in
+            completion(result, data)
+        }
+    }
+
+    public func provideSavedBoardsInNavigation() {
+        
     }
 }

@@ -15,7 +15,7 @@ class BaseController: UIViewController {
     @IBOutlet weak var settingsContainer: UIView!
 
     private var arrayContainers: [UIView]?
-    private var bottomSheetNavigation: Lol?
+    private var bottomSheetNavigation: NavigationContainer?
     // private let navigationBoard = NavigationExpandView()
 
     //FIXME: find answer in this bug
@@ -59,7 +59,7 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
-            bottomSheetNavigation = Lol()
+            bottomSheetNavigation = NavigationContainer()
             bottomSheetNavigation!.tableController!.didMove(toParent: self)
             bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
             bottomSheetNavigation!.showLayout()

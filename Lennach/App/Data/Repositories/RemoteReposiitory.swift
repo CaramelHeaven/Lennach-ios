@@ -47,7 +47,7 @@ class RemoteRepository {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
 
                 DispatchQueue.main.async {
-                    var board = self.mainMapper.mapResponseToBoardUseCase(response: data)
+                    let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
                     print("usenets count: \(board.usenets.count)")
                     completion(true, board, nil)
                 }
@@ -73,4 +73,19 @@ class RemoteRepository {
         }
     }
 
+    func getAllBoards(completion: @escaping (Bool, Any?) -> Void) {
+        //http(s)://2ch.hk/makaba/mobile.fcgi?task=get_boards
+        let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_boards"
+        Alamofire.request(url).responseJSON { response in
+            do {
+                let data = try JSONDecoder().decode(AllBoardsResponse.self, from: response.data!)
+                let mappedData = self.mainMapper.mapResponseToAllBoards(response: data)
+
+                completion(true, mappedData)
+            } catch {
+                completion(false, nil)
+                print(error)
+            }
+        }
+    }
 }

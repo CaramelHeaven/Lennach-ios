@@ -9,6 +9,7 @@
 import Foundation
 
 class RemoteMainMapper {
+
     func mapResponseToBoardUseCase(response: BoardResponse) -> Board {
         var board = Board()
 
@@ -38,5 +39,36 @@ class RemoteMainMapper {
         }
 
         return comments
+    }
+
+    func mapResponseToAllBoards(response: AllBoardsResponse) -> AllBoards {
+        var allBoards = AllBoards()
+
+        //Below we search all arrays and add each element to common array inside allBoards variable
+        for item in response.forAdults! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.differences! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.creation! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.games! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.japanesCulture! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.politics! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        return allBoards
     }
 }
