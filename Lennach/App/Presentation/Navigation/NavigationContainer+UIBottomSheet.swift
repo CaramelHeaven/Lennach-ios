@@ -45,7 +45,7 @@ class MainUIBottomSheet: UIView {
     private let menuBar: UIView = {
         let menu = UIView()
         menu.translatesAutoresizingMaskIntoConstraints = false
-        menu.backgroundColor = .blue
+        menu.backgroundColor = .black
 
         return menu
     }()
@@ -89,7 +89,6 @@ class MainUIBottomSheet: UIView {
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissNavigation)))
 
         addSubview(sheetBackground)
-
 
         let topConstraint = sheetBackground.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
         print("check: \(topConstraint.constant)")
@@ -140,13 +139,16 @@ class MainUIBottomSheet: UIView {
     }
 
     @objc func dismissNavigation() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.blackView.alpha = 0
             self.alpha = 0
             if let window = UIApplication.shared.keyWindow {
-                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: self.sheetBackground.frame.height)
+                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: 0)
             }
+        }) { _ in
+            self.removeFromSuperview()
         }
+
     }
 }
 
@@ -158,7 +160,7 @@ class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
 
     override init() {
         super.init()
-        
+
         let layout = UICollectionViewFlowLayout()
         tableController = NavigationCollectionView(collectionViewLayout: layout)
         kek.tableController = tableController

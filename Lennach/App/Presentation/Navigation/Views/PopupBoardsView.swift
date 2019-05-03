@@ -26,7 +26,7 @@ class PopupBoardView: NSObject {
         view.backgroundColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
 
         return view
@@ -68,18 +68,26 @@ class PopupBoardView: NSObject {
                 backgroundView.bottomAnchor.constraint(equalTo: blackView.bottomAnchor, constant: -36)
                 ])
 
-
             backgroundView.addSubview(childController.view)
-
             parentController?.addChild(childController)
 
-            UIView.animate(withDuration: 0.0) {
+            UIView.animate(withDuration: 0.5) {
                 self.blackView.alpha = 1
                 self.backgroundView.alpha = 1
 
                 print("background FRAME: \(self.backgroundView.frame)")
                 //self.backgroundView.layer.cornerRadius = 8
             }
+
+            UIView.animate(withDuration: 5, delay: 5, options: [], animations: {
+                    self.blackView.alpha = 0
+                    self.backgroundView.alpha = 0
+
+                    self.childController.dismiss(animated: true, completion: nil)
+                }) { _ in
+                self.childController.removeFromParent()
+            }
+            //childController.dismiss(animated: true, completion: false)
         }
     }
 }
@@ -90,16 +98,25 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     private var tableView: UITableView!
     private var containerHeightMax: CGFloat = 430 //FIXME: fix that
 
-    private let btnAdd: UIButton = {
-        let btn = UIButton()
+    private let btnAdd: RippleButton = {
+        let btn = RippleButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = .black
+        btn.setTitle("Add", for: .normal)
+        //btn.setTitle("fuck", for: .highlighted)
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 8
+        btn.addTarget(self, action: #selector(btnAddAction), for: .touchUpInside)
 
         return btn
     }()
 
-    private let btnCancel: UIButton = {
-        let btn = UIButton()
+    private let btnCancel: RippleButton = {
+        let btn = RippleButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("Cancel", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.layer.cornerRadius = 8
+        btn.addTarget(self, action: #selector(btnCancelAction), for: .touchUpInside)
 
         return btn
     }()
@@ -132,7 +149,6 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         print("frame: \(view.frame)")
         tableView = UITableView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 430)) // 568 - 36 - 36 - 30 (height menu bar) and esho - 30 for buttons
 
-
         tableView.register(ItemBoardCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
         tableView.delegate = self
@@ -154,12 +170,21 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
             titleMenuLabel.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor)
             ])
 
+        //init buttons
         view.addSubview(btnAdd)
         NSLayoutConstraint.activate([
             btnAdd.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            btnAdd.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -54),
-            btnAdd.widthAnchor.constraint(equalToConstant: 40),
-            btnAdd.heightAnchor.constraint(equalToConstant: 30),
+            btnAdd.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -52),
+            btnAdd.widthAnchor.constraint(equalToConstant: 60),
+            btnAdd.heightAnchor.constraint(equalToConstant: 36)
+            ])
+
+        view.addSubview(btnCancel)
+        NSLayoutConstraint.activate([
+            btnCancel.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            btnCancel.trailingAnchor.constraint(equalTo: btnAdd.leadingAnchor),
+            btnCancel.widthAnchor.constraint(equalToConstant: 60),
+            btnCancel.heightAnchor.constraint(equalToConstant: 36)
             ])
     }
 
@@ -177,8 +202,18 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         return cell
     }
+
+    @objc private func btnAddAction(_ sender: UIButton) {
+        print("action up")
+    }
+
+    @objc private func btnCancelAction(_ sender: UIButton) {
+
+        print("cancel")
+    }
 }
 
+//MARK: Item board cell for table view controller
 class ItemBoardCell: UITableViewCell {
 
     fileprivate let idLabel: UILabel = {

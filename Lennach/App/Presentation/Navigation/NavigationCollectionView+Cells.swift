@@ -97,7 +97,7 @@ class NavigationCollectionView: UICollectionViewController, BottomSheet, UIColle
         collectionView.showsVerticalScrollIndicator = false
     }
 
-    private let countries = Locale.isoRegionCodes.prefix(4).map(Locale.current.localizedString(forRegionCode:))
+    private let countries = Locale.isoRegionCodes.prefix(50).map(Locale.current.localizedString(forRegionCode:))
 
     //plus 1 because we show all users added board and the last item - btn add board - provided list of all board which user can be add any of it
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
