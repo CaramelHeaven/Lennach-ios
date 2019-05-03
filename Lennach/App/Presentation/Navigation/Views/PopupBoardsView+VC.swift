@@ -86,6 +86,20 @@ class PopupBoardView: NSObject, ButtonsClickable {
     func btnClicked(data: Any?) {
         if data != nil {
             print("data: \(data)")
+            //TODO: save data to CoreData and close
+            LocalRepository.instance.provideSaveBoardNavigation(array: data as! [BoardDescription]) { (result) in
+                print("Success or not??? \(result)")
+                
+                LocalRepository.instance.provideReadUserSavedBoards(completion: { (data) in
+                    print("data: \(data)")
+                    let kek = data as! [BoardDescription]
+                    
+                    for item in kek {
+                        print("checking item: \(item), \(item.id)")
+                    }
+                    
+                })
+            }
         } else {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
                     self.blackView.alpha = 0
@@ -105,6 +119,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     private var tableView: UITableView!
     private var containerHeightMax: CGFloat = 430 //FIXME: fix that
     fileprivate var btnClickable: ButtonsClickable?
+    private var addedBoards: [BoardDescription] = [] //boards for added from user
 
     private let btnAdd: RippleButton = {
         let btn = RippleButton()
@@ -214,11 +229,6 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         return 60
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        boardsDescriptionArray[indexPath.row].isSelected = !boardsDescriptionArray[indexPath.row].isSelected
-        (tableView.cellForRow(at: indexPath) as! ItemBoardCell).switchView.setOn(boardsDescriptionArray[indexPath.row].isSelected, animated: true)
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! ItemBoardCell
         let index = indexPath.row
@@ -233,18 +243,34 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @objc private func btnAddAction(_ sender: UIButton) {
-        print("action up")
+        btnClickable?.btnClicked(data: addedBoards)
     }
 
     @objc private func btnCancelAction(_ sender: UIButton) {
         btnClickable?.btnClicked(data: nil)
-        print("cancel")
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let isOn = !boardsDescriptionArray[indexPath.row].isSelected
+        boardsDescriptionArray[indexPath.row].isSelected = isOn
+        (tableView.cellForRow(at: indexPath) as! ItemBoardCell).switchView.setOn(boardsDescriptionArray[indexPath.row].isSelected, animated: true)
+
+        addOrRemoveObjectFromAddedBoards(flag: isOn, index: indexPath)
     }
 
     @objc private func switchListener(_ sender: UISwitch) {
         let index = tableView.indexPath(for: sender.superview as! ItemBoardCell)!
         boardsDescriptionArray[index.row].isSelected = sender.isOn
-        print("state: \(sender.isOn)")
+
+        addOrRemoveObjectFromAddedBoards(flag: sender.isOn, index: index)
+    }
+
+    private func addOrRemoveObjectFromAddedBoards(flag: Bool, index: IndexPath) {
+        if flag {
+            addedBoards.append(boardsDescriptionArray[index.row])
+        } else {
+            addedBoards.removeAll(where: { $0.id == boardsDescriptionArray[index.row].id })
+        }
     }
 }
 

@@ -11,8 +11,7 @@ import Alamofire
 
 class RemoteRepository {
     static let instance = RemoteRepository()
-
-    let mainMapper = RemoteMainMapper()
+    private let mainMapper = RemoteMainMapper()
 
     private init() { }
 
