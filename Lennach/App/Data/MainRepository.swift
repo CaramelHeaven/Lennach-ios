@@ -17,7 +17,7 @@ class MainRepository {
 
     public func provideThreadsByBoard(completion: @escaping (Bool, Any?, Error?) -> Void) {
         RemoteRepository.instance.getThreadsByBoard(boardName: "pr", page: "1") { (state, data, error) in
-            print("data: \((data as! Board).usenets.count)")
+            //print("data: \((data as! Board).usenets.count)")
             completion(state, data, error)
         }
     }

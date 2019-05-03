@@ -16,4 +16,12 @@ struct BoardDescription {
     var name = ""
     var bumpLimit = 0
     var id = ""
+
+    init(name: String, bumpLimit: Int, id: String) {
+        self.name = name
+        self.bumpLimit = bumpLimit
+        self.id = id
+    }
+
+    var isSelected = false //for popupController cell - state switch
 }

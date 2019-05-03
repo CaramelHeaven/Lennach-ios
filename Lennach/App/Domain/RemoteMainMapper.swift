@@ -45,9 +45,21 @@ class RemoteMainMapper {
         var allBoards = AllBoards()
 
         //Below we search all arrays and add each element to common array inside allBoards variable
-        for item in response.forAdults! {
+        for item in response.users! {
             allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
         }
+
+        for item in response.subjects! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+        for item in response.software! {
+            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+        }
+
+//        for item in response.forAdults! {
+//            allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))
+//        }
 
         for item in response.differences! {
             allBoards.boards.append(BoardDescription(name: item.name!, bumpLimit: item.bumpLimit!, id: item.id!))

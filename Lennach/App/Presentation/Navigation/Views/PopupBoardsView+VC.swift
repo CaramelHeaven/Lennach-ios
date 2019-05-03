@@ -8,7 +8,11 @@
 
 import UIKit
 
-class PopupBoardView: NSObject {
+protocol ButtonsClickable {
+    func btnClicked(data: Any?) // if data exists - that's mean user add some boards to own navigation
+}
+
+class PopupBoardView: NSObject, ButtonsClickable {
 
     private let blackView: UIView = {
         let view = UIView()
@@ -70,16 +74,20 @@ class PopupBoardView: NSObject {
 
             backgroundView.addSubview(childController.view)
             parentController?.addChild(childController)
+            childController.btnClickable = self
 
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.3) {
                 self.blackView.alpha = 1
                 self.backgroundView.alpha = 1
-
-                print("background FRAME: \(self.backgroundView.frame)")
-                //self.backgroundView.layer.cornerRadius = 8
             }
+        }
+    }
 
-            UIView.animate(withDuration: 5, delay: 5, options: [], animations: {
+    func btnClicked(data: Any?) {
+        if data != nil {
+            print("data: \(data)")
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
                     self.blackView.alpha = 0
                     self.backgroundView.alpha = 0
 
@@ -87,16 +95,16 @@ class PopupBoardView: NSObject {
                 }) { _ in
                 self.childController.removeFromParent()
             }
-            //childController.dismiss(animated: true, completion: false)
         }
     }
 }
 
 class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private let myArray: NSArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
+    private var boardsDescriptionArray: [BoardDescription] = []
     private var tableView: UITableView!
     private var containerHeightMax: CGFloat = 430 //FIXME: fix that
+    fileprivate var btnClickable: ButtonsClickable?
 
     private let btnAdd: RippleButton = {
         let btn = RippleButton()
@@ -186,19 +194,40 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
             btnCancel.widthAnchor.constraint(equalToConstant: 60),
             btnCancel.heightAnchor.constraint(equalToConstant: 36)
             ])
+
+        //request to data from network
+        MainRepository.instance.provideAllBoards { (result, data) in
+            if result {
+                self.boardsDescriptionArray = (data as! AllBoards).boards
+                print("board d: \(self.boardsDescriptionArray), size: \(self.boardsDescriptionArray.count)")
+
+                self.tableView.reloadData()
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
+        return boardsDescriptionArray.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        boardsDescriptionArray[indexPath.row].isSelected = !boardsDescriptionArray[indexPath.row].isSelected
+        (tableView.cellForRow(at: indexPath) as! ItemBoardCell).switchView.setOn(boardsDescriptionArray[indexPath.row].isSelected, animated: true)
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! ItemBoardCell
-        //cell.textLabel!.text = "\(myArray[indexPath.row])"
+        let index = indexPath.row
+
+        cell.idLabel.text = boardsDescriptionArray[index].id
+        cell.descriptionLabel.text = boardsDescriptionArray[index].name
+        cell.switchView.setOn(boardsDescriptionArray[index].isSelected, animated: false)
+
+        cell.switchView.addTarget(self, action: #selector(switchListener(_:)), for: UIControl.Event.valueChanged)
 
         return cell
     }
@@ -208,8 +237,14 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     @objc private func btnCancelAction(_ sender: UIButton) {
-
+        btnClickable?.btnClicked(data: nil)
         print("cancel")
+    }
+
+    @objc private func switchListener(_ sender: UISwitch) {
+        let index = tableView.indexPath(for: sender.superview as! ItemBoardCell)!
+        boardsDescriptionArray[index.row].isSelected = sender.isOn
+        print("state: \(sender.isOn)")
     }
 }
 

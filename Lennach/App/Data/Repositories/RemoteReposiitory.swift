@@ -9,28 +9,6 @@
 import Foundation
 import Alamofire
 
-enum AlamofireRouter: URLRequestConvertible {
-
-    case getThreadsByBoard(_: String, _: String)
-
-    func asURLRequest() throws -> URLRequest {
-        let result: (path: String, parameters: Parameters) = {
-            switch self {
-            case let .getThreadsByBoard(board, page):
-                return ("", ["/": board, "b": page])
-            }
-        }()
-
-        let url = try "https://2ch.hk/".asURL()
-        let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
-        print("url request: \(urlRequest)")
-
-        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
-    }
-
-
-}
-
 class RemoteRepository {
     static let instance = RemoteRepository()
 
@@ -39,18 +17,16 @@ class RemoteRepository {
     private init() { }
 
     func getThreadsByBoard(boardName name: String, page: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        let url = Constants.baseUrl + name + "/catalog.json"
+        let url = Constants.baseUrl + "pa" + "/catalog.json"
         print("BOARD URL: \(url)")
 
         Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
-
-                DispatchQueue.main.async {
-                    let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
-                    print("usenets count: \(board.usenets.count)")
-                    completion(true, board, nil)
-                }
+                print("DATA BOARD: \(data)")
+                let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
+                print("usenets count: \(board.usenets.count)")
+                completion(true, board, nil)
             } catch {
                 completion(false, nil, error)
                 print(error)
