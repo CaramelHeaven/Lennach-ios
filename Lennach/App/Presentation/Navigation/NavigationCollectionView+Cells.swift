@@ -82,9 +82,10 @@ class ItemCellAdd: UICollectionViewCell {
     }
 }
 
-class NavigationCollectionView: UICollectionViewController, BottomSheet, UICollectionViewDelegateFlowLayout {
+class NavigationCollectionViewController: UICollectionViewController, BottomSheet, UICollectionViewDelegateFlowLayout {
     var bottomSheetDelegate: BottomSheetDelegate?
     private let maxVisibleContentHeight: CGFloat = 400
+    private var boardsData = Array<BoardNavigatable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,30 +96,52 @@ class NavigationCollectionView: UICollectionViewController, BottomSheet, UIColle
 
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
+
+        showBoardsFromDb()
     }
 
-    private let countries = Locale.isoRegionCodes.prefix(50).map(Locale.current.localizedString(forRegionCode:))
+    private func showBoardsFromDb() {
+        LocalRepository.instance.provideReadUserSavedBoards { (data) in
+            if let objects = data as? [BoardDescription] {
+                self.boardsData += objects
+                self.boardsData.append(AddBoard())
+
+                (1...45).forEach { _ in self.boardsData.append(EmtpyBoard()) } // add empty data
+
+                self.collectionView.reloadData()
+            }
+        }
+    }
 
     //plus 1 because we show all users added board and the last item - btn add board - provided list of all board which user can be add any of it
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return countries.count + 1
+        return boardsData.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("indexPath: \(indexPath.item)")
-        if indexPath.item == countries.count { //Add button init here
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCellAdd", for: indexPath) as! ItemCellAdd
-            cell.backgroundColor = .clear
-            cell.btnAddBoard.addTarget(self, action: #selector(addMoreBoards), for: .touchUpInside)
-            
-            return cell
-        } else {
+        switch boardsData[indexPath.item] {
+        case let board as BoardDescription:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
             cell.backgroundColor = .clear
-            cell.labelBoardName.text = "/b"
+            cell.labelBoardName.text = board.id
             cell.btnBoard.addTarget(self, action: #selector(selectingCurrentBoard(_:)), for: .touchUpInside)
 
             return cell
+        case _ as AddBoard:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCellAdd", for: indexPath) as! ItemCellAdd
+            cell.backgroundColor = .clear
+            cell.btnAddBoard.addTarget(self, action: #selector(addMoreBoards), for: .touchUpInside)
+
+            return cell
+        case _ as EmtpyBoard:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCellAdd", for: indexPath) as! ItemCellAdd
+            cell.backgroundColor = .clear
+            cell.btnAddBoard.backgroundColor = .clear
+
+            return cell
+        default:
+            return UICollectionViewCell()
         }
     }
 
@@ -126,19 +149,11 @@ class NavigationCollectionView: UICollectionViewController, BottomSheet, UIColle
         let popupBoards = PopupBoardView()
         popupBoards.parentController = self
         popupBoards.showPopup()
-       
-        RemoteRepository.instance.getAllBoards { (result, data) in
-            if result {
-                //init new view
-                
-                //print("data in controller: \(data)")
-            }
-        }
-        print("add more boards")
     }
 
     @objc func selectingCurrentBoard(_ sender: UIButton) {
         let indexPath = collectionView.indexPath(for: (sender.superview) as! ItemCell)
+        
         print("clicked: \(indexPath!.row)")
     }
 
@@ -162,6 +177,10 @@ class NavigationCollectionView: UICollectionViewController, BottomSheet, UIColle
         if collectionView!.contentSize.height < collectionView!.bounds.height {
             collectionView!.contentSize.height = collectionView!.bounds.height
         }
+    }
+
+    func popupClosed() {
+        showBoardsFromDb()
     }
 }
 

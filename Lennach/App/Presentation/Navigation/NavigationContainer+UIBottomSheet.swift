@@ -25,7 +25,7 @@ protocol BottomSheet: AnyObject {
 
 class MainUIBottomSheet: UIView {
 
-    var tableController: NavigationCollectionView? {
+    var tableController: NavigationCollectionViewController? {
         didSet {
             sheetView = tableController!.view
         }
@@ -155,14 +155,14 @@ class MainUIBottomSheet: UIView {
 class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
 
     let kek = MainUIBottomSheet()
-    var tableController: NavigationCollectionView?
+    var tableController: NavigationCollectionViewController?
     private var blackView = UIView()
 
     override init() {
         super.init()
 
         let layout = UICollectionViewFlowLayout()
-        tableController = NavigationCollectionView(collectionViewLayout: layout)
+        tableController = NavigationCollectionViewController(collectionViewLayout: layout)
         kek.tableController = tableController
         //kek
     }

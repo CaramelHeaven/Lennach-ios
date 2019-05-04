@@ -23,7 +23,7 @@ class PopupBoardView: NSObject, ButtonsClickable {
     }()
 
     //this need for correcting scroll work inside table view
-    var parentController: NavigationCollectionView?
+    var parentController: NavigationCollectionViewController?
 
     private let backgroundView: UIView = {
         let view = UIView()
@@ -83,22 +83,28 @@ class PopupBoardView: NSObject, ButtonsClickable {
         }
     }
 
+
     func btnClicked(data: Any?) {
         if data != nil {
-            print("data: \(data)")
-            //TODO: save data to CoreData and close
             LocalRepository.instance.provideSaveBoardNavigation(array: data as! [BoardDescription]) { (result) in
-                print("Success or not??? \(result)")
+                if result {
+                    self.hidePopupViewController()
+                }
             }
         } else {
-            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
-                    self.blackView.alpha = 0
-                    self.backgroundView.alpha = 0
+            hidePopupViewController()
+        }
+    }
 
-                    self.childController.dismiss(animated: true, completion: nil)
-                }) { _ in
-                self.childController.removeFromParent()
-            }
+    private func hidePopupViewController() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
+                self.blackView.alpha = 0
+                self.backgroundView.alpha = 0
+
+                self.childController.dismiss(animated: true, completion: nil)
+            }) { _ in
+            self.parentController?.popupClosed()
+            self.childController.removeFromParent()
         }
     }
 }
