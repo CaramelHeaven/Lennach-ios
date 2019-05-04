@@ -8,13 +8,6 @@
 
 import UIKit
 
-//protocol BottomSheetDelegate: AnyObject {
-//    func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint)
-//}
-//
-//protocol BottomSheet: AnyObject {
-//    var bottomSheetDelegate: BottomSheetDelegate? { get set }
-//}
 protocol BottomSheetDelegate: AnyObject {
     func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint)
 }
@@ -23,12 +16,36 @@ protocol BottomSheet: AnyObject {
     var bottomSheetDelegate: BottomSheetDelegate? { get set }
 }
 
+protocol NavigationContainerClosable {
+    func closed(boardName: String?)
+}
+
+extension MainUIBottomSheet: BoardNavigationSelectable {
+    func selectedBoard(boardName: String) {
+        boardSelected = boardName
+
+        dismissNavigation()
+    }
+}
+
 class MainUIBottomSheet: UIView {
+
+    fileprivate var boardSelected: String?
+    var navigationClosed: NavigationContainerClosable?
 
     var tableController: NavigationCollectionViewController? {
         didSet {
-            sheetView = tableController!.view
+            sheetView = tableController?.view
         }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    fileprivate func initBoardNavigationSelectable() {
+        tableController?.boardSelectable = self
+        print("boardSelectable: \(tableController?.boardSelectable), table: \(tableController)")
     }
 
     private var sheetBackgroundTopConstraint: NSLayoutConstraint?
@@ -58,12 +75,6 @@ class MainUIBottomSheet: UIView {
     }()
 
     private var sheetView: UIView?
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        print("kek")
-    }
 
     //Distance between top sheetBackground and sheet view. We set 36 because on the top we have a menuBar
     var topDistance: CGFloat = 0 {
@@ -124,37 +135,38 @@ class MainUIBottomSheet: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        print("SHEET FUCK YOU: \(sheetBackground.frame)")
         menuBar.frame = CGRect(x: 0, y: sheetBackground.frame.minY, width: sheetBackground.frame.width, height: 30)
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if sheetBackground.bounds.contains(sheetBackground.convert(point, from: self)) {
-            print("sheetView")
             return sheetView!.hitTest(sheetView!.convert(point, from: self), with: event)
         }
-        print("blackView")
         return blackView.hitTest(blackView.convert(point, from: self), with: event)
     }
 
     @objc func dismissNavigation() {
         UIView.animate(withDuration: 0.3, animations: {
-            self.blackView.alpha = 0
-            self.alpha = 0
-            if let window = UIApplication.shared.keyWindow {
-                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: 0)
-            }
+//            self.blackView.alpha = 0
+//            self.alpha = 0
+//            if let window = UIApplication.shared.keyWindow {
+//                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: 0)
+//            }
+            self.tableController!.dismiss(animated: false, completion: nil)
         }) { _ in
             self.removeFromSuperview()
+            self.navigationClosed?.closed(boardName: self.boardSelected)
         }
+    }
 
+    deinit {
+        print("MainUIBottomSheet deInit")
     }
 }
 
 class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
 
-    let kek = MainUIBottomSheet()
+    var mainUIBottomSheet: MainUIBottomSheet?
     var tableController: NavigationCollectionViewController?
     private var blackView = UIView()
 
@@ -163,18 +175,27 @@ class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
 
         let layout = UICollectionViewFlowLayout()
         tableController = NavigationCollectionViewController(collectionViewLayout: layout)
-        kek.tableController = tableController
+
+
+        mainUIBottomSheet = MainUIBottomSheet()
+        mainUIBottomSheet?.tableController = tableController
+        
+        mainUIBottomSheet?.initBoardNavigationSelectable()
         //kek
     }
 
     func showLayout() {
-        print("show")
         if let window = UIApplication.shared.keyWindow {
 
-            window.addSubview(kek)
-            kek.frame = window.frame
+            window.addSubview(mainUIBottomSheet!)
+            mainUIBottomSheet!.frame = window.frame
 
-            kek.setupViews()
+            mainUIBottomSheet!.setupViews()
         }
+    }
+
+    deinit {
+        mainUIBottomSheet?.tableController?.boardSelectable = nil
+        print("NavigationContainer deInit")
     }
 }

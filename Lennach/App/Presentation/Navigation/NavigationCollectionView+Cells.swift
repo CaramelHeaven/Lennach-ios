@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BoardNavigationSelectable {
+    func selectedBoard (boardName: String)
+}
+
 class ItemCell: UICollectionViewCell {
 
     fileprivate let btnBoard: UIButton = {
@@ -86,6 +90,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     var bottomSheetDelegate: BottomSheetDelegate?
     private let maxVisibleContentHeight: CGFloat = 400
     private var boardsData = Array<BoardNavigatable>()
+    var boardSelectable: BoardNavigationSelectable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,8 +158,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
 
     @objc func selectingCurrentBoard(_ sender: UIButton) {
         let indexPath = collectionView.indexPath(for: (sender.superview) as! ItemCell)
-        
-        print("clicked: \(indexPath!.row)")
+        boardSelectable?.selectedBoard(boardName: (boardsData[indexPath!.row] as! BoardDescription).id)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -181,6 +185,10 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
 
     func popupClosed() {
         showBoardsFromDb()
+    }
+    
+    deinit {
+        print("NavigationCollectionViewController deInit")
     }
 }
 

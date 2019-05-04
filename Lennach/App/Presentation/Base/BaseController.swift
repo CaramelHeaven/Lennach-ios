@@ -62,6 +62,8 @@ extension BaseController: BottomListenable {
             bottomSheetNavigation = NavigationContainer()
             bottomSheetNavigation!.tableController!.didMove(toParent: self)
             bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
+            bottomSheetNavigation?.mainUIBottomSheet!.navigationClosed = self
+
             bottomSheetNavigation!.showLayout()
 //            let k = SettingsLaucher()
 //            k.showSettings()
@@ -87,6 +89,13 @@ extension BaseController: BottomListenable {
 extension BaseController: BottomSheetDelegate {
     func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint) {
         print("contentOffset: \(contentOffset.y)")
-        bottomSheetNavigation?.kek.topDistance = max(30, -contentOffset.y)
+        bottomSheetNavigation?.mainUIBottomSheet?.topDistance = max(30, -contentOffset.y)
+    }
+}
+
+extension BaseController: NavigationContainerClosable {
+    func closed(boardName: String?) {
+        print("closed: \(boardName)")
+        //pass arguments
     }
 }
