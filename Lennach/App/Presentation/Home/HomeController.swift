@@ -14,6 +14,7 @@ class HomeController: UIViewController {
     @IBOutlet weak var threadContainer: UIView!
 
     private weak var threadController: ThreadController?
+    private weak var boardController: BoardController?
 
     private var draggingStateX: CGFloat = 0
     private var initialThreadX: CGFloat = 0, initialBoardX: CGFloat = 0
@@ -33,6 +34,8 @@ class HomeController: UIViewController {
 
         if let boardController = segue.destination as? BoardController {
             boardController.boardDelegatable = self
+            
+            self.boardController = boardController
         }
 
         print("destination: \(segue.destination)")
@@ -41,6 +44,10 @@ class HomeController: UIViewController {
     func savedPositionsX() {
         initialBoardX = boardContainer.frame.origin.x
         initialThreadX = threadContainer.frame.origin.x
+    }
+
+    func loadNewPageOfBoard(boardName: String) {
+        boardController?.startedNewBoard(boardName: boardName)
     }
 }
 

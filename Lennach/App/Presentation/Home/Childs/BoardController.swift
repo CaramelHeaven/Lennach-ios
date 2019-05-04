@@ -28,7 +28,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.delegate = self
         tableView.dataSource = self
 
-        initBoard()
+        loadBoard(board: "pr")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,7 +44,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.labelDate?.text = usenet.date
 
         Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
-        var lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        let lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
         if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
             cell.threadLabel?.attributedText = kek
@@ -83,27 +83,28 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     }
 
-    var kek = IndexPath()
     //MARK: load board data
-    private func initBoard() {
-        MainRepository.instance.provideThreadsByBoard { (state, data, error) in
+    private func loadBoard(board: String) {
+        MainRepository.instance.provideThreadsByBoard(board: board) { (state, data, error) in
             if state {
                 //print("data: \(data)")
                 self.boardData = data as! Board
 
-                print("checkign: \(self.boardData.usenets)")
                 self.tableView.reloadData()
-                self.progressAIV.stopAnimating()
 
-                //self.startedNewBoard(boardName: "pr")
+                self.tableView.alpha = 1
+                self.progressAIV.stopAnimating()
             } else {
                 //print("error: \(error)")
             }
+
         }
     }
 
     public func startedNewBoard(boardName: String) {
         tableView.alpha = 0.5
         progressAIV.startAnimating()
+
+        loadBoard(board: boardName)
     }
 }

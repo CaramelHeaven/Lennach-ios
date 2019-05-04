@@ -15,6 +15,7 @@ class BaseController: UIViewController {
     @IBOutlet weak var settingsContainer: UIView!
 
     private var arrayContainers: [UIView]?
+    private var homeVC: HomeController?
     private var bottomSheetNavigation: NavigationContainer?
     // private let navigationBoard = NavigationExpandView()
 
@@ -53,6 +54,19 @@ class BaseController: UIViewController {
             }
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let homeVC as HomeController:
+            self.homeVC = homeVC
+            break
+        case let favouriteVC as FavouriteController:
+            print("favouriteVC")
+            break
+        default:
+            break
+        }
+    }
 }
 
 extension BaseController: BottomListenable {
@@ -65,13 +79,6 @@ extension BaseController: BottomListenable {
             bottomSheetNavigation?.mainUIBottomSheet!.navigationClosed = self
 
             bottomSheetNavigation!.showLayout()
-//            let k = SettingsLaucher()
-//            k.showSettings()
-
-
-
-//            navigationBoard.showNavigation()
-//            navigationBoard.btnClickProvider = self
             break
         case 1:
             manageStateContainer(currentShowContainer: homeContainer)
@@ -82,7 +89,6 @@ extension BaseController: BottomListenable {
         default:
             print("error")
         }
-        print("item: \(position)")
     }
 }
 
@@ -95,7 +101,6 @@ extension BaseController: BottomSheetDelegate {
 
 extension BaseController: NavigationContainerClosable {
     func closed(boardName: String?) {
-        print("closed: \(boardName)")
-        //pass arguments
+        if let board = boardName { homeVC?.loadNewPageOfBoard(boardName: board) }
     }
 }
