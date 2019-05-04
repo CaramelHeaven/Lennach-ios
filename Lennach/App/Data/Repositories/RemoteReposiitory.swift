@@ -16,7 +16,7 @@ class RemoteRepository {
     private init() { }
 
     func getThreadsByBoard(boardName name: String, page: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        let url = Constants.baseUrl + "b" + "/catalog.json"
+        let url = Constants.baseUrl + name + "/catalog.json"
         print("BOARD URL: \(url)")
 
         Alamofire.request(url).responseJSON { response in

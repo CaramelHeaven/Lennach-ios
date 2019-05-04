@@ -29,12 +29,38 @@ class MainRepository {
     }
 
     public func provideAllBoards(completion: @escaping (Bool, Any?) -> Void) {
+        let group = DispatchGroup()
+
+        var localBoards: [BoardDescription] = []
+        var remoteBoards: [BoardDescription] = []
+
+        group.enter()
+        LocalRepository.instance.provideReadUserSavedBoards(completion: { (data) in
+            localBoards = data as! [BoardDescription]
+            group.leave()
+        })
+
+        group.enter()
         RemoteRepository.instance.getAllBoards { (result, data) in
-            completion(result, data)
+            remoteBoards = (data as! AllBoards).boards
+            group.leave()
+        }
+
+        group.notify(queue: DispatchQueue.main) {
+            completion(true, self.diffBoards(local: localBoards, remote: remoteBoards))
         }
     }
 
-    public func provideSavedBoardsInNavigation() {
-        
+    private func diffBoards(local: Array<BoardDescription>, remote: Array<BoardDescription>) -> [BoardDescription] {
+        var diffBoards = remote
+        local.forEach { (localBoard) in
+            if let index = diffBoards.firstIndex(where: { $0.id == localBoard.id }) {
+                diffBoards.remove(at: index)
+            }
+        }
+        print("local: \(local)")
+        print("remote: \(remote)")
+        print("diff Array: \(diffBoards)")
+        return diffBoards
     }
 }

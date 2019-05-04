@@ -89,16 +89,6 @@ class PopupBoardView: NSObject, ButtonsClickable {
             //TODO: save data to CoreData and close
             LocalRepository.instance.provideSaveBoardNavigation(array: data as! [BoardDescription]) { (result) in
                 print("Success or not??? \(result)")
-                
-                LocalRepository.instance.provideReadUserSavedBoards(completion: { (data) in
-                    print("data: \(data)")
-                    let kek = data as! [BoardDescription]
-                    
-                    for item in kek {
-                        print("checking item: \(item), \(item.id)")
-                    }
-                    
-                })
             }
         } else {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
@@ -213,8 +203,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         //request to data from network
         MainRepository.instance.provideAllBoards { (result, data) in
             if result {
-                self.boardsDescriptionArray = (data as! AllBoards).boards
-                print("board d: \(self.boardsDescriptionArray), size: \(self.boardsDescriptionArray.count)")
+                self.boardsDescriptionArray = data as! [BoardDescription]
 
                 self.tableView.reloadData()
             }
