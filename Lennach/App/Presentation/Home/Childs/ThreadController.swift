@@ -15,7 +15,12 @@ protocol ThreadDelegate: class {
 }
 
 class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var tableView: UITableView?
+
+    @IBOutlet weak var selectThreadLabel: UILabel!
+    @IBOutlet weak var progressAIV: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favouriteBtn: UIButton!
+    @IBOutlet weak var skipToBottomBtn: UIButton!
 
     weak var threadDelegate: ThreadDelegate?
 
@@ -24,8 +29,15 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView?.dataSource = self
-        tableView?.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
+
+        progressAIV.isHidden = true
+        
+        //provide buttons listener
+        favouriteBtn.addTarget(self, action: #selector(actionFavouriteBtn(_:)), for: .touchUpInside)
+        skipToBottomBtn.addTarget(self, action: #selector(actionSkipToBottomBtn(_:)), for: .touchUpInside)
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
         self.view.addGestureRecognizer(panGesture)
@@ -100,17 +112,31 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             return cell
         }
     }
+
+    @objc private func actionFavouriteBtn(_ sender: UIButton) {
+        print("favourite btn")
+    }
+
+    @objc private func actionSkipToBottomBtn(_ sender: UIButton) {
+        print("skip to bottom")
+    }
 }
 
 //MARK: Load comments from network
 extension ThreadController {
-    func callbackFromTapAction(data: (boardName: String, numThread: String)) {
-        MainRepository.instance.provideMessagesByThread(data.boardName, data.numThread) { (result, objects, error) in
+    func callbackFromTapAction(numThread: String) {
+        selectThreadLabel.isHidden = true
+        progressAIV.isHidden = false
+        progressAIV.startAnimating()
+        MainRepository.instance.provideMessagesByThread(numThread) { (result, objects, error) in
+            self.progressAIV.isHidden = true
+            self.progressAIV.stopAnimating()
             if result {
                 self.dataThread = objects as! [Comment]
                 self.tableView?.reloadData()
             } else {
-                fatalError()
+                print("fatal error")
+                // fatalError()
             }
         }
     }

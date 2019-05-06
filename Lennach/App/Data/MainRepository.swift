@@ -10,20 +10,22 @@ import Foundation
 
 class MainRepository {
     static let instance = MainRepository()
+    private var currentBoard = ""
 
     var data = [Comment]()
 
     private init() { }
 
     public func provideThreadsByBoard(board: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        RemoteRepository.instance.getThreadsByBoard(boardName: board, page: "1") { (state, data, error) in
-            //print("data: \((data as! Board).usenets.count)")
+        currentBoard = board
+
+        RemoteRepository.instance.getThreadsByBoard(boardName: currentBoard, page: "1") { (state, data, error) in
             completion(state, data, error)
         }
     }
 
-    public func provideMessagesByThread(_ board: String, _ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        RemoteRepository.instance.getCommentsByThread(boardName: board, threadNum: num) { (result, data, error) in
+    public func provideMessagesByThread(_ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+        RemoteRepository.instance.getCommentsByThread(boardName: currentBoard, threadNum: num) { (result, data, error) in
             completion(result, data, error)
         }
     }
@@ -50,7 +52,9 @@ class MainRepository {
             completion(true, self.diffBoards(local: localBoards, remote: remoteBoards))
         }
     }
+}
 
+extension MainRepository {
     private func diffBoards(local: Array<BoardDescription>, remote: Array<BoardDescription>) -> [BoardDescription] {
         var diffBoards = remote
         local.forEach { (localBoard) in
@@ -58,9 +62,7 @@ class MainRepository {
                 diffBoards.remove(at: index)
             }
         }
-        print("local: \(local)")
-        print("remote: \(remote)")
-        print("diff Array: \(diffBoards)")
+
         return diffBoards
     }
 }

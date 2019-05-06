@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 protocol BoardTapDelegatable: class {
-    func itemTapped(data: (boardName: String, numThread: String))
+    func itemTapped(numThread: String)
 }
 
 class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -28,6 +28,9 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.delegate = self
         tableView.dataSource = self
 
+        tableView.tableFooterView = UIView()
+
+        //TODO: Make load this from cache
         loadBoard(board: "pr")
     }
 
@@ -39,8 +42,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
 
         let usenet = boardData.usenets[indexPath.row]
-        print("usenet: \(usenet)")
-        print("-------------------------------------------")
         cell.labelDate?.text = usenet.date
 
         Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
@@ -52,7 +53,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.threadLabel?.text = lol
         }
 
-
         cell.tapHandler = { [unowned self] in
             self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
         }
@@ -61,7 +61,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        boardDelegatable?.itemTapped(data: ("pr", boardData.usenets[indexPath.row].threadNum))
+        boardDelegatable?.itemTapped(numThread: boardData.usenets[indexPath.row].threadNum)
     }
 
     private var imageVC: ImageController?

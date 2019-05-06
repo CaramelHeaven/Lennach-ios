@@ -15,6 +15,14 @@ class LocalRepository {
 
     private init() { }
 
+    func addToFavouriteThread(idThread: String, imageUrl: String, quantityPosts: Int) {
+
+    }
+
+    func removeFromFavouriteThread(idThread: String) {
+        
+    }
+
     func provideSaveBoardNavigation(array: [BoardDescription], completion: @escaping (Bool) -> Void) {
         persistentContainer.performBackgroundTask { (childContext) in
             for item in array {
@@ -24,7 +32,7 @@ class LocalRepository {
             print("checking thread provideSaveBoardNavigation ;\(Thread.isMainThread)")
             do {
                 try childContext.save()
-                
+
                 DispatchQueue.main.async {
                     completion(true)
                 }

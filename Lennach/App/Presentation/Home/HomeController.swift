@@ -23,6 +23,12 @@ class HomeController: UIViewController {
         super.viewDidLoad()
 
         savedPositionsX()
+        
+        //set shadow on thread view
+        threadContainer.layer.shadowOffset = CGSize(width: -2, height: 0)
+        threadContainer.layer.shadowRadius = 1
+        threadContainer.layer.shadowOpacity = 1
+        threadContainer.layer.shadowColor = UIColor.lightGray.cgColor
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,13 +59,13 @@ class HomeController: UIViewController {
 
 //Swap from board to thread and send callback for load data from network
 extension HomeController: BoardTapDelegatable {
-    func itemTapped(data: (boardName: String, numThread: String)) {
+    func itemTapped(numThread: String) {
 
         UIView.animate(withDuration: 0.3) {
             self.boardContainer.frame.origin.x = -315
             self.threadContainer.frame.origin.x = 0
 
-            self.threadController?.callbackFromTapAction(data: data)
+            self.threadController?.callbackFromTapAction(numThread: numThread)
         }
     }
 }
@@ -79,7 +85,7 @@ extension HomeController: ThreadDelegate {
         } else {
             UIView.animate(withDuration: 0.5) {
                 self.boardContainer.frame.origin.x = 0
-                self.threadContainer.frame.origin.x = 260
+                self.threadContainer.frame.origin.x = 280
             }
         }
         print("AFTER ANIMATION frame board: \(boardContainer.frame.origin.x), thread: \(threadContainer.frame.origin.x)")

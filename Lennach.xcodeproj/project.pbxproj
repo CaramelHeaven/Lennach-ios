@@ -19,6 +19,7 @@
 		FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */; };
 		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
 		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
+		FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB143DF1228088D600CBE047 /* RippleButton.swift */; };
 		FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
@@ -43,7 +44,6 @@
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
-		FB8FEB4B227C44F0006DF912 /* RippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8FEB4A227C44F0006DF912 /* RippleButton.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
 		FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8322706DDF0096A15C /* Utilities.swift */; };
 		FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */; };
@@ -98,6 +98,7 @@
 		FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Usenet+Posts+Files.swift"; sourceTree = "<group>"; };
 		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
 		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		FB143DF1228088D600CBE047 /* RippleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleButton.swift; sourceTree = "<group>"; };
 		FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMainMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
-		FB8FEB4A227C44F0006DF912 /* RippleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleButton.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
 		FB9D0F8322706DDF0096A15C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
@@ -454,7 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				FBE15EFA226876F6005A29FB /* BottomMenuView.swift */,
-				FB8FEB4A227C44F0006DF912 /* RippleButton.swift */,
+				FB143DF1228088D600CBE047 /* RippleButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -808,11 +808,11 @@
 				FB06360A227B035D0073B4A1 /* PopupBoardsView+VC.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
-				FB8FEB4B227C44F0006DF912 /* RippleButton.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
+				FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */,
 				FB063603227AF7170073B4A1 /* AllBoardsResponse.swift in Sources */,
 				FB51F4B92279C833006080F4 /* NavigationCollectionView+Cells.swift in Sources */,
 			);
