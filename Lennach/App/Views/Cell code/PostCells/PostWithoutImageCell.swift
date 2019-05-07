@@ -28,9 +28,11 @@ class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        initAnswerGesture()
     }
 
     func initAnswerGesture() {
+        print("inited answer gesture")
         let answerGesture = UIPanGestureRecognizer(target: self, action: #selector(answerToPostGesture(_:)))
         addGestureRecognizer(answerGesture)
 

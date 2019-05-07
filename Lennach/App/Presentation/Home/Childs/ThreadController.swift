@@ -24,6 +24,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
     weak var threadDelegate: ThreadDelegate?
 
+    private var panGesture: UIPanGestureRecognizer!
     private var dataThread: [Comment] = []
     var activateBoardGesture = false
 
@@ -40,12 +41,12 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         favouriteBtn.addTarget(self, action: #selector(actionFavouriteBtn(_:)), for: .touchUpInside)
         skipToBottomBtn.addTarget(self, action: #selector(actionSkipToBottomBtn(_:)), for: .touchUpInside)
 
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
+        panGesture.delegate = self
         self.view.addGestureRecognizer(panGesture)
     }
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
-        
         let translation = recognizer.translation(in: self.view)
 
         //compute X
@@ -53,7 +54,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         if let view = recognizer.view {
             updateX = view.frame.origin.x + translation.x
-            print("view frame origin: \(view.frame.origin.x)")
         }
 
         switch recognizer.state {
@@ -80,6 +80,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("provding table view cell data")
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
             let post = dataThread[indexPath.row]
@@ -100,7 +101,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
-            cell.initAnswerGesture()
+            // cell.initAnswerGesture()
             let post = dataThread[indexPath.row]
 
             if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
@@ -113,6 +114,73 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 
+    var handlerDirectionGestureToThread = true
+}
+
+//MARK: Disable enable background state view and handlering gesture on each cell
+extension ThreadController: UIGestureRecognizerDelegate {
+
+    /*
+     Visible or not visible thread on user UI, if true - our thread view placed behind window
+     @Argumets: isClosingThread - means that user closed thread - make disable gestures and change alpha channel on tableView, etc
+     */
+    func backgroundThreadState(isClosingThread: Bool, isNewThread: Bool = false) {
+        print("is closing thread: \(isClosingThread), isNewThread: \(isNewThread)")
+        if isClosingThread {
+            tableView.alpha = 0.5
+            tableView.isScrollEnabled = false
+
+            handlerDirectionGestureToThread = true
+            disableTableViewAnswerGesture(isClosingThread)
+        } else {
+            tableView.alpha = 1
+            tableView.isScrollEnabled = true
+            disableTableViewAnswerGesture(isClosingThread, isNewThread)
+        }
+    }
+
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        if let gesture = gestureRecognizer as? UIPanGestureRecognizer {
+//            let translation = gesture.translation(in: self.view)
+//            print("lol: \(abs(translation.x)), lek: \(abs(translation.y)), x: \(translation.x). y: \(translation.y), direction: \(handlerDirectionGestureToThread)")
+//            if handlerDirectionGestureToThread && translation.x < 0 {
+//                return true
+//            }
+//
+//            if handlerDirectionGestureToThread && abs(translation.y) > 0 {
+//                return true
+//            }
+//
+//            if !handlerDirectionGestureToThread && abs(translation.y) > 0 || translation.x > 0 {
+//                print("im here, \(!tableView.isScrollEnabled)")
+//                if !tableView.isScrollEnabled {
+//                    tableView.isScrollEnabled = true
+//                    return true
+//                }
+//                //print("table scroll enabled: \(tableView.isScrollEnabled)")
+//                //tableView.isScrollEnabled = true
+//                return true
+//            }
+//            return false
+//        }
+//        return false
+//    }
+
+    func disableTableViewAnswerGesture(_ flag: Bool, _ newThread: Bool = false) {
+        if flag {
+            tableView.visibleCells.forEach { $0.gestureRecognizers?.removeAll() }
+        } else if !flag && !newThread {
+            print("FLAG AND THIS IS NOT NEW THREAD")
+            tableView.visibleCells.forEach { (cell) in
+                let castedCell = (cell as! AnswerGestureGrantable)
+                castedCell.initAnswerGesture()
+            }
+        }
+    }
+}
+
+//MARK: Favourite and scroll to bottom buttons action
+extension ThreadController {
     @objc private func actionFavouriteBtn(_ sender: UIButton) {
         print("favourite btn")
     }
@@ -125,7 +193,12 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 //MARK: Load comments from network
 extension ThreadController {
     func callbackFromTapAction(numThread: String) {
+        handlerDirectionGestureToThread = false
+        tableView.isScrollEnabled = true
+
         tableView.isHidden = true
+        tableView.alpha == 0.5 ? tableView.alpha = 1: nil
+
         selectThreadLabel.isHidden = true
 
         progressAIV.isHidden = false

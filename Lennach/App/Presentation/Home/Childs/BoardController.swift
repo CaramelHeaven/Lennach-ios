@@ -20,6 +20,9 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var present = true
     private var boardData = Board()
 
+    var isOpeningNewThread = false
+    var currentThread = "" { willSet { isOpeningNewThread = newValue == currentThread } } //used inside HomeController for determinate - is new thread opening or not
+
     weak var boardDelegatable: BoardTapDelegatable?
 
     override func viewDidLoad() {
@@ -31,7 +34,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.tableFooterView = UIView()
 
         //TODO: Make load this from cache
-        loadBoard(board: "pr")
+        loadBoard(board: "b")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,11 +63,14 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
 
+    //MARK: Load thread from board
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        boardDelegatable?.itemTapped(numThread: boardData.usenets[indexPath.row].threadNum)
+        print("selected fuck")
+        currentThread = boardData.usenets[indexPath.row].threadNum
+        boardDelegatable?.itemTapped(numThread: currentThread)
     }
 
-    private var imageVC: ImageController?
+    //private var imageVC: ImageController?
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {

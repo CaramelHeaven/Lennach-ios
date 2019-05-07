@@ -81,15 +81,17 @@ extension HomeController: ThreadDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.boardContainer.frame.origin.x = -315
                 self.threadContainer.frame.origin.x = 0
+
+                self.threadController?.handlerDirectionGestureToThread = false
+                self.threadController?.backgroundThreadState(isClosingThread: false, isNewThread: self.boardController!.isOpeningNewThread)
             }
         } else {
             UIView.animate(withDuration: 0.3) {
                 self.boardContainer.frame.origin.x = 0
                 self.threadContainer.frame.origin.x = 280
 
-                self.threadController?.tableView.allowsSelection = false
-                self.threadController?.tableView.isScrollEnabled = false
-                print("puk: \(self.threadController?.tableView.allowsSelection)")
+                self.threadController?.handlerDirectionGestureToThread = true
+                self.threadController?.backgroundThreadState(isClosingThread: true)
             }
         }
         print("AFTER ANIMATION frame board: \(boardContainer.frame.origin.x), thread: \(threadContainer.frame.origin.x)")
