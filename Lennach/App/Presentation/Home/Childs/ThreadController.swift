@@ -25,6 +25,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     weak var threadDelegate: ThreadDelegate?
 
     private var dataThread: [Comment] = []
+    var activateBoardGesture = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.tableFooterView = UIView()
 
         progressAIV.isHidden = true
-        
+
         //provide buttons listener
         favouriteBtn.addTarget(self, action: #selector(actionFavouriteBtn(_:)), for: .touchUpInside)
         skipToBottomBtn.addTarget(self, action: #selector(actionSkipToBottomBtn(_:)), for: .touchUpInside)
@@ -44,6 +45,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
+        
         let translation = recognizer.translation(in: self.view)
 
         //compute X
@@ -80,8 +82,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
-
-            print("KEK")
             let post = dataThread[indexPath.row]
 
             let exclusionPath: UIBezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: cell.imagePost.frame.width, height: cell.imagePost.frame.height))
@@ -100,7 +100,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
-
+            cell.initAnswerGesture()
             let post = dataThread[indexPath.row]
 
             if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
@@ -125,15 +125,24 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 //MARK: Load comments from network
 extension ThreadController {
     func callbackFromTapAction(numThread: String) {
+        tableView.isHidden = true
         selectThreadLabel.isHidden = true
+
         progressAIV.isHidden = false
         progressAIV.startAnimating()
+
+        dataThread.removeAll()
+        self.tableView.reloadData()
         MainRepository.instance.provideMessagesByThread(numThread) { (result, objects, error) in
             self.progressAIV.isHidden = true
             self.progressAIV.stopAnimating()
             if result {
                 self.dataThread = objects as! [Comment]
-                self.tableView?.reloadData()
+                self.tableView.reloadData()
+
+                self.progressAIV.stopAnimating()
+                self.progressAIV.isHidden = true
+                self.tableView.isHidden = false
             } else {
                 print("fatal error")
                 // fatalError()

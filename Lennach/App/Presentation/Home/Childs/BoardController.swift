@@ -79,8 +79,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         //present(KekViewController(), animated: true, completion: nil)
         present(controller, animated: true, completion: nil)
-
-
     }
 
     //MARK: load board data

@@ -255,13 +255,6 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
-		FB3FD3E52273154C00AF87E1 /* PostCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PostCells;
-			sourceTree = "<group>";
-		};
 		FB3FD3E6227317C700AF87E1 /* PostCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				FB2206272268DAB0006F2CA8 /* Cell code */,
-				FBE15EFC22687B92005A29FB /* Cells - xib */,
 				FBE15EF9226876BB005A29FB /* Custom */,
 			);
 			path = Views;
@@ -457,14 +449,6 @@
 				FB143DF1228088D600CBE047 /* RippleButton.swift */,
 			);
 			path = Custom;
-			sourceTree = "<group>";
-		};
-		FBE15EFC22687B92005A29FB /* Cells - xib */ = {
-			isa = PBXGroup;
-			children = (
-				FB3FD3E52273154C00AF87E1 /* PostCells */,
-			);
-			path = "Cells - xib";
 			sourceTree = "<group>";
 		};
 		FBEC278C225FCCE0003B1406 = {

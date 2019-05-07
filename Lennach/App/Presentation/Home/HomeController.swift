@@ -23,7 +23,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
 
         savedPositionsX()
-        
+
         //set shadow on thread view
         threadContainer.layer.shadowOffset = CGSize(width: -2, height: 0)
         threadContainer.layer.shadowRadius = 1
@@ -40,7 +40,7 @@ class HomeController: UIViewController {
 
         if let boardController = segue.destination as? BoardController {
             boardController.boardDelegatable = self
-            
+
             self.boardController = boardController
         }
 
@@ -78,14 +78,18 @@ extension HomeController: ThreadDelegate {
 
         // if true - user opened thread, else - not
         if draggingStateX < lastValueX || draggingStateX == lastValueX {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.3) {
                 self.boardContainer.frame.origin.x = -315
                 self.threadContainer.frame.origin.x = 0
             }
         } else {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.3) {
                 self.boardContainer.frame.origin.x = 0
                 self.threadContainer.frame.origin.x = 280
+
+                self.threadController?.tableView.allowsSelection = false
+                self.threadController?.tableView.isScrollEnabled = false
+                print("puk: \(self.threadController?.tableView.allowsSelection)")
             }
         }
         print("AFTER ANIMATION frame board: \(boardContainer.frame.origin.x), thread: \(threadContainer.frame.origin.x)")
