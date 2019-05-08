@@ -58,9 +58,11 @@ class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
             case .ended:
                 let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 
-                UIView.animate(withDuration: 0.4) {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.frame = originalFrame
-
+                }) { _ in
+                    let view = AnswerViewContainer()
+                    view.showAnswerView()
                 }
                 break
             default:

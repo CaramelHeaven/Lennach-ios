@@ -34,9 +34,7 @@ class MainUIBottomSheet: UIView {
     var navigationClosed: NavigationContainerClosable?
 
     var tableController: NavigationCollectionViewController? {
-        didSet {
-            sheetView = tableController?.view
-        }
+        didSet { sheetView = tableController?.view }
     }
 
     override init(frame: CGRect) {
@@ -45,7 +43,6 @@ class MainUIBottomSheet: UIView {
 
     fileprivate func initBoardNavigationSelectable() {
         tableController?.boardSelectable = self
-        print("boardSelectable: \(tableController?.boardSelectable), table: \(tableController)")
     }
 
     private var sheetBackgroundTopConstraint: NSLayoutConstraint?
@@ -179,7 +176,7 @@ class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
 
         mainUIBottomSheet = MainUIBottomSheet()
         mainUIBottomSheet?.tableController = tableController
-        
+
         mainUIBottomSheet?.initBoardNavigationSelectable()
         //kek
     }
