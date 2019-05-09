@@ -65,4 +65,10 @@ class RemoteRepository {
             }
         }
     }
+
+    func getCaptcha(completion: @escaping (Bool, Any?) -> Void) {
+        let url = Constants.baseUrl + "api/captcha/" + Constants.CaptchaType + "id"
+    }
+
+
 }

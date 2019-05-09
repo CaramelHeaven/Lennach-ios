@@ -17,13 +17,14 @@ class PostWithImageCell: UITableViewCell, AnswerGestureGrantable {
     @IBOutlet weak var labelNumberAndDate: UILabel!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnReplies: UIButton!
+    
+    var gestureCompletable: CellGestureCompletable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        initAnswerGesture()
     }
 
+    //For future. In the current release, we make this app read only
     func initAnswerGesture() {
         let answerGesture = UIPanGestureRecognizer(target: self, action: #selector(answerToPostGesture(_:)))
         addGestureRecognizer(answerGesture)
@@ -50,9 +51,10 @@ class PostWithImageCell: UITableViewCell, AnswerGestureGrantable {
             case .ended:
                 let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
 
-                UIView.animate(withDuration: 0.4) {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.frame = originalFrame
-
+                }) { _ in
+                    self.gestureCompletable?.showingAnswerView(cell: self)
                 }
                 break
             default:

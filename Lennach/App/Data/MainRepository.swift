@@ -16,6 +16,7 @@ class MainRepository {
 
     private init() { }
 
+    //MARK: Remote
     public func provideThreadsByBoard(board: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
         currentBoard = board
 
@@ -30,6 +31,11 @@ class MainRepository {
         }
     }
 
+    func provideGetCaptcha(threadNum: String) {
+        
+    }
+
+    //MARK: Local
     public func provideAllBoards(completion: @escaping (Bool, Any?) -> Void) {
         let group = DispatchGroup()
 

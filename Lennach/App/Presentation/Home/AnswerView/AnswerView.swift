@@ -15,6 +15,7 @@ protocol AnswerViewExpandable: class {
 class AnswerView: UIView, UITextFieldDelegate {
 
     var expandableView: AnswerViewExpandable?
+    private let captchaViewContainer = CaptchaViewContainer()
 
     deinit {
         print("answer view deInit")
@@ -93,8 +94,7 @@ class AnswerView: UIView, UITextFieldDelegate {
         super.layoutSubviews()
         setupViews()
     }
-    var lol: NSLayoutConstraint!
-    var kek: NSLayoutConstraint!
+    
     private func setupViews() {
         addSubview(enteringTextField)
         addSubview(counterLabel)
@@ -104,8 +104,9 @@ class AnswerView: UIView, UITextFieldDelegate {
         addSubview(enterNameTextField)
 
         //hidesViews
-
         enterNameTextField.frame = CGRect(x: 4, y: 8, width: bounds.width - 42, height: 20)
+        
+        //base views for animating
         counterLabel.frame = CGRect(x: 4, y: 10, width: bounds.width - 42, height: 10)
         enteringTextField.frame = CGRect(x: 4, y: 22, width: bounds.width - 38, height: 102)
 
@@ -147,6 +148,6 @@ class AnswerView: UIView, UITextFieldDelegate {
     }
 
     @objc func actionSendPost() {
-        print("3")
+        captchaViewContainer.showCaptcha()
     }
 }

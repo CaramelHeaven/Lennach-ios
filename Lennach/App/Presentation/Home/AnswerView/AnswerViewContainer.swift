@@ -19,12 +19,23 @@ class AnswerViewContainer: NSObject {
         print("deInit answerViewContainer")
     }
 
-    private var heightAnswerView: NSLayoutConstraint!
+    var bindNumberPost = "" {
+        didSet {
+            if answerView.enteringTextField.text.count == 0 {
+                answerView.enteringTextField.text = ">>" + bindNumberPost + "\n"
+            } else {
+                answerView.enteringTextField.text += "\n" + ">>" + bindNumberPost + "\n"
+            }
+        }
+    }
 
     private let answerView: AnswerView = {
         let view = AnswerView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 8
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 2
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
@@ -38,27 +49,23 @@ class AnswerViewContainer: NSObject {
         return view
     }()
 
-    func showAnswerView() {
-        if let window = UIApplication.shared.keyWindow {
-            window.addSubview(blackView)
-            blackView.frame = window.frame
+    private var mainView: UIView!
 
-            print("black view: \(blackView.frame)")
-            blackView.addSubview(answerView)
-            heightAnswerView = answerView.heightAnchor.constraint(equalToConstant: 130)
-            NSLayoutConstraint.activate([
-                answerView.leadingAnchor.constraint(equalTo: blackView.leadingAnchor),
-                answerView.trailingAnchor.constraint(equalTo: blackView.trailingAnchor),
-                answerView.topAnchor.constraint(equalTo: blackView.topAnchor),
-                heightAnswerView
-                ])
+    func showAnswerView(mainView: UIView) {
+        self.mainView = mainView
 
-            answerView.expandableView = self
+        mainView.addSubview(answerView)
+        NSLayoutConstraint.activate([
+            answerView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+            answerView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
+            answerView.topAnchor.constraint(equalTo: mainView.topAnchor),
+            answerView.heightAnchor.constraint(equalToConstant: 130)
+            ])
 
-            UIView.animate(withDuration: 0.3) {
-                self.blackView.alpha = 1
-            }
-        }
+        answerView.enteringTextField.becomeFirstResponder()
+
+        //for expanding view, dont remove this
+        answerView.expandableView = self
     }
 }
 
@@ -69,7 +76,7 @@ extension AnswerViewContainer: AnswerViewExpandable {
 
         if flag {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
-                    self.answerView.frame = CGRect(x: 0, y: 0, width: self.blackView.bounds.width, height: self.blackView.bounds.height)
+                    self.answerView.frame = CGRect(x: 0, y: 0, width: self.mainView.bounds.width, height: self.mainView.bounds.height)
                 }) { (result) in
                 if result {
                     UIView.animate(withDuration: 0.3, animations: {
@@ -90,7 +97,7 @@ extension AnswerViewContainer: AnswerViewExpandable {
                 if result {
                     UIView.animate(withDuration: 0.3, animations: {
                         self.answerView.enterNameTextField.isHidden = true
-                        self.answerView.frame = CGRect(x: 0, y: 0, width: self.blackView.bounds.width, height: 130)
+                        self.answerView.frame = CGRect(x: 0, y: 0, width: self.mainView.bounds.width, height: 130)
                     })
                 }
             }

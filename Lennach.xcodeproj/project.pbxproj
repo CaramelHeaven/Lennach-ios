@@ -42,6 +42,8 @@
 		FB65BC94226258A200C30F61 /* PostWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */; };
 		FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
+		FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */; };
+		FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
@@ -123,6 +125,8 @@
 		FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithoutImageCell.swift; sourceTree = "<group>"; };
 		FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Picture.swift"; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
+		FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaView.swift; sourceTree = "<group>"; };
+		FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaViewContainer.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
@@ -394,7 +398,8 @@
 		FB740604226752F300402315 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FB868E0D2281CFB40040E357 /* Views */,
+				FBBF530222830CA500109CC9 /* CaptchaView */,
+				FB868E0D2281CFB40040E357 /* AnswerView */,
 				FB7406052267530D00402315 /* Childs */,
 				FB65BC7E22623F5500C30F61 /* HomeController.swift */,
 			);
@@ -426,13 +431,13 @@
 			path = Posts;
 			sourceTree = "<group>";
 		};
-		FB868E0D2281CFB40040E357 /* Views */ = {
+		FB868E0D2281CFB40040E357 /* AnswerView */ = {
 			isa = PBXGroup;
 			children = (
 				FBB375912281CFE0001EC00D /* AnswerViewContainer.swift */,
 				FBB375932281DFE5001EC00D /* AnswerView.swift */,
 			);
-			path = Views;
+			path = AnswerView;
 			sourceTree = "<group>";
 		};
 		FB9D0F7E22706B440096A15C /* ImageGallery */ = {
@@ -454,6 +459,15 @@
 				FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */,
 			);
 			path = Transition;
+			sourceTree = "<group>";
+		};
+		FBBF530222830CA500109CC9 /* CaptchaView */ = {
+			isa = PBXGroup;
+			children = (
+				FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */,
+				FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */,
+			);
+			path = CaptchaView;
 			sourceTree = "<group>";
 		};
 		FBE15EF9226876BB005A29FB /* Custom */ = {
@@ -792,6 +806,7 @@
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
 				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
+				FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
 				FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */,
@@ -800,6 +815,7 @@
 				FB2206262268CE01006F2CA8 /* Board.swift in Sources */,
 				FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
+				FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */,
 				FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */,
 				FBB375922281CFE0001EC00D /* AnswerViewContainer.swift in Sources */,
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,

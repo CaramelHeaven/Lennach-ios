@@ -16,6 +16,11 @@ protocol AnswerGestureGrantable {
     func initAnswerGesture()
 }
 
+//This protocol used inside ThreadController for showing AnswerView
+protocol CellGestureCompletable {
+    func showingAnswerView(cell: UITableViewCell)
+}
+
 class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
 
     var originalCenter = CGPoint()
@@ -24,13 +29,17 @@ class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
     @IBOutlet weak var labelNumberAndDate: UILabel!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnReplies: UIButton!
+    
+    //strong ref
+    var gestureCompletable: CellGestureCompletable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        initAnswerGesture()
+//        initAnswerGesture()
     }
 
+    //For future. In the current release, we make this app read only
     func initAnswerGesture() {
         print("inited answer gesture")
         let answerGesture = UIPanGestureRecognizer(target: self, action: #selector(answerToPostGesture(_:)))
@@ -61,8 +70,7 @@ class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.frame = originalFrame
                 }) { _ in
-                    let view = AnswerViewContainer()
-                    view.showAnswerView()
+                    self.gestureCompletable?.showingAnswerView(cell: self)
                 }
                 break
             default:
