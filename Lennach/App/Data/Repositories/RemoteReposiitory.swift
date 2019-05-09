@@ -22,9 +22,8 @@ class RemoteRepository {
         Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
-                print("DATA BOARD: \(data)")
                 let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
-                print("usenets count: \(board.usenets.count)")
+                
                 completion(true, board, nil)
             } catch {
                 completion(false, nil, error)
@@ -65,10 +64,4 @@ class RemoteRepository {
             }
         }
     }
-
-    func getCaptcha(completion: @escaping (Bool, Any?) -> Void) {
-        let url = Constants.baseUrl + "api/captcha/" + Constants.CaptchaType + "id"
-    }
-
-
 }

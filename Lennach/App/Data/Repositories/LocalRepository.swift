@@ -29,7 +29,6 @@ class LocalRepository {
                 var boardDb = BoardDb(context: childContext)
                 self.localMapper.mapNavigationBoardDataToDatabase(board: item, boardDb: &boardDb)
             }
-            print("checking thread provideSaveBoardNavigation ;\(Thread.isMainThread)")
             do {
                 try childContext.save()
 
@@ -52,7 +51,6 @@ class LocalRepository {
         let asynsRequesting = NSAsynchronousFetchRequest(fetchRequest: fetchRequestBoards) { result in
             if let data = result.finalResult! as? [BoardDb] {
                 let objects = self.localMapper.mapDatabaseBoardToBusinessObjects(boardDb: data)
-                print("checking thread provideReadUserSavedBoards \(Thread.isMainThread)")
                 DispatchQueue.main.async {
                     completion(objects)
                 }

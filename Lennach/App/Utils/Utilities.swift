@@ -77,16 +77,22 @@ struct Utilities {
         }
 
         static func loadAsynsImage(image: UIImageView!, url: String, fade: Bool) {
-            let processor = DownsamplingImageProcessor(size: CGSize(width: image.bounds.width, height: image.bounds.height))
-
-            image.kf.indicatorType = .activity
-            image.kf.setImage(with: URL(string: url),
-                placeholder: UIImage(named: url),
-                options: [
-                        .processor(processor),
-                        .scaleFactor(UIScreen.main.scale),
-                        .cacheOriginalImage
-                ])
+            if url.contains(".gif") {
+                image.kf.indicatorType = .activity
+                image.kf.setImage(with: URL(string: url)!,
+                    options: [.onlyLoadFirstFrame])
+            } else { //load simple image
+                image.kf.indicatorType = .activity
+                image.kf.setImage(with: URL(string: url),
+                    placeholder: UIImage(named: url),
+                    options: [
+                            .processor(DownsamplingImageProcessor(size: image.bounds.size) >> RoundCornerImageProcessor(cornerRadius: 4)),
+                            .scaleFactor(UIScreen.main.scale),
+                            .cacheOriginalImage
+                    ]) { result in
+                    print("result: \(result)")
+                }
+            }
         }
     }
 }

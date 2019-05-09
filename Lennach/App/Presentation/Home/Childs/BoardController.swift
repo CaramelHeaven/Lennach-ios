@@ -47,7 +47,17 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let usenet = boardData.usenets[indexPath.row]
         cell.labelDate?.text = usenet.date
 
-        Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+        cell.threadImage!.image = nil
+        cell.threadImage!.backgroundColor = .clear
+        if usenet.thumbnail.contains(".webm") || usenet.thumbnail.contains(".mp4") {
+            print("video cell")
+        } else {
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+
+            cell.tapHandler = { [unowned self] in
+                self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
+            }
+        }
         let lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
         if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
@@ -55,11 +65,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             cell.threadLabel?.text = lol
         }
-
-        cell.tapHandler = { [unowned self] in
-            self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
-        }
-
         return cell
     }
 
@@ -74,7 +79,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
-        let cell = tableView.cellForRow(at: path) as! BoardTableViewCell
+        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
 
         let configuration = ImageViewerConfiguration { config in
             config.imageView = cell.threadImage!
