@@ -155,10 +155,22 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libogg/ogg.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libopus/libopus.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework"
+  install_framework "${PODS_ROOT}/libvpx/VPX.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libogg/ogg.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libopus/libopus.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework"
+  install_framework "${PODS_ROOT}/libvpx/VPX.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

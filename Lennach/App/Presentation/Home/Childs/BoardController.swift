@@ -53,12 +53,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.initVideoOrImageClicker(state: "video")
 
             cell.videoClicker = { [self] in
-                print("video clicker")
-                let controller = VideoPlayerController()
-                
-                
-                //present(KekViewController(), animated: true, completion: nil)
-                self.present(controller, animated: true, completion: nil)
+                self.videoTransition(indexPath: indexPath)
             }
             print("video cell")
 
@@ -88,21 +83,26 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         boardDelegatable?.itemTapped(numThread: currentThread)
     }
 
-    //private var imageVC: ImageController?
+    let videoContainer = VideoPlayerContainer()
+    
+    func videoTransition(indexPath path: IndexPath) {
+        //boardData.usenets[path.row].thumbnail
+        videoContainer.showVideo()
+    }
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
-        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
-
-        let configuration = ImageViewerConfiguration { config in
-            config.imageView = cell.threadImage!
-        }
-
-        let controller = ImageController(configuration: configuration)
-        controller.urlThumbnail = boardData.usenets[path.row].thumbnail
-
-        //present(KekViewController(), animated: true, completion: nil)
-        present(controller, animated: true, completion: nil)
+        videoContainer.showVideo()
+//        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
+//
+//        let configuration = ImageViewerConfiguration { config in
+//            config.imageView = cell.threadImage!
+//        }
+//
+//        let controller = ImageController(configuration: configuration)
+//        controller.urlThumbnail = boardData.usenets[path.row].thumbnail
+//
+//        present(controller, animated: true, completion: nil)
     }
 
     //MARK: load board data

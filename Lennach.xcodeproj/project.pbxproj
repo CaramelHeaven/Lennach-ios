@@ -20,14 +20,14 @@
 		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
 		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
 		FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB143DF1228088D600CBE047 /* RippleButton.swift */; };
-		FB1863142284444F00899163 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1863122284444F00899163 /* VideoPlayerController.swift */; };
-		FB1863152284444F00899163 /* VideoPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1863132284444F00899163 /* VideoPlayerController.xib */; };
 		FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
 		FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */; };
 		FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */; };
 		FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D7052271834800D7D75D /* LocalMainMapper.swift */; };
+		FB33823A22847BDD0077289B /* VideoPlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823922847BDD0077289B /* VideoPlayerContainer.swift */; };
+		FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823B22847BE80077289B /* VideoPlayerView.swift */; };
 		FB38758B227C77BD00F90813 /* App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB387589227C77BD00F90813 /* App.xcdatamodeld */; };
 		FB51F4B92279C833006080F4 /* NavigationCollectionView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */; };
 		FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */; };
@@ -105,14 +105,15 @@
 		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
 		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		FB143DF1228088D600CBE047 /* RippleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleButton.swift; sourceTree = "<group>"; };
-		FB1863122284444F00899163 /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
-		FB1863132284444F00899163 /* VideoPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerController.xib; sourceTree = "<group>"; };
 		FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMainMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		FB29D6FF2271816E00D7D75D /* ThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadResponse.swift; sourceTree = "<group>"; };
 		FB29D703227181BC00D7D75D /* FilesThreadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesThreadResponse.swift; sourceTree = "<group>"; };
 		FB29D7052271834800D7D75D /* LocalMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMainMapper.swift; sourceTree = "<group>"; };
+		FB3382362284613F0077289B /* Lennach-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lennach-Bridging-Header.h"; sourceTree = "<group>"; };
+		FB33823922847BDD0077289B /* VideoPlayerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerContainer.swift; sourceTree = "<group>"; };
+		FB33823B22847BE80077289B /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		FB38758A227C77BD00F90813 /* App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = App.xcdatamodel; sourceTree = "<group>"; };
 		FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationCollectionView+Cells.swift"; sourceTree = "<group>"; };
 		FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBackgroundView.swift; sourceTree = "<group>"; };
@@ -236,8 +237,9 @@
 		FB18630F2284441700899163 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				FB1863122284444F00899163 /* VideoPlayerController.swift */,
-				FB1863132284444F00899163 /* VideoPlayerController.xib */,
+				FB3382362284613F0077289B /* Lennach-Bridging-Header.h */,
+				FB33823922847BDD0077289B /* VideoPlayerContainer.swift */,
+				FB33823B22847BE80077289B /* VideoPlayerView.swift */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -640,6 +642,7 @@
 				TargetAttributes = {
 					FBEC2794225FCCE0003B1406 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					FBEC27A8225FCCE1003B1406 = {
 						CreatedOnToolsVersion = 10.2;
@@ -680,7 +683,6 @@
 				FB9D0FAB227090300096A15C /* ImageController.xib in Resources */,
 				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
 				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
-				FB1863152284444F00899163 /* VideoPlayerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +714,12 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Lennach/Pods-Lennach-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework",
+				"${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework",
+				"${BUILT_PRODUCTS_DIR}/libogg/ogg.framework",
+				"${BUILT_PRODUCTS_DIR}/libopus/libopus.framework",
+				"${BUILT_PRODUCTS_DIR}/libvorbis/vorbis.framework",
+				"${PODS_ROOT}/libvpx/VPX.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -719,6 +727,12 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OGVKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nestegg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ogg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libopus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vorbis.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VPX.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -812,11 +826,13 @@
 				FB38758B227C77BD00F90813 /* App.xcdatamodeld in Sources */,
 				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
 				FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */,
+				FB33823A22847BDD0077289B /* VideoPlayerContainer.swift in Sources */,
 				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
 				FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
 				FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
+				FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
 				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
 				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
@@ -840,7 +856,6 @@
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
-				FB1863142284444F00899163 /* VideoPlayerController.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
@@ -1022,6 +1037,7 @@
 			baseConfigurationReference = E039421C61EC5DBDC6215DC4 /* Pods-Lennach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Lennach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1030,6 +1046,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.Lennach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lennach/App/Presentation/VideoPlayer/Lennach-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1040,6 +1058,7 @@
 			baseConfigurationReference = E113C91ADAFE958BE5E90373 /* Pods-Lennach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Lennach/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1048,6 +1067,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.caramelheaven.Lennach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lennach/App/Presentation/VideoPlayer/Lennach-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
