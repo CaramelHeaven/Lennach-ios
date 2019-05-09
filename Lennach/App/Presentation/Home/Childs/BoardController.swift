@@ -50,11 +50,24 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.threadImage!.image = nil
         cell.threadImage!.backgroundColor = .clear
         if usenet.thumbnail.contains(".webm") || usenet.thumbnail.contains(".mp4") {
+            cell.initVideoOrImageClicker(state: "video")
+
+            cell.videoClicker = { [self] in
+                print("video clicker")
+                let controller = VideoPlayerController()
+                
+                
+                //present(KekViewController(), animated: true, completion: nil)
+                self.present(controller, animated: true, completion: nil)
+            }
             print("video cell")
+
         } else {
             Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+            cell.initVideoOrImageClicker(state: "image")
 
-            cell.tapHandler = { [unowned self] in
+            cell.imageClicker = { [self] in
+                print("image clicker")
                 self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
             }
         }

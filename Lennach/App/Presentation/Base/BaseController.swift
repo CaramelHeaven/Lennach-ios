@@ -20,9 +20,9 @@ class BaseController: UIViewController {
     // private let navigationBoard = NavigationExpandView()
 
     //FIXME: find answer in this bug
-    public override var prefersStatusBarHidden: Bool {
-        return true
-    }
+//    public override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
 
     let bottomMenu: BottomMenuView = {
         let menu = BottomMenuView()

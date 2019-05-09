@@ -30,15 +30,14 @@ class ImageController: UIViewController {
         modalPresentationCapturesStatusBarAppearance = true
     }
     
-    public override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+//    public override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
+//
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()

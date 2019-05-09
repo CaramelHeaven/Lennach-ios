@@ -23,15 +23,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGy-6Q-elV">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                     <subviews>
                         <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w5M-uR-tRu">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <rect key="frame" x="0.0" y="-20" width="414" height="736"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="w5M-uR-tRu" firstAttribute="top" secondItem="ZGy-6Q-elV" secondAttribute="top" id="9FK-jY-Bqa"/>
+                        <constraint firstItem="w5M-uR-tRu" firstAttribute="top" secondItem="ZGy-6Q-elV" secondAttribute="top" constant="-20" id="9FK-jY-Bqa"/>
                         <constraint firstAttribute="bottom" secondItem="w5M-uR-tRu" secondAttribute="bottom" id="Crv-d1-2LQ"/>
                         <constraint firstAttribute="trailing" secondItem="w5M-uR-tRu" secondAttribute="trailing" id="G3d-OE-BgK"/>
                         <constraint firstItem="w5M-uR-tRu" firstAttribute="leading" secondItem="ZGy-6Q-elV" secondAttribute="leading" id="Z4D-ZZ-IY5"/>
@@ -44,7 +44,7 @@
                 <constraint firstItem="w5M-uR-tRu" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="Nxf-Hu-K3W"/>
                 <constraint firstItem="w5M-uR-tRu" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Whp-OX-DoV"/>
                 <constraint firstItem="ZGy-6Q-elV" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="eqd-ox-AWo"/>
-                <constraint firstItem="ZGy-6Q-elV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hAh-1W-rPF"/>
+                <constraint firstItem="ZGy-6Q-elV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hAh-1W-rPF"/>
                 <constraint firstItem="ZGy-6Q-elV" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="uDi-nd-aBk"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

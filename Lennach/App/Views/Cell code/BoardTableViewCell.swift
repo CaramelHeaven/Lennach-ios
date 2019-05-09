@@ -15,18 +15,33 @@ class BoardTableViewCell: UITableViewCell {
     @IBOutlet var labelDate: UILabel?
 
     //MARK: image click listener
-    var tapHandler: (() -> Void)? = nil
+    var imageClicker: (() -> Void)? = nil
+
+    var videoClicker: (() -> Void)? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         // Initialization code
-        threadImage?.isUserInteractionEnabled = true
-        threadImage?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImage)))
+
+    }
+
+    func initVideoOrImageClicker(state: String) {
+        if state == "video" {
+            threadImage?.isUserInteractionEnabled = true
+            threadImage?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapVideo)))
+        } else if state == "image" {
+            threadImage?.isUserInteractionEnabled = true
+            threadImage?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImage)))
+        }
     }
 
     @objc func tapImage() {
-        tapHandler?()
+        imageClicker?()
+    }
+
+    @objc func tapVideo() {
+        videoClicker?()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

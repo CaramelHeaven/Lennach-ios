@@ -20,6 +20,8 @@
 		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
 		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
 		FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB143DF1228088D600CBE047 /* RippleButton.swift */; };
+		FB1863142284444F00899163 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1863122284444F00899163 /* VideoPlayerController.swift */; };
+		FB1863152284444F00899163 /* VideoPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB1863132284444F00899163 /* VideoPlayerController.xib */; };
 		FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
@@ -103,6 +105,8 @@
 		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
 		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		FB143DF1228088D600CBE047 /* RippleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleButton.swift; sourceTree = "<group>"; };
+		FB1863122284444F00899163 /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
+		FB1863132284444F00899163 /* VideoPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerController.xib; sourceTree = "<group>"; };
 		FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMainMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
@@ -227,6 +231,15 @@
 				FB0E6FB12268BBFC00954081 /* LocalRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FB18630F2284441700899163 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FB1863122284444F00899163 /* VideoPlayerController.swift */,
+				FB1863132284444F00899163 /* VideoPlayerController.xib */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		FB2206272268DAB0006F2CA8 /* Cell code */ = {
@@ -387,6 +400,7 @@
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FB18630F2284441700899163 /* VideoPlayer */,
 				FBEE746222783A24007DF632 /* Navigation */,
 				FB9D0F7E22706B440096A15C /* ImageGallery */,
 				FB7406062267847400402315 /* Base */,
@@ -666,6 +680,7 @@
 				FB9D0FAB227090300096A15C /* ImageController.xib in Resources */,
 				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
 				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
+				FB1863152284444F00899163 /* VideoPlayerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +840,7 @@
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
+				FB1863142284444F00899163 /* VideoPlayerController.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
