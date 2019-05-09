@@ -20,7 +20,7 @@ class VideoPlayerContainer: NSObject {
 
     private let blackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 1)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.8)
         view.alpha = 0
 
         return view
@@ -45,7 +45,6 @@ class VideoPlayerContainer: NSObject {
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(blackView)
             blackView.frame = window.frame
-            blackView.backgroundColor = .white
 
             if currentVideoUrl.contains(".webm") {
                 blackView.addSubview(webmPlayer)
@@ -63,18 +62,15 @@ class VideoPlayerContainer: NSObject {
                     self.webmPlayer.playerView.play()
                 }
             } else if currentVideoUrl.contains(".mp4") {
-                let mp4Player = Mp4Player(frame: CGRect(x: 0, y: 0, width: blackView.frame.width - 20, height: blackView.frame.height / 3))
-                mp4Player.mp4Url = lol
-               // mp4Player.backgroundColor = .clear
-
+                let mp4Player = Mp4Player(frame: CGRect(x: 0, y: 0, width: blackView.frame.width, height: blackView.frame.height / 3))
                 blackView.addSubview(mp4Player)
+                
                 mp4Player.center = blackView.center
-                print("checking mp4Frame: \(mp4Player.frame)")
 
                 UIView.animate(withDuration: 0.3, animations: {
                     self.blackView.alpha = 1
                 }) { _ in
-                    mp4Player.playMp4()
+                    //mp4Player.playMp4()
                 }
             }
             print("showVideo")

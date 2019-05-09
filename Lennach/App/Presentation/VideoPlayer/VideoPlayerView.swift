@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class WebmVideoPlayer: UIView, OGVPlayerDelegate {
 
@@ -33,5 +34,25 @@ class WebmVideoPlayer: UIView, OGVPlayerDelegate {
             playerView.delegate = self
             playerView.sourceURL = NSURL(string: webmUrl) as URL?
         }
+    }
+}
+
+class Mp4Player: UIView {
+    var mp4Url = "https://2ch.hk/b/src/196071060/15574310086630.mp4"
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        let player = AVPlayer(url: URL(string: mp4Url)!)
+        
+        let avLayer = AVPlayerLayer(player: player)
+        self.layer.addSublayer(avLayer)
+        avLayer.frame = self.frame
+        
+        player.play()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
