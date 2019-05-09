@@ -87,11 +87,13 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func videoTransition(indexPath path: IndexPath) {
         //boardData.usenets[path.row].thumbnail
+        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196071060/15574310086630.mp4"
         videoContainer.showVideo()
     }
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
+        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196071060/15574310086630.mp4"
         videoContainer.showVideo()
 //        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
 //

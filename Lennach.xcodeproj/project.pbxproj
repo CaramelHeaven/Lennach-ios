@@ -28,6 +28,7 @@
 		FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB29D7052271834800D7D75D /* LocalMainMapper.swift */; };
 		FB33823A22847BDD0077289B /* VideoPlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823922847BDD0077289B /* VideoPlayerContainer.swift */; };
 		FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823B22847BE80077289B /* VideoPlayerView.swift */; };
+		FB33823E2284B3D70077289B /* Mp4Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823D2284B3D70077289B /* Mp4Player.swift */; };
 		FB38758B227C77BD00F90813 /* App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB387589227C77BD00F90813 /* App.xcdatamodeld */; };
 		FB51F4B92279C833006080F4 /* NavigationCollectionView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */; };
 		FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */; };
@@ -114,6 +115,7 @@
 		FB3382362284613F0077289B /* Lennach-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lennach-Bridging-Header.h"; sourceTree = "<group>"; };
 		FB33823922847BDD0077289B /* VideoPlayerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerContainer.swift; sourceTree = "<group>"; };
 		FB33823B22847BE80077289B /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		FB33823D2284B3D70077289B /* Mp4Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mp4Player.swift; sourceTree = "<group>"; };
 		FB38758A227C77BD00F90813 /* App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = App.xcdatamodel; sourceTree = "<group>"; };
 		FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationCollectionView+Cells.swift"; sourceTree = "<group>"; };
 		FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBackgroundView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				FB3382362284613F0077289B /* Lennach-Bridging-Header.h */,
 				FB33823922847BDD0077289B /* VideoPlayerContainer.swift */,
 				FB33823B22847BE80077289B /* VideoPlayerView.swift */,
+				FB33823D2284B3D70077289B /* Mp4Player.swift */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -854,6 +857,7 @@
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB06360A227B035D0073B4A1 /* PopupBoardsView+VC.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
+				FB33823E2284B3D70077289B /* Mp4Player.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
 				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class VideoPlayerView: UIView, OGVPlayerDelegate {
+class WebmVideoPlayer: UIView, OGVPlayerDelegate {
 
-    let webmUrl = "https://2ch.hk/b/src/196045640/15573831947890.webm"
+    var webmUrl = ""
     var playerView: OGVPlayerView!
 
     override func layoutSubviews() {
@@ -28,7 +28,6 @@ class VideoPlayerView: UIView, OGVPlayerDelegate {
 
     func setupViews() {
         if playerView == nil {
-            print("called setupViews")
             playerView = OGVPlayerView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
             addSubview(playerView)
             playerView.delegate = self
