@@ -16,9 +16,15 @@ class ItemCell: UICollectionViewCell {
 
     fileprivate let btnBoard: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = UIColor.lightGray
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.layer.cornerRadius = 4
+        btn.layer.shadowOffset = CGSize(width: 0, height: 0)
+        btn.layer.shadowRadius = 4
+        btn.layer.shadowOpacity = 4
+        btn.layer.masksToBounds = false
+        //add view and put this btn inside created view for shadow making
+        btn.layer.borderColor = UIColor.white.cgColor
+        btn.layer.shadowColor = UIColor.black.cgColor
 
         return btn
     }()
@@ -26,7 +32,8 @@ class ItemCell: UICollectionViewCell {
     fileprivate let labelBoardName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.red
+        label.textColor = UIColor.black
+        label.numberOfLines = 1
 
         return label
     }()
@@ -46,8 +53,8 @@ class ItemCell: UICollectionViewCell {
 
         // btnBoard.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         btnBoard.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        btnBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
-        btnBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+        btnBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4).isActive = true
+        btnBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4).isActive = true
         btnBoard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
 
         addConstraint(NSLayoutConstraint(item: labelBoardName, attribute: .centerX, relatedBy: .equal, toItem: btnBoard, attribute: .centerX, multiplier: 1, constant: 0))
@@ -80,8 +87,8 @@ class ItemCellAdd: UICollectionViewCell {
 
         // btnBoard.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         btnAddBoard.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        btnAddBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2).isActive = true
-        btnAddBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2).isActive = true
+        btnAddBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4).isActive = true
+        btnAddBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4).isActive = true
         btnAddBoard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
     }
 }
@@ -129,7 +136,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
         case let board as BoardDescription:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
             cell.backgroundColor = .clear
-            cell.labelBoardName.text = board.id
+            cell.labelBoardName.text = "/" + board.id
             cell.btnBoard.addTarget(self, action: #selector(selectingCurrentBoard(_:)), for: .touchUpInside)
 
             return cell
@@ -162,14 +169,14 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        return CGSize(width: 68, height: 60)
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
 
@@ -186,7 +193,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     func popupClosed() {
         showBoardsFromDb()
     }
-    
+
     deinit {
         print("NavigationCollectionViewController deInit")
     }

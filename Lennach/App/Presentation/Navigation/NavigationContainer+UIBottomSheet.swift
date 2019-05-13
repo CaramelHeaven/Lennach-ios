@@ -64,6 +64,15 @@ class MainUIBottomSheet: UIView {
         return menu
     }()
 
+    private let menuText: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = UIColor.white
+        view.text = "Навигация"
+
+        return view
+    }()
+
     private let sheetBackground: BottomSheetBackgroundView = {
         let view = BottomSheetBackgroundView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +86,7 @@ class MainUIBottomSheet: UIView {
     var topDistance: CGFloat = 0 {
         didSet {
             print("topDistance: \(topDistance)")
-            sheetBackgroundTopConstraint?.constant = topDistance - 30
+            sheetBackgroundTopConstraint?.constant = topDistance - 50
         }
     }
 
@@ -126,9 +135,16 @@ class MainUIBottomSheet: UIView {
             menuBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             menuBar.trailingAnchor.constraint(equalTo: trailingAnchor)
             ])
+
+        menuBar.addSubview(menuText)
+        NSLayoutConstraint.activate([
+            menuText.centerXAnchor.constraint(equalTo: menuBar.centerXAnchor),
+            menuText.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor),
+            menuText.widthAnchor.constraint(equalToConstant: 100),
+            menuText.heightAnchor.constraint(equalToConstant: 20)
+            ])
         print("memu: \(menuBar.frame)")
     }
-
 
     override func layoutSubviews() {
         super.layoutSubviews()

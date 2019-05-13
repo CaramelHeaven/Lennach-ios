@@ -73,7 +73,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             cell.threadLabel?.text = lol
         }
-        cell.threadLabel?.sizeToFit()
         
         return cell
     }
