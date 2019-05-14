@@ -189,7 +189,6 @@ class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
         let layout = UICollectionViewFlowLayout()
         tableController = NavigationCollectionViewController(collectionViewLayout: layout)
 
-
         mainUIBottomSheet = MainUIBottomSheet()
         mainUIBottomSheet?.tableController = tableController
 

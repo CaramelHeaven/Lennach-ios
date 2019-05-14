@@ -33,6 +33,8 @@ class WebmVideoPlayer: UIView, OGVPlayerDelegate {
             addSubview(playerView)
             playerView.delegate = self
             playerView.sourceURL = NSURL(string: webmUrl) as URL?
+        } else {
+            playerView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         }
     }
 }
@@ -44,11 +46,11 @@ class Mp4Player: UIView {
         super.init(frame: frame)
 
         let player = AVPlayer(url: URL(string: mp4Url)!)
-        
+
         let avLayer = AVPlayerLayer(player: player)
         self.layer.addSublayer(avLayer)
         avLayer.frame = self.frame
-        
+
         player.play()
     }
 

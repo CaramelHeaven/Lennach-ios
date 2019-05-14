@@ -90,7 +90,6 @@ struct Utilities {
                             .scaleFactor(UIScreen.main.scale),
                             .cacheOriginalImage
                     ]) { result in
-                    print("result: \(result)")
                 }
             }
         }

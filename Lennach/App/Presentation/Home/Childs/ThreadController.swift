@@ -45,6 +45,13 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(onDragController))
         panGesture.delegate = self
         self.view.addGestureRecognizer(panGesture)
+
+        //ronding buttons
+        skipToBottomBtn.contentMode = .center
+        skipToBottomBtn.imageView?.contentMode = .scaleAspectFit
+        skipToBottomBtn.clipsToBounds = true
+
+        skipToBottomBtn.layer.cornerRadius = skipToBottomBtn.frame.height / 2
     }
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
@@ -78,6 +85,28 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataThread.count
+    }
+
+    // we set a variable to hold the contentOffSet before scroll view scrolls
+    var lastContentOffset: CGFloat = 0
+
+    // this delegate is called when the scrollView (i.e your UITableView) will start scrolling
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("scrol: \(scrollView.frame.size.width), without size: \(scrollView.frame.width), content offset: \(scrollView.contentOffset), lastContentOffset: \(lastContentOffset)")
+
+        if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // did move up
+            print("move up")
+        } else if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // did move down
+            print("move down")
+        } else {
+            // didn't move
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

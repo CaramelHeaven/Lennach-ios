@@ -23,6 +23,8 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var isOpeningNewThread = false
     var currentThread = "" { willSet { isOpeningNewThread = newValue == currentThread } } //used inside HomeController for determinate - is new thread opening or not
 
+    let videoContainer = VideoPlayerContainer()
+
     weak var boardDelegatable: BoardTapDelegatable?
 
     override func viewDidLoad() {
@@ -62,7 +64,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.initVideoOrImageClicker(state: "image")
 
             cell.imageClicker = { [self] in
-                print("image clicker")
                 self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
             }
         }
@@ -73,7 +74,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             cell.threadLabel?.text = lol
         }
-        
+
         return cell
     }
 
@@ -84,17 +85,20 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         boardDelegatable?.itemTapped(numThread: currentThread)
     }
 
-    let videoContainer = VideoPlayerContainer()
-    
     func videoTransition(indexPath path: IndexPath) {
-        //boardData.usenets[path.row].thumbnail
-        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196071060/15574310086630.mp4"
+        videoContainer.currentVideoUrl = Constants.baseUrl + boardData.usenets[path.row].thumbnail
         videoContainer.showVideo()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        videoContainer.redrawingVideoViews(currentSize: size)
     }
 
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
-        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196071060/15574310086630.mp4"
+        //kek https://2ch.hk//b/src/196311887/15577708487820.webm
+        videoContainer.currentVideoUrl = "https://2ch.hk//b/src/196311887/15577708487820.webm"
         videoContainer.showVideo()
 //        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
 //
