@@ -41,20 +41,24 @@ class VideoPlayerContainer: NSObject {
         return view
     }()
 
-    var lol = ""
+    private var mp4Player: Mp4Player!
 
     var currentVideoUrl = "" {
         didSet {
             if currentVideoUrl.contains(".webm") {
                 webmPlayer.webmUrl = currentVideoUrl
-            } else if currentVideoUrl.contains(".mp4") {
-                lol = currentVideoUrl
             }
         }
     }
 
     func redrawingVideoViews(currentSize: CGSize) {
         blackView.frame = CGRect(x: 0, y: 0, width: currentSize.width, height: currentSize.height)
+        if currentVideoUrl.contains(".mp4") {
+            mp4Player.frame = blackView.frame
+            mp4Player.center = blackView.center
+        } else {
+
+        }
     }
 
     func showVideo() {
@@ -82,21 +86,22 @@ class VideoPlayerContainer: NSObject {
                     self.webmPlayer.playerView.play()
                 }
             } else if currentVideoUrl.contains(".mp4") {
-                let mp4Player = Mp4Player(frame: CGRect(x: 0, y: 0, width: blackView.frame.width, height: blackView.frame.height / 3))
+                mp4Player = Mp4Player(frame: CGRect(x: 0, y: 0, width: blackView.frame.width, height: blackView.frame.height))
                 blackView.addSubview(mp4Player)
-
-                mp4Player.center = blackView.center
 
                 UIView.animate(withDuration: 0.3, animations: {
                     self.blackView.alpha = 1
                     self.backgroundBlackView.alpha = 1
                 }) { _ in
-                    //mp4Player.playMp4()
+                    self.mp4Player.mp4Url = self.currentVideoUrl
+                    self.mp4Player.initPlayer()
+                    print("black view center: \(self.blackView.center)")
+                    self.mp4Player.center = self.blackView.center
                 }
             }
             print("showVideo")
 
-            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+           // blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         }
     }
 
