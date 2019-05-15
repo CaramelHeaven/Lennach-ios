@@ -98,7 +98,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     //MARK: make transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
         //kek https://2ch.hk//b/src/196311887/15577708487820.webm
-        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196311887/15578334943850.mp4"
+        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196373123/15578571323310.mp4"
         videoContainer.showVideo()
 //        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
 //

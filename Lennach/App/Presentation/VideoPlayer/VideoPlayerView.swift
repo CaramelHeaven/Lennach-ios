@@ -39,17 +39,27 @@ class WebmVideoPlayer: UIView, OGVPlayerDelegate {
     }
 }
 
+protocol Mp4PlayerViewsUpdater {
+    func videoSliderUpdate(value: Float)
+
+    func videoCommonLength(seconds: String, minutes: String)
+
+    func videoCurrentTime(seconds: String, minutes: String)
+}
+
 class Mp4Player: UIView {
     var mp4Url = ""
     private var avLayer: AVPlayerLayer!
-    private var player: AVPlayer?
+    var player: AVPlayer?
     var isStopPlaying = false // bool value for control button state
 
-    let handlerButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(named: "IconStop"), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.addTarget(self, action: #selector(handlerPauseAndPlayButton), for: .touchUpInside)
+    var mp4Delegate: Mp4PlayerViewsUpdater?
+
+    //container for progress bar, current and common time, etc.
+    private let backgroundContentView: UIView = {
+        let view = UIView()
+        //  view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
 
         return view
     }()
@@ -70,7 +80,7 @@ class Mp4Player: UIView {
         return view
     }()
 
-    @objc func handlerPauseAndPlayButton() {
+    func handlerButtonClick() {
         isStopPlaying = !isStopPlaying
 
         if isStopPlaying {
@@ -82,20 +92,13 @@ class Mp4Player: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         addSubview(blackControlView)
         blackControlView.frame = frame
+
         blackControlView.addSubview(progressIndicatorView)
 
         progressIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         progressIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-
-        blackControlView.addSubview(handlerButton)
-        handlerButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        handlerButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        handlerButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        handlerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        handlerButton.isHidden = true
     }
 
     override func layoutSubviews() {
@@ -114,6 +117,22 @@ class Mp4Player: UIView {
 
         player?.play()
         player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
+
+        //track video progress + currentTime
+        let interval = CMTime(value: 1, timescale: 2)
+        player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+            let seconds = CMTimeGetSeconds(progressTime)
+
+            let secondsString = String(format: "%02d", Int(seconds) % 60)
+            let minutesString = String(format: "%02d", Int(seconds) / 60)
+
+            self.mp4Delegate?.videoCurrentTime(seconds: secondsString, minutes: minutesString)
+
+            if let duration = self.player?.currentItem?.duration {
+                let durationSeconds = CMTimeGetSeconds(duration)
+                self.mp4Delegate?.videoSliderUpdate(value: Float(seconds / durationSeconds))
+            }
+        })
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
@@ -121,7 +140,13 @@ class Mp4Player: UIView {
             progressIndicatorView.stopAnimating()
             blackControlView.backgroundColor = .clear
 
-            handlerButton.isHidden = false
+            if let duration = player?.currentItem?.duration {
+                let seconds = CMTimeGetSeconds(duration)
+                let secondsText = Int(seconds) % 60
+                let minutesText = String(format: "%02d", Int(seconds) / 60)
+
+                self.mp4Delegate?.videoCommonLength(seconds: String(secondsText), minutes: minutesText)
+            }
         }
     }
 
