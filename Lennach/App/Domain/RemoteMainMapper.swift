@@ -23,10 +23,7 @@ class RemoteMainMapper {
     }
 
     func mapResponseToThreadCommentsUseCase(response: [ThreadResponse]) -> [Comment] {
-        var comments = [Comment]()
-
-        for item in response {
-            //Fill files
+        var comments = response.map { (item) -> Comment in
             var pictures = [Picture]()
             if let files = item.files {
                 for file in files {
@@ -34,12 +31,17 @@ class RemoteMainMapper {
                 }
             }
 
-            let comment = Comment(num: item.num!, name: item.name!, comment: item.comment!.stripOutHtml()!, date: item.date!, modernComment: makeModernComment(baseComment: item.comment!.stripOutHtml()!), repliesContent: [String](), files: pictures.count != 0 ? pictures : nil)
-            comments.append(comment)
+            let reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+            
+            let comment = Comment(num: item.num!, name: item.name!, comment: "", date: item.date!, modernComment: makeModernComment(baseComment: reply), repliesContent: [String](), files: nil)
 
-            comments = counterRepliesToEachComment(currentComment: comment, list: comments)
+            return comment
         }
 
+        comments.forEach { (comment) in
+            counterRepliesToEachComment(currentComment: comment, list: &comments)
+        }
+        
         return comments
     }
 
@@ -88,30 +90,24 @@ class RemoteMainMapper {
 }
 
 extension RemoteMainMapper {
-    func counterRepliesToEachComment(currentComment: Comment, list: [Comment]) -> [Comment] {
+    func counterRepliesToEachComment(currentComment: Comment, list: inout [Comment]) {
         var usedReferences = [String]()
-        var futureList = list
-        let lines = currentComment.comment.components(separatedBy: "\n")
+        var lines = currentComment.comment.components(separatedBy: "\n")
+        lines = lines.filter { $0.contains(">>") }
 
         for line in lines {
-            if line.contains(">>") {
-                let result = line.filter("0123456789".contains)
+            let result = line.filter("0123456789".contains)
 
-                if usedReferences.contains(result) { break }
-                usedReferences.append(result)
+            if usedReferences.contains(result) { break }
+            usedReferences.append(result)
 
-                futureList = futureList.map { (comment) -> Comment in
-                    if comment.num == result {
-                        var replies = comment.repliesContent!
-                        replies.append(currentComment.num)
+            if let index = list.lastIndex(where: { $0.num == result }) {
+                var replies = list[index].repliesContent!
+                replies.append(currentComment.num)
 
-                        return Comment(num: comment.num, name: comment.name, comment: comment.comment, date: comment.date, modernComment: comment.modernComment, repliesContent: replies, files: comment.files)
-                    }
-                    return comment
-                }
+                list[index].repliesContent?.append(currentComment.num)
             }
         }
-        return futureList
     }
 
     func makeModernComment(baseComment: String) -> NSMutableAttributedString {
@@ -126,10 +122,9 @@ extension RemoteMainMapper {
 
                 var localArray = (reference.components(separatedBy: ">>"))
                 localArray.removeFirst()
-                print("localArray: \(localArray)")
                 for item in localArray {
                     let filteringValue = item.filter("0123456789".contains)
-                    
+
                     attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: stringForRange))
                 }
             }
@@ -137,18 +132,15 @@ extension RemoteMainMapper {
 
         return attributedString
     }
-}
 
-extension String {
-    func stripOutHtml() -> String? {
-        do {
-            guard let data = self.data(using: .unicode) else {
-                return nil
-            }
-            let attributed = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            return attributed.string
-        } catch {
-            return nil
-        }
+    func showCurrentTime() {
+        let dateFormatter: DateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
+        let date = Date()
+        let dateString = dateFormatter.string(from: date)
+        let interval = date.timeIntervalSince1970
+
+        print("CurrentTime: \(dateString), interval: \(interval)")
     }
 }
