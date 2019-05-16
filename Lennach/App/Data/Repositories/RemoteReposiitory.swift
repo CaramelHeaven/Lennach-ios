@@ -40,6 +40,7 @@ class RemoteRepository {
                 let data = try JSONDecoder().decode([ThreadResponse].self, from: response.data!)
                 let comments = self.mainMapper.mapResponseToThreadCommentsUseCase(response: data)
 
+                
                 print("completion ok")
                 completion(true, comments, nil)
             } catch {

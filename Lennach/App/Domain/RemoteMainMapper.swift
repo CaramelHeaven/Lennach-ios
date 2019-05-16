@@ -34,9 +34,12 @@ class RemoteMainMapper {
                 }
             }
 
-            //Fill base data in comment
-            comments.append(Comment(num: item.num!, name: item.name!, comment: item.comment!, date: item.date!, files: pictures.count != 0 ? pictures : nil))
+            let comment = Comment(num: item.num!, name: item.name!, comment: item.comment!.stripOutHtml()!, date: item.date!, modernComment: makeModernComment(baseComment: item.comment!.stripOutHtml()!), repliesContent: [String](), files: pictures.count != 0 ? pictures : nil)
+            comments.append(comment)
+
+            comments = counterRepliesToEachComment(currentComment: comment, list: comments)
         }
+        print("after all actions: \(comments)")
 
         return comments
     }
@@ -82,5 +85,77 @@ class RemoteMainMapper {
         }
 
         return allBoards
+    }
+}
+
+extension RemoteMainMapper {
+    func counterRepliesToEachComment(currentComment: Comment, list: [Comment]) -> [Comment] {
+        var usedReferences = [String]()
+        var futureList = list
+        let lines = currentComment.comment.components(separatedBy: "\n")
+
+        for line in lines {
+            if line.contains(">>") {
+                let result = line.filter("0123456789".contains)
+
+                if usedReferences.contains(result) { break }
+                usedReferences.append(result)
+
+                futureList = futureList.map { (comment) -> Comment in
+                    if comment.num == result {
+                        var replies = comment.repliesContent!
+                        replies.append(currentComment.num)
+
+                        return Comment(num: comment.num, name: comment.name, comment: comment.comment, date: comment.date, modernComment: comment.modernComment, repliesContent: replies, files: comment.files)
+                    }
+                    return comment
+                }
+            }
+        }
+        return futureList
+    }
+
+    func makeModernComment(baseComment: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: baseComment)
+        let lines = baseComment.components(separatedBy: "\n")
+
+        for line in lines {
+            print("line: \(line)")
+            if line.contains(">>") {
+                let reference = (line.filter("0123456789>>(OP)".contains))
+                    .replacingOccurrences(of: " ", with: "")
+                let stringForRange = line.filter("0123456789 >>(OP)".contains)
+
+                var localArray = (reference.components(separatedBy: ">>"))
+                localArray.removeFirst()
+                print("localArray: \(localArray)")
+                for item in localArray {
+                    print("STARTED")
+                    let filteringValue = item.filter("0123456789".contains)
+                    print("reference: \(reference), filtering value: \(filteringValue), range: \((attributedString.string as NSString).range(of: item))")
+                    print("attributed string: \(attributedString.string)")
+                    attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: stringForRange))
+                }
+
+
+//                attributedString.addAttribute(.link, value: reference.filter("0123456789".contains) + "://" + reference, range: (attributedString.string as NSString).range(of: reference))
+            }
+        }
+
+        return attributedString
+    }
+}
+
+extension String {
+    func stripOutHtml() -> String? {
+        do {
+            guard let data = self.data(using: .unicode) else {
+                return nil
+            }
+            let attributed = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return attributed.string
+        } catch {
+            return nil
+        }
     }
 }

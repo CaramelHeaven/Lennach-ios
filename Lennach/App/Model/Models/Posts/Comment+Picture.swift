@@ -13,7 +13,9 @@ struct Comment {
     var name = ""
     var comment = ""
     var date = ""
-    
+    var modernComment: NSMutableAttributedString!
+
+    var repliesContent: [String]?
     var files: [Picture]?
 }
 

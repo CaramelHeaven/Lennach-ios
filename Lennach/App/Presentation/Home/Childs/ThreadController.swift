@@ -14,7 +14,7 @@ protocol ThreadDelegate: class {
     func dragState(flag: Bool, lastValueX: CGFloat)
 }
 
-class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var selectThreadLabel: UILabel!
     @IBOutlet weak var progressAIV: UIActivityIndicatorView!
@@ -109,6 +109,20 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        print("URL: \(URL.scheme)")
+        if URL.scheme == "196502754" {
+            print("==, do something")
+            return false
+        } else if URL.scheme == "lol" {
+            print("LOL")
+            return false
+        } else {
+            return false
+        }
+    }
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("provding table view cell data")
         if let files = dataThread[indexPath.row].files {
@@ -126,6 +140,21 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
                 cell.tvComment.text = post.comment
             }
 
+            let lolal = ">>196498331 (OP) так"
+            cell.tvComment.text = lolal
+            let attributedString = NSMutableAttributedString(string: lolal)
+            attributedString.addAttribute(.link, value: "196498331://196498331", range: (attributedString.string as NSString).range(of: ">>196498331 (OP)"))
+
+            let linkAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.blue,
+                NSAttributedString.Key.underlineColor: UIColor.lightGray
+            ]
+
+            cell.tvComment.linkTextAttributes = linkAttributes
+            cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.delegate = self
+
+
             //load picture
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
 
@@ -136,11 +165,20 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             // cell.initAnswerGesture()
             let post = dataThread[indexPath.row]
 
-            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
-                cell.tvComment.attributedText = text
-            } else {
-                cell.tvComment.text = post.comment
-            }
+//            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
+//                cell.tvComment.attributedText = text
+//            } else {
+//                cell.tvComment.text = post.comment
+//            }
+//            cell.tvComment.text = "I have read and agree with the Privacy Policy & Terms and Conditions"
+            let linkAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.blue,
+                NSAttributedString.Key.underlineColor: UIColor.lightGray
+            ]
+
+            cell.tvComment.linkTextAttributes = linkAttributes
+            cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.delegate = self
 
             return cell
         }
