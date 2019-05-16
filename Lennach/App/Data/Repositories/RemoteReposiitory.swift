@@ -23,7 +23,7 @@ class RemoteRepository {
             do {
                 let data = try JSONDecoder().decode(BoardResponse.self, from: response.data!)
                 let board = self.mainMapper.mapResponseToBoardUseCase(response: data)
-                
+
                 completion(true, board, nil)
             } catch {
                 completion(false, nil, error)
@@ -38,11 +38,16 @@ class RemoteRepository {
         Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode([ThreadResponse].self, from: response.data!)
-                let comments = self.mainMapper.mapResponseToThreadCommentsUseCase(response: data)
+                let queue = DispatchQueue(label: "", qos: DispatchQoS.utility, attributes: .concurrent)
 
-                
-                print("completion ok")
-                completion(true, comments, nil)
+                queue.async {
+                    let comments = self.mainMapper.mapResponseToThreadCommentsUseCase(response: data)
+                    
+                    DispatchQueue.main.async {
+                        print("completion ok")
+                        completion(true, comments, nil)
+                    }
+                }
             } catch {
                 print("completion false")
                 completion(false, nil, error)

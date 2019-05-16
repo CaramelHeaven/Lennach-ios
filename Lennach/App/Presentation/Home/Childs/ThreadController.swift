@@ -124,7 +124,11 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("provding table view cell data")
+        let linkAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.underlineColor: UIColor.lightGray
+        ]
+        
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
             cell.gestureCompletable = self
@@ -133,22 +137,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             let exclusionPath: UIBezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: cell.imagePost.frame.width, height: cell.imagePost.frame.height))
 
             cell.tvComment.textContainer.exclusionPaths = [exclusionPath]
-
-            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
-                cell.tvComment.attributedText = text
-            } else {
-                cell.tvComment.text = post.comment
-            }
-
-            let lolal = ">>196498331 (OP) так"
-            cell.tvComment.text = lolal
-            let attributedString = NSMutableAttributedString(string: lolal)
-            attributedString.addAttribute(.link, value: "196498331://196498331", range: (attributedString.string as NSString).range(of: ">>196498331 (OP)"))
-
-            let linkAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.blue,
-                NSAttributedString.Key.underlineColor: UIColor.lightGray
-            ]
 
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
@@ -162,19 +150,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
             cell.gestureCompletable = self
-            // cell.initAnswerGesture()
             let post = dataThread[indexPath.row]
-
-//            if let text = Utilities.WorkWithUI.textHtmlConvert(text: post.comment) {
-//                cell.tvComment.attributedText = text
-//            } else {
-//                cell.tvComment.text = post.comment
-//            }
-//            cell.tvComment.text = "I have read and agree with the Privacy Policy & Terms and Conditions"
-            let linkAttributes = [
-                NSAttributedString.Key.foregroundColor: UIColor.blue,
-                NSAttributedString.Key.underlineColor: UIColor.lightGray
-            ]
 
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment

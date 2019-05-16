@@ -26,7 +26,7 @@ class MainRepository {
     }
 
     public func provideMessagesByThread(_ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        RemoteRepository.instance.getCommentsByThread(boardName: "b", threadNum: "196498331") { (result, data, error) in
+        RemoteRepository.instance.getCommentsByThread(boardName: currentBoard, threadNum: num) { (result, data, error) in
             completion(result, data, error)
         }
     }

@@ -39,7 +39,6 @@ class RemoteMainMapper {
 
             comments = counterRepliesToEachComment(currentComment: comment, list: comments)
         }
-        print("after all actions: \(comments)")
 
         return comments
     }
@@ -120,7 +119,6 @@ extension RemoteMainMapper {
         let lines = baseComment.components(separatedBy: "\n")
 
         for line in lines {
-            print("line: \(line)")
             if line.contains(">>") {
                 let reference = (line.filter("0123456789>>(OP)".contains))
                     .replacingOccurrences(of: " ", with: "")
@@ -130,15 +128,10 @@ extension RemoteMainMapper {
                 localArray.removeFirst()
                 print("localArray: \(localArray)")
                 for item in localArray {
-                    print("STARTED")
                     let filteringValue = item.filter("0123456789".contains)
-                    print("reference: \(reference), filtering value: \(filteringValue), range: \((attributedString.string as NSString).range(of: item))")
-                    print("attributed string: \(attributedString.string)")
+                    
                     attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: stringForRange))
                 }
-
-
-//                attributedString.addAttribute(.link, value: reference.filter("0123456789".contains) + "://" + reference, range: (attributedString.string as NSString).range(of: reference))
             }
         }
 
