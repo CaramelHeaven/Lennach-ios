@@ -31,8 +31,9 @@ class RemoteMainMapper {
                 }
             }
 
-            let reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            
+            var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+            reply = reply.replacingOccurrences(of: "&gt;", with: "")
+
             let comment = Comment(num: item.num!, name: item.name!, comment: "", date: item.date!, modernComment: makeModernComment(baseComment: reply), repliesContent: [String](), files: nil)
 
             return comment
@@ -41,7 +42,7 @@ class RemoteMainMapper {
         comments.forEach { (comment) in
             counterRepliesToEachComment(currentComment: comment, list: &comments)
         }
-        
+
         return comments
     }
 

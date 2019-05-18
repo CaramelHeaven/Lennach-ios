@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol BoardNavigationSelectable {
+protocol BoardNavigationSelectable: class {
     func selectedBoard (boardName: String)
 }
 
@@ -97,7 +97,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     var bottomSheetDelegate: BottomSheetDelegate?
     private let maxVisibleContentHeight: CGFloat = 400
     private var boardsData = Array<BoardNavigatable>()
-    var boardSelectable: BoardNavigationSelectable?
+    weak var boardSelectable: BoardNavigationSelectable?
 
     override func viewDidLoad() {
         super.viewDidLoad()

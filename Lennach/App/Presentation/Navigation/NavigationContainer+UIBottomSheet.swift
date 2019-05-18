@@ -207,7 +207,6 @@ class NavigationContainer: NSObject, UICollectionViewDelegateFlowLayout {
     }
 
     deinit {
-        mainUIBottomSheet?.tableController?.boardSelectable = nil
         print("NavigationContainer deInit")
     }
 }
