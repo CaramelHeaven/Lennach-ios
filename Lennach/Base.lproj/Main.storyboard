@@ -431,19 +431,21 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuo-Mz-W1N">
                                 <rect key="frame" x="327" y="523" width="40" height="40"/>
-                                <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="0Jr-ek-oH5"/>
                                     <constraint firstAttribute="height" constant="40" id="q8C-Nn-qRf"/>
                                 </constraints>
+                                <state key="normal" image="iconScroll"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3MK-v3-Ny1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3MK-v3-Ny1">
                                 <rect key="frame" x="333" y="28" width="34" height="34"/>
-                                <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="7kv-LT-wVy"/>
                                     <constraint firstAttribute="width" constant="34" id="CoP-a0-mzw"/>
                                 </constraints>
+                                <state key="normal" image="IconFavouriteMain"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -476,4 +478,8 @@
             <point key="canvasLocation" x="2398" y="432"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IconFavouriteMain" width="256" height="256"/>
+        <image name="iconScroll" width="256" height="256"/>
+    </resources>
 </document>

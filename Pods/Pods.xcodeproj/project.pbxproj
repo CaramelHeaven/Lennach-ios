@@ -420,7 +420,7 @@
 		FA355469B30A883FE84096BCEDEF59F4 /* rate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1558EAF93DF5591B0BF915DEE3038C /* rate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FA3A80D8CB3F70F903570BDF1438FA9D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3EE06A2883FB52C80C730D8EC32FA /* Storage.swift */; };
 		FB29CB48A57400D3900641E564B87C47 /* NLSF_VQ_weights_laroia.c in Sources */ = {isa = PBXBuildFile; fileRef = 040F04DF89229E41544410CB5035B8A7 /* NLSF_VQ_weights_laroia.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc"; }; };
-		FB338235228460F20077289B /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFA888F52CD8420A68A9DDC371345A1 /* VPX.framework */; };
+		FB70EF122291FC07006F82D0 /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFA888F52CD8420A68A9DDC371345A1 /* VPX.framework */; };
 		FB79F68036353D371D1E043C5D220893 /* levinsondurbin_FLP.c in Sources */ = {isa = PBXBuildFile; fileRef = F988B674E3C921F0C2A14940D7D755A1 /* levinsondurbin_FLP.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc"; }; };
 		FB82DAD79D0633FE453DBB6499E15D6A /* ana_filt_bank_1.c in Sources */ = {isa = PBXBuildFile; fileRef = 8D74964525D01379E065FB00E25E4428 /* ana_filt_bank_1.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker -DHAVE_CONFIG_H=1 -O3 -DFLOATING_POINT -fno-objc-arc"; }; };
 		FD029B0D30B9358A2EFC4EED1D8079E1 /* OGVVideoBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D21B498C05E75B0FCB4EFC8A74FB8C06 /* OGVVideoBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1062,7 +1062,7 @@
 				EBA8FCBE76D57AF02AE9EE4EC6D9B47A /* libopus.framework in Frameworks */,
 				5B455383C30A35964896D2EF62088B76 /* nestegg.framework in Frameworks */,
 				84991DFB52D79F2813A8D25D5FDFFED0 /* vorbis.framework in Frameworks */,
-				FB338235228460F20077289B /* VPX.framework in Frameworks */,
+				FB70EF122291FC07006F82D0 /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

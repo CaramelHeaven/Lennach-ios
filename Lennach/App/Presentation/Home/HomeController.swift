@@ -70,9 +70,6 @@ extension HomeController: BoardTapDelegatable {
     }
 }
 
-private let xStateWhenThreadOpened: CGFloat = 0
-private let xStateWhenThreadClosed: CGFloat = 0
-
 extension HomeController: ThreadDelegate {
     func dragState(flag: Bool, lastValueX: CGFloat) {
         savedPositionsX()
@@ -80,7 +77,7 @@ extension HomeController: ThreadDelegate {
         // if true - user opened thread, else - not
         if draggingStateX < lastValueX || draggingStateX == lastValueX {
             UIView.animate(withDuration: 0.3) {
-                self.boardContainer.frame.origin.x = xStateWhenThreadOpened
+                self.boardContainer.frame.origin.x = -315
                 self.threadContainer.frame.origin.x = 0
 
                 self.threadController?.handlerDirectionGestureToThread = false
@@ -89,7 +86,7 @@ extension HomeController: ThreadDelegate {
         } else {
             UIView.animate(withDuration: 0.3) {
                 self.boardContainer.frame.origin.x = 0
-                self.threadContainer.frame.origin.x = xStateWhenThreadClosed
+                self.threadContainer.frame.origin.x = 280
 
                 self.threadController?.handlerDirectionGestureToThread = true
                 self.threadController?.backgroundThreadState(isClosingThread: true)

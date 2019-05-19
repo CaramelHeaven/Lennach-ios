@@ -5,12 +5,14 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="FavouriteThreadDb" representedClassName="FavouriteThreadDb" syncable="YES" codeGenerationType="class">
+        <attribute name="boardName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrlThread" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numThread" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantityPosts" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="BoardDb" positionX="-5229.77734375" positionY="-1654.015625" width="222.33984375" height="73"/>
-        <element name="FavouriteThreadDb" positionX="-5184" positionY="-1638" width="128" height="90"/>
+        <element name="FavouriteThreadDb" positionX="-5184" positionY="-1638" width="128" height="120"/>
     </elements>
 </model>

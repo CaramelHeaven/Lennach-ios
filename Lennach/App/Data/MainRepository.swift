@@ -11,6 +11,7 @@ import Foundation
 class MainRepository {
     static let instance = MainRepository()
     private var currentBoard = ""
+    private var threadNum = "" // caching thread num for situation if user will saving it to favourites
 
     var data = [Comment]()
 
@@ -20,19 +21,21 @@ class MainRepository {
     public func provideThreadsByBoard(board: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
         currentBoard = board
 
-        RemoteRepository.instance.getThreadsByBoard(boardName: currentBoard, page: "1") { (state, data, error) in
+        RemoteRepository.instance.getThreadsByBoard(boardName: currentBoard) { (state, data, error) in
             completion(state, data, error)
         }
     }
 
     public func provideMessagesByThread(_ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+        threadNum = num
+
         RemoteRepository.instance.getCommentsByThread(boardName: currentBoard, threadNum: num) { (result, data, error) in
             completion(result, data, error)
         }
     }
 
     func provideGetCaptcha(threadNum: String) {
-        
+
     }
 
     //MARK: Local
@@ -56,6 +59,23 @@ class MainRepository {
 
         group.notify(queue: DispatchQueue.main) {
             completion(true, self.diffBoards(local: localBoards, remote: remoteBoards))
+        }
+    }
+
+    func provideSavingThreadToFavourite(comments: [Comment], completion: @escaping (Bool) -> Void) {
+        //FIX: comment is empty, because we used modern comment
+        LocalRepository.instance.addToFavouriteThread(boardName: currentBoard, numThread: threadNum, imageUrl: comments[0].files![0].path, quantityPosts: comments.count, opMessage: comments[0].comment) { result in
+            completion(result)
+        }
+    }
+
+    func provideSavedFavouritesThreadFromDatabase(completion: @escaping ([ThreadFavourite]?) -> Void) {
+        LocalRepository.instance.provideSavedFavouritesBoard { objects in
+            if let data = objects as? [ThreadFavourite] {
+                completion(data)
+            } else {
+                completion(nil)
+            }
         }
     }
 }

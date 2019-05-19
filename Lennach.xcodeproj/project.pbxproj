@@ -33,19 +33,16 @@
 		FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */; };
 		FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BC2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift */; };
 		FB534440226C76AB004272E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB53443F226C76AB004272E5 /* Constants.swift */; };
-		FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */; };
 		FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC7E22623F5500C30F61 /* HomeController.swift */; };
-		FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8022623F6900C30F61 /* WriteController.swift */; };
 		FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8222623F7C00C30F61 /* FavouriteController.swift */; };
-		FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8422623F8800C30F61 /* SettingsController.swift */; };
 		FB65BC872262408300C30F61 /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC862262408300C30F61 /* BoardController.swift */; };
 		FB65BC892262408A00C30F61 /* ThreadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC882262408A00C30F61 /* ThreadController.swift */; };
-		FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC8E2262558300C30F61 /* ThreadOpC.swift */; };
 		FB65BC94226258A200C30F61 /* PostWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */; };
 		FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
 		FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */; };
 		FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */; };
+		FB70EF102291F23B006F82D0 /* ThreadFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
@@ -119,19 +116,16 @@
 		FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBackgroundView.swift; sourceTree = "<group>"; };
 		FB51F4BC2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationContainer+UIBottomSheet.swift"; sourceTree = "<group>"; };
 		FB53443F226C76AB004272E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardNavigationController.swift; sourceTree = "<group>"; };
 		FB65BC7E22623F5500C30F61 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		FB65BC8022623F6900C30F61 /* WriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteController.swift; sourceTree = "<group>"; };
 		FB65BC8222623F7C00C30F61 /* FavouriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteController.swift; sourceTree = "<group>"; };
-		FB65BC8422623F8800C30F61 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		FB65BC862262408300C30F61 /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		FB65BC882262408A00C30F61 /* ThreadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadController.swift; sourceTree = "<group>"; };
-		FB65BC8E2262558300C30F61 /* ThreadOpC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadOpC.swift; sourceTree = "<group>"; };
 		FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithoutImageCell.swift; sourceTree = "<group>"; };
 		FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Picture.swift"; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaView.swift; sourceTree = "<group>"; };
 		FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaViewContainer.swift; sourceTree = "<group>"; };
+		FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadFavourite.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
@@ -301,8 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				FBEC2798225FCCE0003B1406 /* AppDelegate.swift */,
-				FB65BC8D2262556C00C30F61 /* Cells */,
-				FB65BC7B2262224A00C30F61 /* Controllers */,
 				FB65BCA022625A6E00C30F61 /* Data */,
 				FB65BCA122625A7200C30F61 /* Domain */,
 				FB65BC96226259CD00C30F61 /* Model */,
@@ -313,17 +305,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		FB65BC7B2262224A00C30F61 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FB65BC7C22623F1000C30F61 /* BoardNavigationController.swift */,
-				FB65BC8022623F6900C30F61 /* WriteController.swift */,
-				FB65BC8222623F7C00C30F61 /* FavouriteController.swift */,
-				FB65BC8422623F8800C30F61 /* SettingsController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		FB65BC8A2262545800C30F61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,14 +312,6 @@
 				FBE15EF9226876BB005A29FB /* Custom */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		FB65BC8D2262556C00C30F61 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				FB65BC8E2262558300C30F61 /* ThreadOpC.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		FB65BC96226259CD00C30F61 /* Model */ = {
@@ -365,10 +338,10 @@
 		FB65BC98226259E900C30F61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FB70EF0E2291F211006F82D0 /* Data from database */,
 				FB8165392271EF000017B97B /* Posts */,
 				FB0E6FA82268B50D00954081 /* Usenet.swift */,
 				FB2206252268CE01006F2CA8 /* Board.swift */,
-				FB063607227AFDED0073B4A1 /* AllBoards+Child.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -399,9 +372,27 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		FB70EF0E2291F211006F82D0 /* Data from database */ = {
+			isa = PBXGroup;
+			children = (
+				FB063607227AFDED0073B4A1 /* AllBoards+Child.swift */,
+				FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */,
+			);
+			path = "Data from database";
+			sourceTree = "<group>";
+		};
+		FB70EF112291F716006F82D0 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				FB65BC8222623F7C00C30F61 /* FavouriteController.swift */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FB70EF112291F716006F82D0 /* Favourite */,
 				FB18630F2284441700899163 /* VideoPlayer */,
 				FBEE746222783A24007DF632 /* Navigation */,
 				FB9D0F7E22706B440096A15C /* ImageGallery */,
@@ -824,17 +815,15 @@
 				FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */,
 				FB9D0F92227084FA0096A15C /* ImageViewerTransitioningHandler.swift in Sources */,
 				FB38758B227C77BD00F90813 /* App.xcdatamodeld in Sources */,
-				FB65BC902262558300C30F61 /* ThreadOpC.swift in Sources */,
+				FB70EF102291F23B006F82D0 /* ThreadFavourite.swift in Sources */,
 				FB0E6FAD2268B93D00954081 /* Usenet+Posts+Files.swift in Sources */,
 				FB33823A22847BDD0077289B /* VideoPlayerContainer.swift in Sources */,
-				FB65BC7D22623F1000C30F61 /* BoardNavigationController.swift in Sources */,
 				FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */,
 				FB65BC872262408300C30F61 /* BoardController.swift in Sources */,
 				FB29D7062271834800D7D75D /* LocalMainMapper.swift in Sources */,
 				FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */,
 				FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
-				FB65BC8522623F8800C30F61 /* SettingsController.swift in Sources */,
 				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
 				FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */,
@@ -856,7 +845,6 @@
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
-				FB65BC8122623F6900C30F61 /* WriteController.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,
 				FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */,

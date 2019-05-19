@@ -14,6 +14,12 @@ protocol ThreadDelegate: class {
     func dragState(flag: Bool, lastValueX: CGFloat)
 }
 
+//Direction helper enum for scrolling button state
+enum Direction {
+    case up
+    case down
+}
+
 class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var selectThreadLabel: UILabel!
@@ -23,6 +29,9 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var skipToBottomBtn: UIButton!
 
     weak var threadDelegate: ThreadDelegate?
+
+    private var animationWorking = false
+    private var destinationPath: Direction = .down // destination path described which direction button can be moving. TRUE - button can move to BOTTOM
 
     private var panGesture: UIPanGestureRecognizer!
     private var dataThread: [Comment] = []
@@ -46,12 +55,23 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         panGesture.delegate = self
         self.view.addGestureRecognizer(panGesture)
 
-        //ronding buttons
+        //rounding buttons
         skipToBottomBtn.contentMode = .center
         skipToBottomBtn.imageView?.contentMode = .scaleAspectFit
         skipToBottomBtn.clipsToBounds = true
 
         skipToBottomBtn.layer.cornerRadius = skipToBottomBtn.frame.height / 2
+        skipToBottomBtn.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8) //resize image inside button
+
+        favouriteBtn.contentMode = .center
+        favouriteBtn.imageView?.contentMode = .scaleAspectFit
+        favouriteBtn.clipsToBounds = true
+
+        favouriteBtn.layer.cornerRadius = favouriteBtn.frame.height / 2
+        favouriteBtn.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8) //resize image inside button
+
+        //set base values for animation future
+        baseSkipButtonPosition = skipToBottomBtn.frame
     }
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
@@ -95,20 +115,42 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         self.lastContentOffset = scrollView.contentOffset.y
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("scrol: \(scrollView.frame.size.width), without size: \(scrollView.frame.width), content offset: \(scrollView.contentOffset), lastContentOffset: \(lastContentOffset)")
+    var baseSkipButtonPosition: CGRect!
 
-        if (self.lastContentOffset < scrollView.contentOffset.y) {
-            // did move up
-            print("move up")
-        } else if (self.lastContentOffset > scrollView.contentOffset.y) {
-            // did move down
-            print("move down")
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //for example if 24500(base 26000) <= 24512 - permission to animate scrollToBottomButton
+        var minimumHeightForAnimation: CGFloat = 2000
+        if scrollView.contentSize.height < 3000 { minimumHeightForAnimation = 500 }
+
+        if scrollView.contentSize.height - minimumHeightForAnimation <= scrollView.contentOffset.y {
+            if !animationWorking {
+                if self.lastContentOffset < scrollView.contentOffset.y, destinationPath == .down {
+                    destinationPath = .up
+                    UIView.animate(withDuration: 0.3, animations: {
+                        let initialFrame = self.skipToBottomBtn.frame
+                        self.skipToBottomBtn.frame = CGRect(x: initialFrame.minX, y: initialFrame.minY - 20, width: initialFrame.width, height: initialFrame.height)
+
+                        self.skipToBottomBtn.frame = CGRect(x: initialFrame.minX, y: initialFrame.minY + 100, width: initialFrame.width, height: initialFrame.height)
+                    }) { _ in
+                        self.animationWorking = false
+                    }
+                }
+            }
         } else {
-            // didn't move
+            if self.lastContentOffset > scrollView.contentOffset.y, destinationPath == .up {
+                destinationPath = .down
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: [.curveEaseIn], animations: {
+                        let initialFrame = self.skipToBottomBtn.frame
+
+                        self.skipToBottomBtn.frame = CGRect(x: initialFrame.minX, y: initialFrame.minY - 100, width: initialFrame.width, height: initialFrame.height)
+                    }) { _ in
+                    self.animationWorking = false
+                }
+            }
         }
     }
 
+    //TODO: Make this workable
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         print("URL: \(URL.scheme)")
         if URL.scheme == "196502754" {
@@ -128,7 +170,8 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             NSAttributedString.Key.foregroundColor: UIColor.blue,
             NSAttributedString.Key.underlineColor: UIColor.lightGray
         ]
-        
+
+        print("checking files: \(dataThread[indexPath.row].files)")
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
             cell.gestureCompletable = self
@@ -141,7 +184,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
             cell.tvComment.delegate = self
-
 
             //load picture
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
@@ -181,7 +223,6 @@ extension ThreadController: UIGestureRecognizerDelegate {
      @Argumets: isClosingThread - means that user closed thread - make disable gestures and change alpha channel on tableView, etc
      */
     func backgroundThreadState(isClosingThread: Bool, isNewThread: Bool = false) {
-        print("is closing thread: \(isClosingThread), isNewThread: \(isNewThread)")
         if isClosingThread {
             tableView.alpha = 0.5
             tableView.isScrollEnabled = false
@@ -195,11 +236,16 @@ extension ThreadController: UIGestureRecognizerDelegate {
 //MARK: Favourite and scroll to bottom buttons action
 extension ThreadController {
     @objc private func actionFavouriteBtn(_ sender: UIButton) {
-        print("favourite btn")
+        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
+            print("RESULT: \(result)")
+        }
     }
 
     @objc private func actionSkipToBottomBtn(_ sender: UIButton) {
-        print("skip to bottom")
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.dataThread.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
 }
 
@@ -226,9 +272,19 @@ extension ThreadController {
                 self.progressAIV.stopAnimating()
                 self.progressAIV.isHidden = true
                 self.tableView.isHidden = false
+
+                //return button on initial place if it hidden
+                if self.destinationPath == .up {
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: [.curveEaseIn], animations: {
+                            let initialFrame = self.skipToBottomBtn.frame
+
+                            self.skipToBottomBtn.frame = CGRect(x: initialFrame.minX, y: initialFrame.minY - 100, width: initialFrame.width, height: initialFrame.height)
+                        }) { _ in
+                        self.destinationPath = .down
+                    }
+                }
             } else {
                 print("fatal error")
-                // fatalError()
             }
         }
     }

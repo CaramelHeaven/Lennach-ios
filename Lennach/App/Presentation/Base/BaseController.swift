@@ -16,6 +16,7 @@ class BaseController: UIViewController {
 
     private var arrayContainers: [UIView]?
     private var homeVC: HomeController?
+    private var favouriteVC: FavouriteController!
     private var bottomSheetNavigation: NavigationContainer?
     // private let navigationBoard = NavigationExpandView()
 
@@ -61,7 +62,7 @@ class BaseController: UIViewController {
             self.homeVC = homeVC
             break
         case let favouriteVC as FavouriteController:
-            print("favouriteVC")
+            self.favouriteVC = favouriteVC
             break
         default:
             break
@@ -85,6 +86,8 @@ extension BaseController: BottomListenable {
             break
         case 2:
             manageStateContainer(currentShowContainer: favouriteContainer)
+
+            favouriteVC.showFavouriteContent()
             break
         default:
             print("error")
