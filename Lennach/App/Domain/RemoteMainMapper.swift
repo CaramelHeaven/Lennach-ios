@@ -32,7 +32,26 @@ class RemoteMainMapper {
             }
 
             var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            reply = reply.replacingOccurrences(of: "&gt;", with: "")
+            reply = reply.replacingOccurrences(of: "&gt;", with: "").replacingOccurrences(of: "&quot;", with: "")
+
+            var arrayReplies = [String]()
+            let pattern = #"(>>\d*)"#
+            let regex = try! NSRegularExpression(pattern: pattern)
+            regex.enumerateMatches(in: reply, range: NSRange(reply.startIndex..., in: reply)) { match, _, _ in
+                if let nsRange = match?.range(at: 1), let range = Range(nsRange, in: reply) {
+                    arrayReplies.append(String(reply[range]))
+                }
+            }
+
+            for item in arrayReplies {
+                if let range = reply.range(of: item) {
+                    //let startPos = reply.distance(from: reply.startIndex, to: range.lowerBound)
+                    let endPos = reply.distance(from: reply.startIndex, to: range.upperBound)
+                    let index = reply.index(reply.startIndex, offsetBy: endPos)
+
+                    reply.insert(" ", at: index)
+                }
+            }
 
             let comment = Comment(num: item.num!, name: item.name!, comment: "", date: item.date!, modernComment: makeModernComment(baseComment: reply), repliesContent: [String](), files: pictures.count != 0 ? pictures : nil)
 
@@ -117,16 +136,13 @@ extension RemoteMainMapper {
 
         for line in lines {
             if line.contains(">>") {
-                let reference = (line.filter("0123456789>>(OP)".contains))
-                    .replacingOccurrences(of: " ", with: "")
-                let stringForRange = line.filter("0123456789 >>(OP)".contains)
+                var dividedReplies = line.components(separatedBy: ">>")
+                
+                if dividedReplies[0] == "" { dividedReplies.removeFirst() }
+                for item in dividedReplies {
+                    let filteringValue = filteringLine(item, regular: #"(^\d+)"#)
 
-                var localArray = (reference.components(separatedBy: ">>"))
-                localArray.removeFirst()
-                for item in localArray {
-                    let filteringValue = item.filter("0123456789".contains)
-
-                    attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: stringForRange))
+                    attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: ">>" + filteringValue))
                 }
             }
         }
@@ -134,14 +150,18 @@ extension RemoteMainMapper {
         return attributedString
     }
 
-    func showCurrentTime() {
-        let dateFormatter: DateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
-        let interval = date.timeIntervalSince1970
+    //"(>>\d*)"#
+    func filteringLine(_ line: String, regular: String) -> String {
+        var str = ""
+        let pattern = #"\#(regular)"#
+        print("PATTERN: \(pattern)")
+        let regex = try! NSRegularExpression(pattern: pattern)
+        regex.enumerateMatches(in: line, range: NSRange(line.startIndex..., in: line)) { match, _, _ in
+            if let nsRange = match?.range(at: 1), let range = Range(nsRange, in: line) {
+                str = String(line[range])
+            }
+        }
 
-        print("CurrentTime: \(dateString), interval: \(interval)")
+        return str
     }
 }

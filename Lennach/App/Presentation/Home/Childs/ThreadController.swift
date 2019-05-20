@@ -171,7 +171,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             NSAttributedString.Key.underlineColor: UIColor.lightGray
         ]
 
-        print("checking files: \(dataThread[indexPath.row].files)")
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
             cell.gestureCompletable = self
