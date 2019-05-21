@@ -42,6 +42,8 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        
         return view
     }()
 
@@ -249,6 +251,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     var handlerDirectionGestureToThread = true
 }
 
+private var replyController: UIViewController?
 extension ThreadController: ReplyClickable {
     func click(cell: UITableViewCell) {
 
@@ -278,22 +281,40 @@ extension ThreadController: ReplyClickable {
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             ])
 
-        let controller = storyboard?.instantiateViewController(withIdentifier: "ReplyController")
+        UIView.animate(withDuration: 0.3, animations: {
+            self.containerView.alpha = 1
+        }) { _ in
+            replyController = self.storyboard?.instantiateViewController(withIdentifier: "ReplyController")
+            
+            if let controller = ((replyController) as? ReplyController) {
+                self.addChild(controller)
+                controller.view.translatesAutoresizingMaskIntoConstraints = false
+                self.containerView.addSubview(controller.view)
+                
+                controller.updateData()
+                controller.controllerClosable = self
+                
+                NSLayoutConstraint.activate([
+                    controller.view.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+                    controller.view.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+                    controller.view.topAnchor.constraint(equalTo: self.containerView.topAnchor),
+                    controller.view.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor)
+                    ])
+                
+                controller.didMove(toParent: self)
+            }
+        }
+    }
+}
 
-        if let controller = controller {
-            addChild(controller)
-            controller.view.translatesAutoresizingMaskIntoConstraints = false
-            containerView.addSubview(controller.view)
-
-            (controller as? ReplyController)?.updateData()
-
-            NSLayoutConstraint.activate([
-                controller.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                controller.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                controller.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-                controller.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-                ])
-            controller.didMove(toParent: self)
+//MARK: Closing ReplyController via button
+extension ThreadController: ReplyButtonClosable {
+    func closeController() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.containerView.alpha = 0
+        }) { _ in
+            replyController?.removeFromParent()
+            self.containerView.removeFromSuperview()
         }
     }
 }

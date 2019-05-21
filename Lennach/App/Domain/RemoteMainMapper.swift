@@ -32,7 +32,7 @@ class RemoteMainMapper {
             }
 
             var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            reply = reply.replacingOccurrences(of: "&gt;", with: "/").replacingOccurrences(of: "&quot;", with: "")
+            reply = reply.replacingOccurrences(of: "&gt;", with: "").replacingOccurrences(of: "&quot;", with: "")
 
             let arrayOfReferences = getArrayOfReplies(reply, regular: #"(>>\d*)"#)
             for item in arrayOfReferences {

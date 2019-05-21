@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ReplyButtonClosable: class {
+    func closeController()
+}
+
 class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
     @IBOutlet weak var backBtn: UIButton!
@@ -15,6 +19,7 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var tableView: UITableView!
 
     var commentsData = [Comment]()
+    weak var controllerClosable: ReplyButtonClosable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +91,11 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
             return cell
         }
     }
-    
+
     internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -108,6 +113,7 @@ extension ReplyController {
     }
 
     @objc private func actionButtonClose() {
-
+        ObserveReplyPages.instance.clearPages()
+        controllerClosable?.closeController()
     }
 }
