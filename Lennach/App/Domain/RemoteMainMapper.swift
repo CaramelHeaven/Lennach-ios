@@ -34,16 +34,8 @@ class RemoteMainMapper {
             var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
             reply = reply.replacingOccurrences(of: "&gt;", with: "").replacingOccurrences(of: "&quot;", with: "")
 
-            var arrayReplies = [String]()
-            let pattern = #"(>>\d*)"#
-            let regex = try! NSRegularExpression(pattern: pattern)
-            regex.enumerateMatches(in: reply, range: NSRange(reply.startIndex..., in: reply)) { match, _, _ in
-                if let nsRange = match?.range(at: 1), let range = Range(nsRange, in: reply) {
-                    arrayReplies.append(String(reply[range]))
-                }
-            }
-
-            for item in arrayReplies {
+            let arrayOfReferences = getArrayOfReplies(reply, regular: #"(>>\d*)"#)
+            for item in arrayOfReferences {
                 if let range = reply.range(of: item) {
                     //let startPos = reply.distance(from: reply.startIndex, to: range.lowerBound)
                     let endPos = reply.distance(from: reply.startIndex, to: range.upperBound)
@@ -53,13 +45,18 @@ class RemoteMainMapper {
                 }
             }
 
-            let comment = Comment(num: item.num!, name: item.name!, comment: "", date: item.date!, modernComment: makeModernComment(baseComment: reply), repliesContent: [String](), files: pictures.count != 0 ? pictures : nil)
+            let comment = Comment(num: item.num!, name: item.name!, comment: reply, date: item.date!, modernComment: makeModernComment(baseComment: reply), repliesContent: [String](), files: pictures.count != 0 ? pictures : nil, containerRerefences: arrayOfReferences)
 
             return comment
         }
 
         comments.forEach { (comment) in
-            counterRepliesToEachComment(currentComment: comment, list: &comments)
+            for item in comment.containerRerefences {
+                let numItem = item.filter("0123456789".contains)
+                if let index = comments.firstIndex(where: { $0.num == numItem }) {
+                    comments[index].repliesContent?.append(numItem)
+                }
+            }
         }
 
         return comments
@@ -110,25 +107,6 @@ class RemoteMainMapper {
 }
 
 extension RemoteMainMapper {
-    func counterRepliesToEachComment(currentComment: Comment, list: inout [Comment]) {
-        var usedReferences = [String]()
-        var lines = currentComment.comment.components(separatedBy: "\n")
-        lines = lines.filter { $0.contains(">>") }
-
-        for line in lines {
-            let result = line.filter("0123456789".contains)
-
-            if usedReferences.contains(result) { break }
-            usedReferences.append(result)
-
-            if let index = list.lastIndex(where: { $0.num == result }) {
-                var replies = list[index].repliesContent!
-                replies.append(currentComment.num)
-
-                list[index].repliesContent?.append(currentComment.num)
-            }
-        }
-    }
 
     func makeModernComment(baseComment: String) -> NSMutableAttributedString {
         let attributedString = NSMutableAttributedString(string: baseComment)
@@ -137,7 +115,7 @@ extension RemoteMainMapper {
         for line in lines {
             if line.contains(">>") {
                 var dividedReplies = line.components(separatedBy: ">>")
-                
+
                 if dividedReplies[0] == "" { dividedReplies.removeFirst() }
                 for item in dividedReplies {
                     let filteringValue = filteringLine(item, regular: #"(^\d+)"#)
@@ -163,5 +141,19 @@ extension RemoteMainMapper {
         }
 
         return str
+    }
+
+    func getArrayOfReplies(_ lines: String, regular: String) -> [String] {
+        var arrayReplies = [String]()
+        let pattern = #"\#(regular)"#
+        let regex = try! NSRegularExpression(pattern: pattern)
+        regex.enumerateMatches(in: lines, range: NSRange(lines.startIndex..., in: lines)) { match, _, _ in
+            if let nsRange = match?.range(at: 1), let range = Range(nsRange, in: lines) {
+                arrayReplies.append(String(lines[range]))
+            }
+        }
+
+        print("ARRAY OF REPLIES: \(arrayReplies)")
+        return arrayReplies
     }
 }

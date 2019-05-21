@@ -45,6 +45,8 @@
 		FB70EF102291F23B006F82D0 /* ThreadFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
+		FB900125229426C6009BE391 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB900123229426C6009BE391 /* ReplyController.swift */; };
+		FB90012822945BE1009BE391 /* ObservedReplyPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90012722945BE1009BE391 /* ObservedReplyPages.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
 		FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8322706DDF0096A15C /* Utilities.swift */; };
 		FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */; };
@@ -128,6 +130,8 @@
 		FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadFavourite.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
+		FB900123229426C6009BE391 /* ReplyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
+		FB90012722945BE1009BE391 /* ObservedReplyPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedReplyPages.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
 		FB9D0F8322706DDF0096A15C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
@@ -392,6 +396,7 @@
 		FB740603226752E800402315 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FB90012022942613009BE391 /* WatchingReplies */,
 				FB70EF112291F716006F82D0 /* Favourite */,
 				FB18630F2284441700899163 /* VideoPlayer */,
 				FBEE746222783A24007DF632 /* Navigation */,
@@ -445,6 +450,15 @@
 				FBB375932281DFE5001EC00D /* AnswerView.swift */,
 			);
 			path = AnswerView;
+			sourceTree = "<group>";
+		};
+		FB90012022942613009BE391 /* WatchingReplies */ = {
+			isa = PBXGroup;
+			children = (
+				FB900123229426C6009BE391 /* ReplyController.swift */,
+				FB90012722945BE1009BE391 /* ObservedReplyPages.swift */,
+			);
+			path = WatchingReplies;
 			sourceTree = "<group>";
 		};
 		FB9D0F7E22706B440096A15C /* ImageGallery */ = {
@@ -835,6 +849,7 @@
 				FB2206262268CE01006F2CA8 /* Board.swift in Sources */,
 				FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
+				FB900125229426C6009BE391 /* ReplyController.swift in Sources */,
 				FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */,
 				FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */,
 				FBB375922281CFE0001EC00D /* AnswerViewContainer.swift in Sources */,
@@ -844,6 +859,7 @@
 				FB06360A227B035D0073B4A1 /* PopupBoardsView+VC.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
+				FB90012822945BE1009BE391 /* ObservedReplyPages.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,

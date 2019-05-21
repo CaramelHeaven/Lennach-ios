@@ -153,6 +153,15 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     //TODO: Make this workable
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         print("URL: \(URL.scheme)")
+        if let string = URL.scheme {
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+                print("STRING: \(string)")
+                let lol = (dataThread.filter { $0.num == string })[0]
+                print("COM: \(lol.repliesContent)")
+            }
+        }
+
+
         if URL.scheme == "196502754" {
             print("==, do something")
             return false
@@ -183,6 +192,15 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
             cell.tvComment.delegate = self
+            
+            if let replies = post.repliesContent?.count {
+                if replies == 0 {
+                    cell.btnReplies.isHidden = true
+                } else {
+                    cell.btnReplies.setTitle(String(replies) + " replies", for: .normal)
+                    cell.btnReplies.isHidden = false
+                }
+            }
 
             //load picture
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
@@ -196,6 +214,15 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
             cell.tvComment.delegate = self
+
+            if let replies = post.repliesContent?.count {
+                if replies == 0 {
+                    cell.btnReplies.isHidden = true
+                } else {
+                    cell.btnReplies.setTitle(String(replies) + " replies", for: .normal)
+                    cell.btnReplies.isHidden = false
+                }
+            }
 
             return cell
         }
@@ -235,9 +262,37 @@ extension ThreadController: UIGestureRecognizerDelegate {
 //MARK: Favourite and scroll to bottom buttons action
 extension ThreadController {
     @objc private func actionFavouriteBtn(_ sender: UIButton) {
-        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
-            print("RESULT: \(result)")
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+
+        //tableView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            ])
+
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ReplyController")
+        print("controller: \(controller)")
+
+        if let controller = controller {
+            addChild(controller)
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(controller.view)
+
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                controller.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                controller.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+                controller.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+                ])
+            controller.didMove(toParent: self)
         }
+//        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
+//            print("RESULT: \(result)")
     }
 
     @objc private func actionSkipToBottomBtn(_ sender: UIButton) {

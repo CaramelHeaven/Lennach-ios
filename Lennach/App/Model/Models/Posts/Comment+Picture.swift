@@ -17,6 +17,8 @@ struct Comment {
 
     var repliesContent: [String]?
     var files: [Picture]?
+
+    var containerRerefences: [String]! //references container to each post, helper field
 }
 
 struct Picture {
