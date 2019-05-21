@@ -15,9 +15,19 @@ class ObserveReplyPages {
 
     private init() { }
 
+    var currentPage = 0
     var page = [Int: [Comment]]()
 
-    func clearPage() {
+    func addNewPage(comments: [Comment]) {
+        page[currentPage] = comments
+    }
+
+    func clearPages() {
         page.removeAll()
+        currentPage = 0
+    }
+
+    func getCurrentPage() -> [Comment] {
+        return page[currentPage]!
     }
 }

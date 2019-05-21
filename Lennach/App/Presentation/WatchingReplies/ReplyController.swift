@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var closeBtn: UIButton!
@@ -32,11 +32,72 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let linkAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.underlineColor: UIColor.lightGray
+        ]
+
+        if let files = commentsData[indexPath.row].files {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyWithImageCell", for: indexPath as IndexPath) as! ReplyWithImageCell
+            let post = commentsData[indexPath.row]
+
+            let exclusionPath: UIBezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: cell.imagePost.frame.width, height: cell.imagePost.frame.height))
+
+            cell.tvComment.textContainer.exclusionPaths = [exclusionPath]
+
+            cell.tvComment.linkTextAttributes = linkAttributes
+            cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.delegate = self // for modify text leading anchor
+
+            if let replies = post.repliesContent?.count {
+                if replies == 0 {
+                    cell.btnReplies.isHidden = true
+                } else {
+                    cell.btnReplies.setTitle(String(replies) + " replies", for: .normal)
+                    cell.btnReplies.isHidden = false
+                }
+            }
+
+            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+
+            //load picture
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReplyWithoutImageCell", for: indexPath as IndexPath) as! ReplyWithoutImageCell
+            let post = commentsData[indexPath.row]
+
+            cell.tvComment.linkTextAttributes = linkAttributes
+            cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.delegate = self
+
+            if let replies = post.repliesContent?.count {
+                if replies == 0 {
+                    cell.btnReplies.isHidden = true
+                } else {
+                    cell.btnReplies.setTitle(String(replies) + " replies", for: .normal)
+                    cell.btnReplies.isHidden = false
+                }
+            }
+
+            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+
+            return cell
+        }
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
-    func updateData(data: [Comment]) {
-        self.commentsData = data
+    func updateData() {
+        commentsData = ObserveReplyPages.instance.getCurrentPage()
+        tableView.reloadData()
     }
 }
 

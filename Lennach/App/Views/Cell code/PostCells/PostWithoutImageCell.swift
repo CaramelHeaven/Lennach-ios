@@ -8,6 +8,12 @@
 
 import UIKit
 
+//This protocol used for action button handler, also used inside PostWithImageCell
+protocol ReplyClickable {
+    func click(cell: UITableViewCell)
+}
+
+//DEPRECATED 2 protocols
 //This protocol used on both post classes cell inside our folder
 protocol AnswerGestureGrantable {
     var originalCenter: CGPoint { get set }
@@ -29,14 +35,20 @@ class PostWithoutImageCell: UITableViewCell, AnswerGestureGrantable {
     @IBOutlet weak var labelNumberAndDate: UILabel!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnReplies: UIButton!
-    
-    //strong ref
+
     var gestureCompletable: CellGestureCompletable?
+    var clickable: ReplyClickable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 //        initAnswerGesture()
+
+        btnReplies.addTarget(self, action: #selector(actionRepliesClick), for: .touchUpInside)
+    }
+
+    @objc func actionRepliesClick() {
+        clickable?.click(cell: self)
     }
 
     //For future. In the current release, we make this app read only

@@ -17,11 +17,18 @@ class PostWithImageCell: UITableViewCell, AnswerGestureGrantable {
     @IBOutlet weak var labelNumberAndDate: UILabel!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnReplies: UIButton!
-    
+
     var gestureCompletable: CellGestureCompletable?
+    var clickable: ReplyClickable?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        btnReplies.addTarget(self, action: #selector(actionReplyClick), for: .touchUpInside)
+    }
+
+    @objc func actionReplyClick() {
+        clickable?.click(cell: self)
     }
 
     //For future. In the current release, we make this app read only

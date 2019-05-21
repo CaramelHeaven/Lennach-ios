@@ -29,6 +29,8 @@
 		FB33823A22847BDD0077289B /* VideoPlayerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823922847BDD0077289B /* VideoPlayerContainer.swift */; };
 		FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB33823B22847BE80077289B /* VideoPlayerView.swift */; };
 		FB38758B227C77BD00F90813 /* App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB387589227C77BD00F90813 /* App.xcdatamodeld */; };
+		FB3A6DF22294B945002F03C6 /* ReplyWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3A6DF12294B945002F03C6 /* ReplyWithoutImageCell.swift */; };
+		FB3A6DF52294B95C002F03C6 /* ReplyWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3A6DF42294B95C002F03C6 /* ReplyWithImageCell.swift */; };
 		FB51F4B92279C833006080F4 /* NavigationCollectionView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */; };
 		FB51F4BB2279D107006080F4 /* BottomSheetBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */; };
 		FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51F4BC2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift */; };
@@ -46,7 +48,7 @@
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
 		FB900125229426C6009BE391 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB900123229426C6009BE391 /* ReplyController.swift */; };
-		FB90012822945BE1009BE391 /* ObservedReplyPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90012722945BE1009BE391 /* ObservedReplyPages.swift */; };
+		FB90012822945BE1009BE391 /* ObserveReplyPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90012722945BE1009BE391 /* ObserveReplyPages.swift */; };
 		FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */; };
 		FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8322706DDF0096A15C /* Utilities.swift */; };
 		FB9D0F8622706E6F0096A15C /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */; };
@@ -114,6 +116,8 @@
 		FB33823922847BDD0077289B /* VideoPlayerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerContainer.swift; sourceTree = "<group>"; };
 		FB33823B22847BE80077289B /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		FB38758A227C77BD00F90813 /* App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = App.xcdatamodel; sourceTree = "<group>"; };
+		FB3A6DF12294B945002F03C6 /* ReplyWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyWithoutImageCell.swift; sourceTree = "<group>"; };
+		FB3A6DF42294B95C002F03C6 /* ReplyWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyWithImageCell.swift; sourceTree = "<group>"; };
 		FB51F4B82279C833006080F4 /* NavigationCollectionView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationCollectionView+Cells.swift"; sourceTree = "<group>"; };
 		FB51F4BA2279D107006080F4 /* BottomSheetBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetBackgroundView.swift; sourceTree = "<group>"; };
 		FB51F4BC2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationContainer+UIBottomSheet.swift"; sourceTree = "<group>"; };
@@ -131,7 +135,7 @@
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
 		FB900123229426C6009BE391 /* ReplyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
-		FB90012722945BE1009BE391 /* ObservedReplyPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservedReplyPages.swift; sourceTree = "<group>"; };
+		FB90012722945BE1009BE391 /* ObserveReplyPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveReplyPages.swift; sourceTree = "<group>"; };
 		FB9D0F8122706BA70096A15C /* ImageViewerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerConfiguration.swift; sourceTree = "<group>"; };
 		FB9D0F8322706DDF0096A15C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FB9D0F8522706E6F0096A15C /* AnimatableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableImageView.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 		FB2206272268DAB0006F2CA8 /* Cell code */ = {
 			isa = PBXGroup;
 			children = (
+				FB3A6DF32294B94F002F03C6 /* ReplyCells */,
 				FB3FD3E6227317C700AF87E1 /* PostCells */,
 				FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */,
 			);
@@ -265,6 +270,15 @@
 				FB0E6FAC2268B93D00954081 /* Usenet+Posts+Files.swift */,
 			);
 			path = BoardResponse;
+			sourceTree = "<group>";
+		};
+		FB3A6DF32294B94F002F03C6 /* ReplyCells */ = {
+			isa = PBXGroup;
+			children = (
+				FB3A6DF12294B945002F03C6 /* ReplyWithoutImageCell.swift */,
+				FB3A6DF42294B95C002F03C6 /* ReplyWithImageCell.swift */,
+			);
+			path = ReplyCells;
 			sourceTree = "<group>";
 		};
 		FB3F600E226DD72700131764 /* Animation */ = {
@@ -456,7 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				FB900123229426C6009BE391 /* ReplyController.swift */,
-				FB90012722945BE1009BE391 /* ObservedReplyPages.swift */,
+				FB90012722945BE1009BE391 /* ObserveReplyPages.swift */,
 			);
 			path = WatchingReplies;
 			sourceTree = "<group>";
@@ -822,6 +836,7 @@
 				FB29D7002271816E00D7D75D /* ThreadResponse.swift in Sources */,
 				FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */,
 				FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */,
+				FB3A6DF52294B95C002F03C6 /* ReplyWithImageCell.swift in Sources */,
 				FB65BC7F22623F5500C30F61 /* HomeController.swift in Sources */,
 				FB063608227AFDED0073B4A1 /* AllBoards+Child.swift in Sources */,
 				FB9D0F8422706DDF0096A15C /* Utilities.swift in Sources */,
@@ -854,12 +869,13 @@
 				FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */,
 				FBB375922281CFE0001EC00D /* AnswerViewContainer.swift in Sources */,
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
+				FB3A6DF22294B945002F03C6 /* ReplyWithoutImageCell.swift in Sources */,
 				FBB375942281DFE5001EC00D /* AnswerView.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB06360A227B035D0073B4A1 /* PopupBoardsView+VC.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,
 				FB51F4BD2279D9BE006080F4 /* NavigationContainer+UIBottomSheet.swift in Sources */,
-				FB90012822945BE1009BE391 /* ObservedReplyPages.swift in Sources */,
+				FB90012822945BE1009BE391 /* ObserveReplyPages.swift in Sources */,
 				FB063606227AF7770073B4A1 /* AllSubjects.swift in Sources */,
 				FB9D0FAA227090300096A15C /* ImageController.swift in Sources */,
 				FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */,

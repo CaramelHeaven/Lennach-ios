@@ -38,6 +38,13 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     var activateBoardGesture = false
     private var answerView: AnswerViewContainer?
 
+    //for opening reply container
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -155,9 +162,14 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         print("URL: \(URL.scheme)")
         if let string = URL.scheme {
             if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
-                print("STRING: \(string)")
-                let lol = (dataThread.filter { $0.num == string })[0]
-                print("COM: \(lol.repliesContent)")
+                let data = (dataThread.filter { $0.num == string })[0]
+
+                let posts = data.repliesContent!.map { reply -> Comment in
+                    return dataThread.first(where: { $0.num == reply })!
+                }
+                ObserveReplyPages.instance.addNewPage(comments: posts)
+
+                openReplyController()
             }
         }
 
@@ -192,7 +204,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
             cell.tvComment.delegate = self
-            
+
             if let replies = post.repliesContent?.count {
                 if replies == 0 {
                     cell.btnReplies.isHidden = true
@@ -201,6 +213,9 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
                     cell.btnReplies.isHidden = false
                 }
             }
+
+            cell.clickable = self
+            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
 
             //load picture
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
@@ -224,6 +239,9 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
                 }
             }
 
+            cell.clickable = self
+            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+
             return cell
         }
     }
@@ -231,6 +249,56 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     var handlerDirectionGestureToThread = true
 }
 
+extension ThreadController: ReplyClickable {
+    func click(cell: UITableViewCell) {
+
+        switch cell {
+        case let postWithImage as PostWithImageCell:
+
+            if let index = tableView.indexPath(for: postWithImage) {
+                _ = dataThread[index.row]
+            }
+            break
+        case _ as PostWithoutImageCell:
+
+            break
+        default:
+            print("lol")
+        }
+    }
+
+    private func openReplyController() {
+        view.addSubview(containerView)
+        tableView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            ])
+
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ReplyController")
+
+        if let controller = controller {
+            addChild(controller)
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+            containerView.addSubview(controller.view)
+
+            (controller as? ReplyController)?.updateData()
+
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                controller.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                controller.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+                controller.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+                ])
+            controller.didMove(toParent: self)
+        }
+    }
+}
+
+//NOT USED
 extension ThreadController: CellGestureCompletable {
     func showingAnswerView(cell: UITableViewCell) {
         if answerView == nil {
@@ -246,7 +314,7 @@ extension ThreadController: UIGestureRecognizerDelegate {
 
     /*
      Visible or not visible thread on user UI, if true - our thread view placed behind window
-     @Argumets: isClosingThread - means that user closed thread - make disable gestures and change alpha channel on tableView, etc
+     @Arguments: isClosingThread - means that user closed thread - make disable gestures and change alpha channel on tableView, etc
      */
     func backgroundThreadState(isClosingThread: Bool, isNewThread: Bool = false) {
         if isClosingThread {
@@ -262,35 +330,6 @@ extension ThreadController: UIGestureRecognizerDelegate {
 //MARK: Favourite and scroll to bottom buttons action
 extension ThreadController {
     @objc private func actionFavouriteBtn(_ sender: UIButton) {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(containerView)
-
-        //tableView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-
-        NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-            ])
-
-        let controller = storyboard?.instantiateViewController(withIdentifier: "ReplyController")
-        print("controller: \(controller)")
-
-        if let controller = controller {
-            addChild(controller)
-            controller.view.translatesAutoresizingMaskIntoConstraints = false
-            containerView.addSubview(controller.view)
-
-            NSLayoutConstraint.activate([
-                controller.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                controller.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                controller.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-                controller.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-                ])
-            controller.didMove(toParent: self)
-        }
 //        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
 //            print("RESULT: \(result)")
     }

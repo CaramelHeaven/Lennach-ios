@@ -32,7 +32,7 @@ class RemoteMainMapper {
             }
 
             var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            reply = reply.replacingOccurrences(of: "&gt;", with: "").replacingOccurrences(of: "&quot;", with: "")
+            reply = reply.replacingOccurrences(of: "&gt;", with: "/").replacingOccurrences(of: "&quot;", with: "")
 
             let arrayOfReferences = getArrayOfReplies(reply, regular: #"(>>\d*)"#)
             for item in arrayOfReferences {
@@ -53,8 +53,9 @@ class RemoteMainMapper {
         comments.forEach { (comment) in
             for item in comment.containerRerefences {
                 let numItem = item.filter("0123456789".contains)
+
                 if let index = comments.firstIndex(where: { $0.num == numItem }) {
-                    comments[index].repliesContent?.append(numItem)
+                    comments[index].repliesContent?.append(comment.num)
                 }
             }
         }

@@ -33,7 +33,7 @@ class RemoteRepository {
     }
 
     func getCommentsByThread(boardName name: String, threadNum: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
-        let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_thread&board=" + "b" + "&thread=" + "196772862" + "&post=0"
+        let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_thread&board=" + name + "&thread=" + threadNum + "&post=0"
         print("URL POSTS: \(url)")
         Alamofire.request(url).responseJSON { response in
             do {
@@ -42,7 +42,7 @@ class RemoteRepository {
 
                 queue.async {
                     let comments = self.mainMapper.mapResponseToThreadCommentsUseCase(response: data)
-                    
+
                     DispatchQueue.main.async {
                         print("completion ok")
                         completion(true, comments, nil)
