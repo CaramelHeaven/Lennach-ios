@@ -81,14 +81,17 @@ struct Utilities {
                 image.kf.indicatorType = .activity
                 image.kf.setImage(with: URL(string: url)!,
                     options: [.onlyLoadFirstFrame])
-            } else { //load simple image
+            } else {
                 image.kf.indicatorType = .activity
                 image.kf.setImage(with: URL(string: url),
+                    placeholder: image.image ?? UIImage(named: "ss"),
                     options: [
                             .processor(DownsamplingImageProcessor(size: image.bounds.size) >> RoundCornerImageProcessor(cornerRadius: 4)),
                             .scaleFactor(UIScreen.main.scale),
-                            .cacheOriginalImage
+                            .cacheOriginalImage,
+                            .keepCurrentImageWhileLoading
                     ]) { result in
+                        
                 }
             }
         }

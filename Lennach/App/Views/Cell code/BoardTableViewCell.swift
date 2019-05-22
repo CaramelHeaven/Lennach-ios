@@ -21,9 +21,7 @@ class BoardTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        // Initialization code
-
+        threadImage?.layer.cornerRadius = 8
     }
 
     func initVideoOrImageClicker(state: String) {

@@ -64,7 +64,7 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
 
-            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+            cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
             cell.clickable = self
 
             //load picture
@@ -88,7 +88,7 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
 
-            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+            cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
             cell.clickable = self
 
             return cell

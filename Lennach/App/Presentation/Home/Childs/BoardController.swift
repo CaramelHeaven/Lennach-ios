@@ -7,6 +7,7 @@
 //
 import UIKit
 import Kingfisher
+import AVFoundation
 
 protocol BoardTapDelegatable: class {
     func itemTapped(numThread: String)
@@ -42,6 +43,11 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return boardData.usenets.count
     }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath!) as! BoardTableViewCell
+        cell.threadImage!.kf.cancelDownloadTask()
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
@@ -49,24 +55,40 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         let usenet = boardData.usenets[indexPath.row]
         cell.labelDate?.text = usenet.date
 
-        cell.threadImage!.image = nil
-        cell.threadImage!.backgroundColor = .clear
         if usenet.thumbnail.contains(".webm") || usenet.thumbnail.contains(".mp4") {
             cell.initVideoOrImageClicker(state: "video")
+            cell.threadImage!.image = nil
 
             cell.videoClicker = { [self] in
                 self.videoTransition(indexPath: indexPath)
             }
-            print("video cell")
 
+            //set thumbnail from first frame
+            if usenet.thumbnail.contains(".mp4") {
+                DispatchQueue.global().async {
+                    let asset = AVAsset(url: URL(string: Constants.baseUrl + usenet.thumbnail)!)
+                    let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                    assetImgGenerate.appliesPreferredTrackTransform = true
+                    let time = CMTimeMake(value: 1, timescale: 2)
+                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                    if img != nil {
+                        let frameImg = UIImage(cgImage: img!)
+                        DispatchQueue.main.async(execute: {
+                            cell.threadImage!.image = frameImg
+                        })
+                    }
+                }
+            }
         } else {
             Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+
             cell.initVideoOrImageClicker(state: "image")
 
             cell.imageClicker = { [self] in
                 self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
             }
         }
+        
         let lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
         if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
@@ -80,7 +102,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     //MARK: Load thread from board
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected fuck")
         currentThread = boardData.usenets[indexPath.row].threadNum
         boardDelegatable?.itemTapped(numThread: currentThread)
     }
@@ -95,21 +116,18 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         videoContainer.redrawingVideoViews(currentSize: size)
     }
 
-    //MARK: make transition animation
+    //MARK: make image transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
-        //kek https://2ch.hk//b/src/196311887/15577708487820.webm
-        videoContainer.currentVideoUrl = "https://2ch.hk/b/src/196373123/15578571323310.mp4"
-        videoContainer.showVideo()
-//        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
-//
-//        let configuration = ImageViewerConfiguration { config in
-//            config.imageView = cell.threadImage!
-//        }
-//
-//        let controller = ImageController(configuration: configuration)
-//        controller.urlThumbnail = boardData.usenets[path.row].thumbnail
-//
-//        present(controller, animated: true, completion: nil)
+        guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
+
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = cell.threadImage!
+        }
+
+        let controller = ImageController(configuration: configuration)
+        controller.urlThumbnail = boardData.usenets[path.row].thumbnail
+
+        present(controller, animated: true, completion: nil)
     }
 
     //MARK: load board data

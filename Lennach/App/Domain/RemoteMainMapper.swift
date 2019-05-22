@@ -13,7 +13,7 @@ class RemoteMainMapper {
     func mapResponseToBoardUseCase(response: BoardResponse) -> Board {
         var board = Board()
 
-        for item in response.threads![0..<20] {
+        for item in response.threads![0..<40] {
             let usenet = Usenet(threadNum: item.num!, threadMsg: item.comment!, thumbnail: item.files![0].path!, date: item.date!)
 
             board.usenets.append(usenet)
@@ -32,16 +32,25 @@ class RemoteMainMapper {
             }
 
             var reply = item.comment!.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            reply = reply.replacingOccurrences(of: "&gt;", with: "").replacingOccurrences(of: "&quot;", with: "")
+            reply = reply.replacingOccurrences(of: "&gt;", with: "")
+                .replacingOccurrences(of: "&quot;", with: "")
+                .replacingOccurrences(of: "&#47;", with: "")
 
+            //make \n after >>2834 reply, (>>\d*\s\(OP\)*)
             let arrayOfReferences = getArrayOfReplies(reply, regular: #"(>>\d*)"#)
             for item in arrayOfReferences {
                 if let range = reply.range(of: item) {
-                    //let startPos = reply.distance(from: reply.startIndex, to: range.lowerBound)
                     let endPos = reply.distance(from: reply.startIndex, to: range.upperBound)
                     let index = reply.index(reply.startIndex, offsetBy: endPos)
 
-                    reply.insert(" ", at: index)
+                    var beforeIndexStr = String(reply[..<index])
+                    var afterIndexStr = String(reply[index...])
+
+                    if afterIndexStr.contains("(OP)") {
+                        afterIndexStr = afterIndexStr.replacingOccurrences(of: "(OP)", with: "")
+                        beforeIndexStr.append(" (OP)")
+                    }
+                    reply = beforeIndexStr + "\n" + afterIndexStr
                 }
             }
 
@@ -119,9 +128,10 @@ extension RemoteMainMapper {
 
                 if dividedReplies[0] == "" { dividedReplies.removeFirst() }
                 for item in dividedReplies {
-                    let filteringValue = filteringLine(item, regular: #"(^\d+)"#)
+                    let urlSchemaValue = filteringLine(item, regular: #"(^\d+)"#)
+                    let selectableStr = item.contains("(OP)") ? filteringLine(">>" + item, regular: #"(>>\d*\s*\(OP\))"#) : ">>" + urlSchemaValue
 
-                    attributedString.addAttribute(.link, value: filteringValue + "://" + filteringValue, range: (attributedString.string as NSString).range(of: ">>" + filteringValue))
+                    attributedString.addAttribute(.link, value: urlSchemaValue + "://" + urlSchemaValue, range: (attributedString.string as NSString).range(of: selectableStr))
                 }
             }
         }

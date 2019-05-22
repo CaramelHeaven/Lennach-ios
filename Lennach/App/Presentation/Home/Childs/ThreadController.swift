@@ -209,7 +209,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             }
 
             cell.clickable = self
-            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+            cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
 
             //load picture
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
@@ -235,7 +235,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             }
 
             cell.clickable = self
-            cell.labelNumberAndDate.text = "Num: " + post.num + ", " + post.date
+            cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
 
             return cell
         }

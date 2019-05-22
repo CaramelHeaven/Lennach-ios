@@ -23,7 +23,7 @@ class PostWithImageCell: UITableViewCell, AnswerGestureGrantable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        imagePost.layer.cornerRadius = 8
         btnReplies.addTarget(self, action: #selector(actionReplyClick), for: .touchUpInside)
     }
 
