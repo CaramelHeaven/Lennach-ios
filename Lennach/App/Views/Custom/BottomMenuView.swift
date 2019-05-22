@@ -90,6 +90,13 @@ class BottomItemCell: UICollectionViewCell {
         super.layoutSubviews()
         setupViews()
     }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            print("IS HIGHLIGHTED: \(isHighlighted)")
+            self.backgroundColor = isHighlighted ? .lightGray : .white
+        }
+    }
 
     func setupViews() {
         addSubview(imageView)

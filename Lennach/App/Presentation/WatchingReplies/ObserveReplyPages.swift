@@ -15,11 +15,13 @@ class ObserveReplyPages {
 
     private init() { }
 
+    var baseThreadComments: [Comment]!
     var currentPage = 0
     var page = [Int: [Comment]]()
 
     func addNewPage(comments: [Comment]) {
         page[currentPage] = comments
+        currentPage += 1
     }
 
     func clearPages() {
@@ -28,6 +30,19 @@ class ObserveReplyPages {
     }
 
     func getCurrentPage() -> [Comment] {
-        return page[currentPage]!
+        if currentPage - 1 >= 0 {
+            let pageq = currentPage - 1
+            print("PAGE: \(pageq)")
+            return page[currentPage - 1]!
+        }
+        return [Comment]()
+    }
+
+    func backToPage() -> Bool {
+        if currentPage - 1 > 0 {
+            currentPage -= 1
+            return true
+        }
+        return false
     }
 }

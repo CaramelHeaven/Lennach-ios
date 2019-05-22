@@ -13,11 +13,17 @@ class ReplyWithoutImageCell: UITableViewCell {
     @IBOutlet weak var labelNumberAndDate: UILabel!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var btnReplies: UIButton!
-
+    
+    var clickable: ReplyClickable?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        btnReplies.addTarget(self, action: #selector(actionRepliesClick), for: .touchUpInside)
     }
-
+    
+    @objc func actionRepliesClick() {
+        clickable?.click(cell: self)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

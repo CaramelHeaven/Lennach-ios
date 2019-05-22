@@ -43,7 +43,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
-        
+
         return view
     }()
 
@@ -159,39 +159,30 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 
-    //TODO: Make this workable
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        print("URL: \(URL.scheme)")
         if let string = URL.scheme {
             if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
-                let data = (dataThread.filter { $0.num == string })[0]
+                let data = dataThread.filter { $0.num == string }
 
-                let posts = data.repliesContent!.map { reply -> Comment in
-                    return dataThread.first(where: { $0.num == reply })!
-                }
-                ObserveReplyPages.instance.addNewPage(comments: posts)
+//                let posts = data.repliesContent!.map { reply -> Comment in
+//                    return dataThread.first(where: { $0.num == reply })!
+//                }
+
+                ObserveReplyPages.instance.baseThreadComments = dataThread
+                ObserveReplyPages.instance.addNewPage(comments: data)
 
                 openReplyController()
             }
         }
-
-
-        if URL.scheme == "196502754" {
-            print("==, do something")
-            return false
-        } else if URL.scheme == "lol" {
-            print("LOL")
-            return false
-        } else {
-            return false
-        }
+        return false
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let linkAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.blue,
-            NSAttributedString.Key.underlineColor: UIColor.lightGray
+        let linkAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+            NSAttributedString.Key.underlineColor: UIColor.black
         ]
 
         if let files = dataThread[indexPath.row].files {
@@ -205,6 +196,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.textColor = .darkGray
             cell.tvComment.delegate = self
 
             if let replies = post.repliesContent?.count {
@@ -230,6 +222,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
             cell.tvComment.linkTextAttributes = linkAttributes
             cell.tvComment.attributedText = post.modernComment
+            cell.tvComment.textColor = .darkGray
             cell.tvComment.delegate = self
 
             if let replies = post.repliesContent?.count {
@@ -249,6 +242,15 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     var handlerDirectionGestureToThread = true
+
+    private var blackView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        view.alpha = 0
+
+        return view
+    }()
 }
 
 private var replyController: UIViewController?
@@ -271,36 +273,43 @@ extension ThreadController: ReplyClickable {
     }
 
     private func openReplyController() {
+        view.addSubview(blackView)
         view.addSubview(containerView)
-        tableView.backgroundColor = UIColor(white: 0, alpha: 0.5)
 
         NSLayoutConstraint.activate([
+            blackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blackView.topAnchor.constraint(equalTo: view.topAnchor),
+            blackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
             ])
 
+
         UIView.animate(withDuration: 0.3, animations: {
             self.containerView.alpha = 1
+            self.blackView.alpha = 1
         }) { _ in
             replyController = self.storyboard?.instantiateViewController(withIdentifier: "ReplyController")
-            
+
             if let controller = ((replyController) as? ReplyController) {
                 self.addChild(controller)
                 controller.view.translatesAutoresizingMaskIntoConstraints = false
                 self.containerView.addSubview(controller.view)
-                
+
                 controller.updateData()
                 controller.controllerClosable = self
-                
+
                 NSLayoutConstraint.activate([
                     controller.view.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
                     controller.view.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
                     controller.view.topAnchor.constraint(equalTo: self.containerView.topAnchor),
                     controller.view.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor)
                     ])
-                
+
                 controller.didMove(toParent: self)
             }
         }
@@ -312,9 +321,11 @@ extension ThreadController: ReplyButtonClosable {
     func closeController() {
         UIView.animate(withDuration: 0.4, animations: {
             self.containerView.alpha = 0
+            self.blackView.alpha = 0
         }) { _ in
             replyController?.removeFromParent()
             self.containerView.removeFromSuperview()
+            self.blackView.removeFromSuperview()
         }
     }
 }

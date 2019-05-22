@@ -84,7 +84,6 @@ struct Utilities {
             } else { //load simple image
                 image.kf.indicatorType = .activity
                 image.kf.setImage(with: URL(string: url),
-                    placeholder: UIImage(named: url),
                     options: [
                             .processor(DownsamplingImageProcessor(size: image.bounds.size) >> RoundCornerImageProcessor(cornerRadius: 4)),
                             .scaleFactor(UIScreen.main.scale),

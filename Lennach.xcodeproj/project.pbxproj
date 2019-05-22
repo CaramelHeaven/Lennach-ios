@@ -20,6 +20,7 @@
 		FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */; };
 		FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E6FB12268BBFC00954081 /* LocalRepository.swift */; };
 		FB143DF2228088D600CBE047 /* RippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB143DF1228088D600CBE047 /* RippleButton.swift */; };
+		FB1644312295676E00939D61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB1644302295676E00939D61 /* Assets.xcassets */; };
 		FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */; };
 		FB2206262268CE01006F2CA8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206252268CE01006F2CA8 /* Board.swift */; };
 		FB2206292268DAD8006F2CA8 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */; };
@@ -63,7 +64,6 @@
 		FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE15EFA226876F6005A29FB /* BottomMenuView.swift */; };
 		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
 		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
-		FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279F225FCCE1003B1406 /* Assets.xcassets */; };
 		FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */; };
 		FBEC27AE225FCCE1003B1406 /* LennachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27AD225FCCE1003B1406 /* LennachTests.swift */; };
 		FBEC27B9225FCCE1003B1406 /* LennachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */; };
@@ -106,6 +106,7 @@
 		FB0E6FAF2268BBF300954081 /* RemoteReposiitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteReposiitory.swift; sourceTree = "<group>"; };
 		FB0E6FB12268BBFC00954081 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		FB143DF1228088D600CBE047 /* RippleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleButton.swift; sourceTree = "<group>"; };
+		FB1644302295676E00939D61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB2206232268CC13006F2CA8 /* RemoteMainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMainMapper.swift; sourceTree = "<group>"; };
 		FB2206252268CE01006F2CA8 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBEC279D225FCCE0003B1406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FBEC279F225FCCE1003B1406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBEC27A2225FCCE1003B1406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBEC27A4225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBEC27A9225FCCE1003B1406 /* LennachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LennachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -540,9 +540,9 @@
 			isa = PBXGroup;
 			children = (
 				FB65BC7A2262223B00C30F61 /* App */,
-				FBEC279F225FCCE1003B1406 /* Assets.xcassets */,
 				FBEC27A4225FCCE1003B1406 /* Info.plist */,
 				FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */,
+				FB1644302295676E00939D61 /* Assets.xcassets */,
 				FBEC279C225FCCE0003B1406 /* Main.storyboard */,
 			);
 			path = Lennach;
@@ -700,7 +700,7 @@
 			files = (
 				FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */,
 				FB9D0FAB227090300096A15C /* ImageController.xib in Resources */,
-				FBEC27A0225FCCE1003B1406 /* Assets.xcassets in Resources */,
+				FB1644312295676E00939D61 /* Assets.xcassets in Resources */,
 				FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
