@@ -102,13 +102,11 @@ class MainUIBottomSheet: UIView {
         UIView.animate(withDuration: 0.3) {
             self.blackView.alpha = 1
         }
-        print("black view: \(blackView.frame)")
         blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissNavigation)))
 
         addSubview(sheetBackground)
 
         let topConstraint = sheetBackground.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
-        print("check: \(topConstraint.constant)")
         NSLayoutConstraint.activate([
             topConstraint,
             sheetBackground.heightAnchor.constraint(equalTo: heightAnchor),
@@ -143,7 +141,18 @@ class MainUIBottomSheet: UIView {
             menuText.widthAnchor.constraint(equalToConstant: 100),
             menuText.heightAnchor.constraint(equalToConstant: 20)
             ])
-        print("memu: \(menuBar.frame)")
+
+        if let window = UIApplication.shared.keyWindow {
+            sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
+            menuBar.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
+        }
+
+        UIView.animate(withDuration: 0.2, animations: {
+            if let window = UIApplication.shared.keyWindow {
+                self.sheetBackground.frame = CGRect(x: 0, y: 340, width: window.frame.width, height: window.frame.height)
+                self.menuBar.frame = CGRect(x: 0, y: 340, width: window.frame.width, height: window.frame.height)
+            }
+        })
     }
 
     override func layoutSubviews() {
@@ -160,11 +169,12 @@ class MainUIBottomSheet: UIView {
 
     @objc func dismissNavigation() {
         UIView.animate(withDuration: 0.3, animations: {
-//            self.blackView.alpha = 0
-//            self.alpha = 0
-//            if let window = UIApplication.shared.keyWindow {
-//                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: 0)
-//            }
+            self.blackView.alpha = 0
+            self.alpha = 0
+            if let window = UIApplication.shared.keyWindow {
+                self.sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: self.sheetBackground.frame.width, height: 0)
+                self.menuBar.frame = CGRect(x: 0, y: window.frame.height, width: self.menuBar.frame.width, height: 0)
+            }
             self.tableController!.dismiss(animated: false, completion: nil)
         }) { _ in
             self.removeFromSuperview()

@@ -14,4 +14,5 @@ struct Usenet {
     var threadMsg = ""
     var thumbnail = ""
     var date = ""
+    var thumbnailName = ""
 }

@@ -22,7 +22,6 @@ enum Direction {
 
 class ThreadController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
-    @IBOutlet weak var selectThreadLabel: UILabel!
     @IBOutlet weak var progressAIV: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteBtn: UIButton!
@@ -44,6 +43,14 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
 
+        return view
+    }()
+
+    private let selectThreadLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "Пожалуйста, выберите тред"
+        view.textColor = .black
         return view
     }()
 
@@ -81,6 +88,14 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         //set base values for animation future
         baseSkipButtonPosition = skipToBottomBtn.frame
+
+        view.addSubview(selectThreadLabel)
+        NSLayoutConstraint.activate([
+            selectThreadLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            selectThreadLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            selectThreadLabel.widthAnchor.constraint(equalToConstant: 230),
+            selectThreadLabel.heightAnchor.constraint(equalToConstant: 30),
+            ])
     }
 
     @objc func onDragController(recognizer: UIPanGestureRecognizer) {
@@ -164,10 +179,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
                 let data = dataThread.filter { $0.num == string }
 
-//                let posts = data.repliesContent!.map { reply -> Comment in
-//                    return dataThread.first(where: { $0.num == reply })!
-//                }
-
                 ObserveReplyPages.instance.baseThreadComments = dataThread
                 ObserveReplyPages.instance.addNewPage(comments: data)
 
@@ -176,7 +187,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         return false
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let linkAttributes: [NSAttributedString.Key: Any] = [
@@ -381,7 +391,6 @@ extension ThreadController {
         tableView.alpha == 0.5 ? tableView.alpha = 1: nil
 
         selectThreadLabel.isHidden = true
-
         progressAIV.isHidden = false
         progressAIV.startAnimating()
 

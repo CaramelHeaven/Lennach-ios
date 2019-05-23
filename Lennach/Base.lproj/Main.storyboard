@@ -433,12 +433,6 @@
                                 <rect key="frame" x="177.5" y="278.5" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пожалуйста, выберите тред" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXY-Oe-h8j">
-                                <rect key="frame" x="74" y="278" width="227" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-ei-gZp">
                                 <rect key="frame" x="0.0" y="20" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -588,12 +582,10 @@
                             <constraint firstItem="fBv-Yk-Rbi" firstAttribute="centerY" secondItem="nVh-KP-VSE" secondAttribute="centerY" id="4Uf-1h-7h1"/>
                             <constraint firstItem="h3O-jU-uMa" firstAttribute="trailing" secondItem="Xuo-Mz-W1N" secondAttribute="trailing" constant="8" id="AUm-jQ-VfC"/>
                             <constraint firstItem="h3O-jU-uMa" firstAttribute="trailing" secondItem="hCe-ei-gZp" secondAttribute="trailing" id="Kbh-SE-poC"/>
-                            <constraint firstItem="AXY-Oe-h8j" firstAttribute="centerX" secondItem="nVh-KP-VSE" secondAttribute="centerX" id="LlX-5p-io4"/>
                             <constraint firstItem="3MK-v3-Ny1" firstAttribute="top" secondItem="h3O-jU-uMa" secondAttribute="top" constant="8" id="LxD-8M-R8B"/>
                             <constraint firstItem="hCe-ei-gZp" firstAttribute="leading" secondItem="h3O-jU-uMa" secondAttribute="leading" id="Ptg-WU-WYm"/>
                             <constraint firstItem="h3O-jU-uMa" firstAttribute="bottom" secondItem="hCe-ei-gZp" secondAttribute="bottom" id="Tiu-cu-ZEk"/>
                             <constraint firstItem="h3O-jU-uMa" firstAttribute="bottom" secondItem="Xuo-Mz-W1N" secondAttribute="bottom" constant="14" id="Tmz-1V-zSn"/>
-                            <constraint firstItem="AXY-Oe-h8j" firstAttribute="centerY" secondItem="nVh-KP-VSE" secondAttribute="centerY" id="akm-xB-7RV"/>
                             <constraint firstItem="h3O-jU-uMa" firstAttribute="trailing" secondItem="3MK-v3-Ny1" secondAttribute="trailing" constant="8" id="bTP-Np-8zu"/>
                             <constraint firstItem="fBv-Yk-Rbi" firstAttribute="centerX" secondItem="nVh-KP-VSE" secondAttribute="centerX" id="nt3-C9-wgS"/>
                         </constraints>
@@ -602,7 +594,6 @@
                     <connections>
                         <outlet property="favouriteBtn" destination="3MK-v3-Ny1" id="E2V-c9-1CI"/>
                         <outlet property="progressAIV" destination="fBv-Yk-Rbi" id="SPg-ZD-mW0"/>
-                        <outlet property="selectThreadLabel" destination="AXY-Oe-h8j" id="ohD-fv-j55"/>
                         <outlet property="skipToBottomBtn" destination="Xuo-Mz-W1N" id="oia-7c-zfE"/>
                         <outlet property="tableView" destination="hCe-ei-gZp" id="UeB-Yz-kOV"/>
                     </connections>

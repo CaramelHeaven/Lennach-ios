@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum VideoPlaying {
+    case webm, mp4
+}
+
 class VideoPlayerContainer: NSObject {
 
     override init() {
@@ -34,7 +38,7 @@ class VideoPlayerContainer: NSObject {
         return view
     }()
 
-    private let webmPlayer: WebmVideoPlayer = {
+    private var webmPlayer: WebmVideoPlayer? = {
         let view = WebmVideoPlayer()
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -46,10 +50,13 @@ class VideoPlayerContainer: NSObject {
     var currentVideoUrl = "" {
         didSet {
             if currentVideoUrl.contains(".webm") {
-                webmPlayer.webmUrl = currentVideoUrl
+                webmPlayer!.webmUrl = currentVideoUrl
             }
         }
     }
+
+    private var currentFormatPlaying: VideoPlaying!
+    var videoName = ""
 
     func redrawingVideoViews(currentSize: CGSize) {
         blackView.frame = CGRect(x: 0, y: 0, width: currentSize.width, height: currentSize.height)
@@ -66,7 +73,6 @@ class VideoPlayerContainer: NSObject {
     private let videoButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
 
         return view
     }()
@@ -122,7 +128,15 @@ class VideoPlayerContainer: NSObject {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .white
+        view.text = "fuck you"
 
+        return view
+    }()
+
+    private let toolbarButtonClose: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .purple
         return view
     }()
 
@@ -136,33 +150,46 @@ class VideoPlayerContainer: NSObject {
 
             //added toolbar
             blackView.addSubview(toolbarView)
+            toolbarView.addSubview(toolbarButtonClose)
+            toolbarView.addSubview(toolbarTitleLabel)
+
             NSLayoutConstraint.activate([
                 toolbarView.topAnchor.constraint(equalTo: blackView.topAnchor),
                 toolbarView.leadingAnchor.constraint(equalTo: blackView.leadingAnchor),
                 toolbarView.trailingAnchor.constraint(equalTo: blackView.trailingAnchor),
-                toolbarView.heightAnchor.constraint(equalToConstant: 40)
+                toolbarView.heightAnchor.constraint(equalToConstant: 40),
+
+                toolbarButtonClose.leadingAnchor.constraint(equalTo: toolbarView.leadingAnchor),
+                toolbarButtonClose.widthAnchor.constraint(equalToConstant: 34),
+                toolbarButtonClose.centerYAnchor.constraint(equalTo: toolbarView.centerYAnchor),
+                toolbarButtonClose.heightAnchor.constraint(equalToConstant: 34),
+
+                toolbarTitleLabel.leadingAnchor.constraint(equalTo: toolbarButtonClose.trailingAnchor, constant: 16),
+                toolbarTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+                toolbarTitleLabel.centerYAnchor.constraint(equalTo: toolbarView.centerYAnchor),
+                toolbarTitleLabel.heightAnchor.constraint(equalToConstant: 20)
                 ])
+            toolbarButtonClose.addTarget(self, action: #selector(closeVideoPlayer), for: .touchUpInside)
 
             if currentVideoUrl.contains(".webm") {
-                blackView.addSubview(webmPlayer)
+                currentFormatPlaying = .webm
+                blackView.addSubview(webmPlayer!)
                 print("videoPlayerView added: \(currentVideoUrl)")
                 NSLayoutConstraint.activate([
-                    webmPlayer.centerXAnchor.constraint(equalTo: blackView.centerXAnchor),
-                    webmPlayer.centerYAnchor.constraint(equalTo: blackView.centerYAnchor),
-                    webmPlayer.heightAnchor.constraint(equalToConstant: blackView.bounds.height / 3),
-                    webmPlayer.widthAnchor.constraint(equalToConstant: blackView.bounds.width - 10)
+                    webmPlayer!.centerXAnchor.constraint(equalTo: blackView.centerXAnchor),
+                    webmPlayer!.centerYAnchor.constraint(equalTo: blackView.centerYAnchor),
+                    webmPlayer!.heightAnchor.constraint(equalToConstant: blackView.bounds.height / 3),
+                    webmPlayer!.widthAnchor.constraint(equalToConstant: blackView.bounds.width - 10)
                     ])
 
                 UIView.animate(withDuration: 0.3, animations: {
                     self.blackView.alpha = 1
                     self.backgroundBlackView.alpha = 1
                 }) { _ in
-                    self.webmPlayer.playerView.play()
+                    self.webmPlayer!.playerView.play()
                 }
             } else if currentVideoUrl.contains(".mp4") {
-
-                //blackView.addSubview(mp4Player)
-
+                currentFormatPlaying = .mp4
                 blackView.addSubview(containerForMp4Player)
 
                 NSLayoutConstraint.activate([
@@ -207,8 +234,8 @@ class VideoPlayerContainer: NSObject {
 
                         self.videoButton.leadingAnchor.constraint(equalTo: self.backgroundContentView.leadingAnchor, constant: 4),
                         self.videoButton.centerYAnchor.constraint(equalTo: self.backgroundContentView.centerYAnchor),
-                        self.videoButton.widthAnchor.constraint(equalToConstant: 30),
-                        self.videoButton.heightAnchor.constraint(equalToConstant: 30),
+                        self.videoButton.widthAnchor.constraint(equalToConstant: 38),
+                        self.videoButton.heightAnchor.constraint(equalToConstant: 38),
 
                         self.currentLengthLabel.leadingAnchor.constraint(equalTo: self.videoButton.trailingAnchor),
                         self.currentLengthLabel.centerYAnchor.constraint(equalTo: self.backgroundContentView.centerYAnchor),
@@ -244,19 +271,23 @@ class VideoPlayerContainer: NSObject {
     @objc func buttonStopOrPlay() {
         mp4Player?.handlerButtonClick()
 
-        //TODO: change button image
         if mp4Player.isStopPlaying {
-
+            videoButton.setImage(UIImage(named: "IconPause"), for: .normal)
         } else {
-
+            videoButton.setImage(UIImage(named: "IconPlay"), for: .normal)
         }
     }
 
-    @objc func dismissView() {
-        UIView.animate(withDuration: 0.3, animations: {
+    @objc func closeVideoPlayer() {
+        UIView.animate(withDuration: 0.4, animations: {
             self.blackView.alpha = 0
             self.backgroundBlackView.alpha = 0
         }) { _ in
+//            if self.currentFormatPlaying == .mp4 {
+//                self.mp4Player.player?.pause()
+//            } else {
+//                self.webmPlayer.pause
+//            }
             self.blackView.removeFromSuperview()
             self.backgroundBlackView.removeFromSuperview()
         }

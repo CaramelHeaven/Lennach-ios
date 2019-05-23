@@ -14,7 +14,7 @@ class RemoteMainMapper {
         var board = Board()
 
         for item in response.threads![0..<40] {
-            let usenet = Usenet(threadNum: item.num!, threadMsg: item.comment!, thumbnail: item.files![0].path!, date: item.date!)
+            let usenet = Usenet(threadNum: item.num!, threadMsg: item.comment!, thumbnail: item.files![0].path!, date: item.date!, thumbnailName: item.files![0].displayname!)
 
             board.usenets.append(usenet)
         }

@@ -74,12 +74,12 @@ extension BaseController: BottomListenable {
     func selectedItem(_ position: Int) {
         switch position {
         case 0:
-            bottomSheetNavigation = NavigationContainer()
-            bottomSheetNavigation!.tableController!.didMove(toParent: self)
-            bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
-            bottomSheetNavigation?.mainUIBottomSheet!.navigationClosed = self
-
-            bottomSheetNavigation!.showLayout()
+            self.bottomSheetNavigation = NavigationContainer()
+            self.bottomSheetNavigation!.tableController!.didMove(toParent: self)
+            self.bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
+            self.bottomSheetNavigation?.mainUIBottomSheet!.navigationClosed = self
+            self.bottomSheetNavigation!.showLayout()
+            
             break
         case 1:
             manageStateContainer(currentShowContainer: homeContainer)

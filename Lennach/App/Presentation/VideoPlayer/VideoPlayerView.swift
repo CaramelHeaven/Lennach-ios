@@ -22,6 +22,7 @@ class WebmVideoPlayer: UIView, OGVPlayerDelegate {
     func ogvPlayerDidPlay(_ sender: OGVPlayerView!) {
         print("play")
     }
+    
     func ogvPlayerDidPause(_ sender: OGVPlayerView!) {
         print("playse")
         playerView.pause()

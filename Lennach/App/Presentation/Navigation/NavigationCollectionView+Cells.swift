@@ -95,7 +95,7 @@ class ItemCellAdd: UICollectionViewCell {
 
 class NavigationCollectionViewController: UICollectionViewController, BottomSheet, UICollectionViewDelegateFlowLayout {
     var bottomSheetDelegate: BottomSheetDelegate?
-    private let maxVisibleContentHeight: CGFloat = 400
+    private let maxVisibleContentHeight: CGFloat = 340
     private var boardsData = Array<BoardNavigatable>()
     weak var boardSelectable: BoardNavigationSelectable?
 
@@ -109,7 +109,10 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
 
-        showBoardsFromDb()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            print("SHOW BOARDS FROM DB")
+            self.showBoardsFromDb()
+        }
     }
 
     private func showBoardsFromDb() {
@@ -182,9 +185,8 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("viewDidLayout: \(collectionView.contentOffset)")
         bottomSheetDelegate?.bottomSheetScrolling(self, didScrollTO: collectionView!.contentOffset)
-        print("collection view: \(collectionView.contentSize), bounds height: \(collectionView.bounds.height)")
+
         if collectionView!.contentSize.height < collectionView!.bounds.height {
             collectionView!.contentSize.height = collectionView!.bounds.height
         }

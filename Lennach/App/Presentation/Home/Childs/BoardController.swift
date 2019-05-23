@@ -60,7 +60,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.threadImage!.image = nil
 
             cell.videoClicker = { [self] in
-                self.videoTransition(indexPath: indexPath)
+                self.videoTransition(indexPath: indexPath, videoName: usenet.thumbnailName)
             }
 
             //set thumbnail from first frame
@@ -81,7 +81,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         } else {
             Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
-
             cell.initVideoOrImageClicker(state: "image")
 
             cell.imageClicker = { [self] in
@@ -106,8 +105,10 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         boardDelegatable?.itemTapped(numThread: currentThread)
     }
 
-    func videoTransition(indexPath path: IndexPath) {
+    func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer.currentVideoUrl = Constants.baseUrl + boardData.usenets[path.row].thumbnail
+        
+        
         videoContainer.showVideo()
     }
 
