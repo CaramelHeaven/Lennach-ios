@@ -24,7 +24,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     var isOpeningNewThread = false
     var currentThread = "" { willSet { isOpeningNewThread = newValue == currentThread } } //used inside HomeController for determinate - is new thread opening or not
 
-    let videoContainer = VideoPlayerContainer()
+    private var videoContainer: VideoPlayerContainer!
 
     weak var boardDelegatable: BoardTapDelegatable?
 
@@ -43,7 +43,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return boardData.usenets.count
     }
-    
+
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath!) as! BoardTableViewCell
         cell.threadImage!.kf.cancelDownloadTask()
@@ -87,7 +87,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
             }
         }
-        
+
         let lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
 
         if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
@@ -106,18 +106,23 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     func videoTransition(indexPath path: IndexPath, videoName: String) {
+        videoContainer = VideoPlayerContainer()
+
         videoContainer.currentVideoUrl = Constants.baseUrl + boardData.usenets[path.row].thumbnail
-        
+        videoContainer.currentVideoName = boardData.usenets[path.row].thumbnailName
         
         videoContainer.showVideo()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        videoContainer.redrawingVideoViews(currentSize: size)
+
+        if videoContainer != nil {
+            videoContainer.redrawingVideoViews(currentSize: size)
+        }
     }
 
-    //MARK: make image transition animation
+    //MARK: image transition animation
     func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView?) {
         guard let cell = tableView.cellForRow(at: path) as? BoardTableViewCell else { return }
 

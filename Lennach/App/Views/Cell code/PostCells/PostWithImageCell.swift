@@ -20,11 +20,33 @@ class PostWithImageCell: UITableViewCell, AnswerGestureGrantable {
 
     var gestureCompletable: CellGestureCompletable?
     var clickable: ReplyClickable?
+    
+    //MARK: image click listener
+    var imageClicker: (() -> Void)? = nil
+    var videoClicker: (() -> Void)? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
         imagePost.layer.cornerRadius = 8
         btnReplies.addTarget(self, action: #selector(actionReplyClick), for: .touchUpInside)
+    }
+    
+    func initVideoOrImageClicker(state: String) {
+        if state == "video" {
+            imagePost.isUserInteractionEnabled = true
+            imagePost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapVideo)))
+        } else if state == "image" {
+            imagePost.isUserInteractionEnabled = true
+            imagePost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImage)))
+        }
+    }
+    
+    @objc private func tapImage() {
+        imageClicker?()
+    }
+    
+    @objc private func tapVideo() {
+        videoClicker?()
     }
 
     @objc func actionReplyClick() {

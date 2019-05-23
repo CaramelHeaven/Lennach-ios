@@ -21,10 +21,10 @@ class VideoPlayerContainer: NSObject {
     deinit {
         print("VideoPlayerContainer deInit")
     }
-
+    
     private let backgroundBlackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.9)
         view.alpha = 0
 
         return view
@@ -54,9 +54,14 @@ class VideoPlayerContainer: NSObject {
             }
         }
     }
+    
+    var currentVideoName = "" {
+        didSet {
+            toolbarTitleLabel.text = currentVideoName
+        }
+    }
 
     private var currentFormatPlaying: VideoPlaying!
-    var videoName = ""
 
     func redrawingVideoViews(currentSize: CGSize) {
         blackView.frame = CGRect(x: 0, y: 0, width: currentSize.width, height: currentSize.height)
@@ -73,6 +78,7 @@ class VideoPlayerContainer: NSObject {
     private let videoButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.setImage(UIImage(named: "IconPause"), for: .normal)
 
         return view
     }()
@@ -136,7 +142,8 @@ class VideoPlayerContainer: NSObject {
     private let toolbarButtonClose: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .purple
+        view.setImage(UIImage(named: "IconBack"), for: .normal)
+
         return view
     }()
 
@@ -159,13 +166,13 @@ class VideoPlayerContainer: NSObject {
                 toolbarView.trailingAnchor.constraint(equalTo: blackView.trailingAnchor),
                 toolbarView.heightAnchor.constraint(equalToConstant: 40),
 
-                toolbarButtonClose.leadingAnchor.constraint(equalTo: toolbarView.leadingAnchor),
-                toolbarButtonClose.widthAnchor.constraint(equalToConstant: 34),
+                toolbarButtonClose.leadingAnchor.constraint(equalTo: toolbarView.leadingAnchor, constant: 8),
+                toolbarButtonClose.widthAnchor.constraint(equalToConstant: 30),
                 toolbarButtonClose.centerYAnchor.constraint(equalTo: toolbarView.centerYAnchor),
-                toolbarButtonClose.heightAnchor.constraint(equalToConstant: 34),
+                toolbarButtonClose.heightAnchor.constraint(equalToConstant: 30),
 
                 toolbarTitleLabel.leadingAnchor.constraint(equalTo: toolbarButtonClose.trailingAnchor, constant: 16),
-                toolbarTitleLabel.widthAnchor.constraint(equalToConstant: 100),
+                toolbarTitleLabel.widthAnchor.constraint(equalToConstant: 200),
                 toolbarTitleLabel.centerYAnchor.constraint(equalTo: toolbarView.centerYAnchor),
                 toolbarTitleLabel.heightAnchor.constraint(equalToConstant: 20)
                 ])
@@ -272,9 +279,9 @@ class VideoPlayerContainer: NSObject {
         mp4Player?.handlerButtonClick()
 
         if mp4Player.isStopPlaying {
-            videoButton.setImage(UIImage(named: "IconPause"), for: .normal)
-        } else {
             videoButton.setImage(UIImage(named: "IconPlay"), for: .normal)
+        } else {
+            videoButton.setImage(UIImage(named: "IconPause"), for: .normal)
         }
     }
 
@@ -283,11 +290,11 @@ class VideoPlayerContainer: NSObject {
             self.blackView.alpha = 0
             self.backgroundBlackView.alpha = 0
         }) { _ in
-//            if self.currentFormatPlaying == .mp4 {
-//                self.mp4Player.player?.pause()
-//            } else {
-//                self.webmPlayer.pause
-//            }
+            if self.currentFormatPlaying == .mp4 {
+                self.mp4Player.player?.pause()
+            } else {
+                self.webmPlayer?.playerView.pause()
+            }
             self.blackView.removeFromSuperview()
             self.backgroundBlackView.removeFromSuperview()
         }

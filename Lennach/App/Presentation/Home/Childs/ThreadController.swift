@@ -36,6 +36,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private var dataThread: [Comment] = []
     var activateBoardGesture = false
     private var answerView: AnswerViewContainer?
+    private var videoContainer: VideoPlayerContainer!
 
     //for opening reply container
     private let containerView: UIView = {
@@ -221,9 +222,33 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.clickable = self
             cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
 
-            //load picture
-            Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+            //IMAGE OR VIDEO CLICKABLE
+            if post.files![0].path.contains(".webm") || post.files![0].path.contains(".mp4") {
+                if post.files![0].path.contains(".mp4") {
+                    DispatchQueue.global().async {
+                        let asset = AVAsset(url: URL(string: Constants.baseUrl + post.files![0].path)!)
+                        let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                        assetImgGenerate.appliesPreferredTrackTransform = true
+                        let time = CMTimeMake(value: 1, timescale: 2)
+                        let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
 
+                        if img != nil {
+                            let frameImg = UIImage(cgImage: img!)
+                            DispatchQueue.main.async(execute: {
+                                cell.imagePost.image = frameImg
+                            })
+                        }
+                    }
+                }
+            } else {
+                //load picture
+                Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+                cell.initVideoOrImageClicker(state: "image")
+
+                cell.imageClicker = { [self] in
+                    self.makeTransition(indexPath: indexPath, imageTapped: cell.imagePost)
+                }
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
@@ -261,6 +286,29 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         return view
     }()
+    
+    private  func videoTransition(indexPath path: IndexPath, videoName: String) {
+        videoContainer = VideoPlayerContainer()
+        
+        videoContainer.currentVideoUrl = Constants.baseUrl + dataThread[path.row].files![0].path
+        videoContainer.currentVideoName = dataThread[path.row].files![0].displayName
+        
+        videoContainer.showVideo()
+    }
+
+//MARK: image transition animation
+    private func makeTransition(indexPath path: IndexPath, imageTapped: UIImageView) {
+        guard let cell = tableView.cellForRow(at: path) as? PostWithImageCell else { return }
+
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = cell.imagePost
+        }
+
+        let controller = ImageController(configuration: configuration)
+        controller.urlThumbnail = dataThread[path.row].files![0].path
+
+        present(controller, animated: true, completion: nil)
+    }
 }
 
 private var replyController: UIViewController?
