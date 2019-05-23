@@ -15,18 +15,20 @@ protocol BoardNavigationSelectable: class {
 class ItemCell: UICollectionViewCell {
 
     fileprivate let btnBoard: UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.cornerRadius = 4
-        btn.layer.shadowOffset = CGSize(width: 0, height: 0)
-        btn.layer.shadowRadius = 4
-        btn.layer.shadowOpacity = 4
-        btn.layer.masksToBounds = false
-        //add view and put this btn inside created view for shadow making
-        btn.layer.borderColor = UIColor.white.cgColor
-        btn.layer.shadowColor = UIColor.black.cgColor
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
 
-        return btn
+        view.layer.cornerRadius = 4
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 4
+        view.backgroundColor = UIColor(displayP3Red: 214, green: 214, blue: 214, alpha: 1)
+        view.layer.masksToBounds = false
+        //add view and put this btn inside created view for shadow making
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+
+        return view
     }()
 
     fileprivate let labelBoardName: UILabel = {
@@ -51,7 +53,6 @@ class ItemCell: UICollectionViewCell {
         addSubview(btnBoard)
         addSubview(labelBoardName)
 
-        // btnBoard.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         btnBoard.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         btnBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4).isActive = true
         btnBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4).isActive = true
@@ -65,12 +66,23 @@ class ItemCell: UICollectionViewCell {
 class ItemCellAdd: UICollectionViewCell {
 
     fileprivate let btnAddBoard: UIButton = {
-        let btn = UIButton()
-        btn.backgroundColor = UIColor.red
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.layer.cornerRadius = 4
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.setImage(UIImage(named: "IconAdd"), for: .normal)
+        view.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        view.layer.cornerRadius = 4
+        view.layer.shadowOffset = CGSize(width: 0, height: 1)
+        view.layer.shadowRadius = 4
+        view.layer.shadowOpacity = 4
+        view.backgroundColor = UIColor(displayP3Red: 214, green: 214, blue: 214, alpha: 1)
+        view.layer.masksToBounds = false
 
-        return btn
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        
+        return view
     }()
 
     override init(frame: CGRect) {
@@ -85,7 +97,6 @@ class ItemCellAdd: UICollectionViewCell {
     private func setupViews() {
         addSubview(btnAddBoard)
 
-        // btnBoard.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         btnAddBoard.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         btnAddBoard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4).isActive = true
         btnAddBoard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4).isActive = true
@@ -95,7 +106,7 @@ class ItemCellAdd: UICollectionViewCell {
 
 class NavigationCollectionViewController: UICollectionViewController, BottomSheet, UICollectionViewDelegateFlowLayout {
     var bottomSheetDelegate: BottomSheetDelegate?
-    private let maxVisibleContentHeight: CGFloat = 340
+    private let maxVisibleContentHeight: CGFloat = 280
     private var boardsData = Array<BoardNavigatable>()
     weak var boardSelectable: BoardNavigationSelectable?
 
@@ -105,6 +116,10 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
         collectionView.register(ItemCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(ItemCellAdd.self, forCellWithReuseIdentifier: "itemCellAdd")
         collectionView.contentInset.top = maxVisibleContentHeight
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 10)
+        collectionView!.collectionViewLayout = layout
 
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
@@ -153,6 +168,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCellAdd", for: indexPath) as! ItemCellAdd
             cell.backgroundColor = .clear
             cell.btnAddBoard.backgroundColor = .clear
+            cell.btnAddBoard.setImage(UIImage(), for: .normal)
 
             return cell
         default:
@@ -172,7 +188,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 68, height: 60)
+        return CGSize(width: 62, height: 54)
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -180,7 +196,7 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 6
     }
 
     override func viewDidLayoutSubviews() {
