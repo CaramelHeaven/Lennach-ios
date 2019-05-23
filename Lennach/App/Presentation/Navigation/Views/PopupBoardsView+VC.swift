@@ -85,6 +85,7 @@ class PopupBoardView: NSObject, ButtonsClickable {
 
 
     func btnClicked(data: Any?) {
+        print("dat: \(data)")
         if data != nil {
             LocalRepository.instance.provideSaveBoardNavigation(array: data as! [BoardDescription]) { (result) in
                 if result {
@@ -109,9 +110,10 @@ class PopupBoardView: NSObject, ButtonsClickable {
     }
 }
 
-class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    private var boardsDescriptionArray: [BoardDescription] = []
+    private var baseData: [BoardDescription] = []
+    private var filteringData: [BoardDescription] = []
     private var tableView: UITableView!
     private var containerHeightMax: CGFloat = 430 //FIXME: fix that
     fileprivate var btnClickable: ButtonsClickable?
@@ -158,29 +160,49 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         return label
     }()
 
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+
+        searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        // searchBar.isTranslucent = false
+        //searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
+
+        return searchBar
+    }()
+
     deinit {
         print("viewController table deINIT")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("frame: \(view.frame)")
-        tableView = UITableView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 430)) // 568 - 36 - 36 - 30 (height menu bar) and esho - 30 for buttons
+        tableView = UITableView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: 400)) // 568 - 36 - 36 - 30 (height menu bar) and esho - 30 for buttons
 
         tableView.register(ItemBoardCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
         tableView.delegate = self
         self.view.addSubview(tableView)
+
         // tableView.translatesAutoresizingMaskIntoConstraints = false
         //tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 30)
 
         self.view.addSubview(menuBar)
+        self.view.addSubview(searchBar)
+
         NSLayoutConstraint.activate([
             menuBar.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
             menuBar.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
             menuBar.topAnchor.constraint(equalTo: view.topAnchor),
-            menuBar.heightAnchor.constraint(equalToConstant: CGFloat(30))
+            menuBar.heightAnchor.constraint(equalToConstant: CGFloat(30)),
+
+            searchBar.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: -10),
+            searchBar.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
+            searchBar.topAnchor.constraint(equalTo: menuBar.bottomAnchor),
+            searchBar.heightAnchor.constraint(equalToConstant: 30)
             ])
 
         view.addSubview(titleMenuLabel)
@@ -209,15 +231,26 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         //request to data from network
         MainRepository.instance.provideAllBoards { (result, data) in
             if result {
-                self.boardsDescriptionArray = data as! [BoardDescription]
+                self.baseData = data as! [BoardDescription]
+                self.filteringData = self.baseData
 
                 self.tableView.reloadData()
             }
         }
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteringData = baseData
+            tableView.reloadData()
+        } else {
+            filteringData = baseData.filter { $0.id.contains(searchText.lowercased()) }
+            tableView.reloadData()
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boardsDescriptionArray.count
+        return filteringData.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -228,9 +261,9 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! ItemBoardCell
         let index = indexPath.row
 
-        cell.idLabel.text = boardsDescriptionArray[index].id
-        cell.descriptionLabel.text = boardsDescriptionArray[index].name
-        cell.switchView.setOn(boardsDescriptionArray[index].isSelected, animated: false)
+        cell.idLabel.text = filteringData[index].id
+        cell.descriptionLabel.text = filteringData[index].name
+        cell.switchView.setOn(filteringData[index].isSelected, animated: false)
 
         cell.switchView.addTarget(self, action: #selector(switchListener(_:)), for: UIControl.Event.valueChanged)
 
@@ -246,25 +279,33 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isOn = !boardsDescriptionArray[indexPath.row].isSelected
-        boardsDescriptionArray[indexPath.row].isSelected = isOn
-        (tableView.cellForRow(at: indexPath) as! ItemBoardCell).switchView.setOn(boardsDescriptionArray[indexPath.row].isSelected, animated: true)
+        let isOn = !filteringData[indexPath.row].isSelected
+        filteringData[indexPath.row].isSelected = isOn
+        (tableView.cellForRow(at: indexPath) as! ItemBoardCell).switchView.setOn(filteringData[indexPath.row].isSelected, animated: true)
+
+        if let index = baseData.firstIndex(where: { $0.id == filteringData[indexPath.row].id }) {
+            baseData[index].isSelected = isOn
+        }
 
         addOrRemoveObjectFromAddedBoards(flag: isOn, index: indexPath)
     }
 
     @objc private func switchListener(_ sender: UISwitch) {
         let index = tableView.indexPath(for: sender.superview as! ItemBoardCell)!
-        boardsDescriptionArray[index.row].isSelected = sender.isOn
+
+        if let innerIndex = baseData.firstIndex(where: { $0.id == filteringData[index.row].id }) {
+            baseData[innerIndex].isSelected = sender.isOn
+            filteringData[index.row].isSelected = baseData[innerIndex].isSelected
+        }
 
         addOrRemoveObjectFromAddedBoards(flag: sender.isOn, index: index)
     }
 
     private func addOrRemoveObjectFromAddedBoards(flag: Bool, index: IndexPath) {
         if flag {
-            addedBoards.append(boardsDescriptionArray[index.row])
+            addedBoards.append(filteringData[index.row])
         } else {
-            addedBoards.removeAll(where: { $0.id == boardsDescriptionArray[index.row].id })
+            addedBoards.removeAll(where: { $0.id == (baseData.filter { $0.id == filteringData[index.row].id })[0].id })
         }
     }
 }

@@ -63,8 +63,8 @@ class MainRepository {
     }
 
     func provideSavingThreadToFavourite(comments: [Comment], completion: @escaping (Bool) -> Void) {
-        //FIX: comment is empty, because we used modern comment
-        LocalRepository.instance.addToFavouriteThread(boardName: currentBoard, numThread: threadNum, imageUrl: comments[0].files![0].path, quantityPosts: comments.count, opMessage: comments[0].comment) { result in
+        //FIXME: comment is empty, because we used modern comment
+        LocalRepository.instance.provideAddToFavouriteThread(boardName: currentBoard, numThread: threadNum, imageUrl: comments[0].files![0].path, quantityPosts: comments.count, opMessage: comments[0].comment) { result in
             completion(result)
         }
     }
@@ -76,6 +76,12 @@ class MainRepository {
             } else {
                 completion(nil)
             }
+        }
+    }
+
+    func provideDeleteBoardFromNavigation(_ boardId: String, completion: @escaping (Bool) -> Void) {
+        LocalRepository.instance.provideRemoveBoardFromNavigation(idBoard: boardId) { result in
+            completion(result)
         }
     }
 }

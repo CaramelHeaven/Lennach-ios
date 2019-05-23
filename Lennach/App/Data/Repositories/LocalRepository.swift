@@ -15,7 +15,7 @@ class LocalRepository {
 
     private init() { }
 
-    func addToFavouriteThread(boardName: String, numThread: String, imageUrl: String, quantityPosts: Int, opMessage: String, completion: @escaping (Bool) -> Void) {
+    func provideAddToFavouriteThread(boardName: String, numThread: String, imageUrl: String, quantityPosts: Int, opMessage: String, completion: @escaping (Bool) -> Void) {
         let savedThread = ThreadFavourite(boardName: boardName, numThread: numThread, imageUrl: imageUrl, quantityPosts: quantityPosts, opMessage: opMessage)
         persistentContainer.performBackgroundTask { childContext in
             var favouriteThread = FavouriteThreadDb(context: childContext)
@@ -36,7 +36,7 @@ class LocalRepository {
         }
     }
 
-    func removeFromFavouriteThread(idThread: String) {
+    func provideRemoveFromFavouriteThread(idThread: String) {
 
     }
 
@@ -60,6 +60,34 @@ class LocalRepository {
             try childContext.execute(asynsRequest)
         } catch let error {
             print("error: \(error)")
+        }
+    }
+
+    func provideRemoveBoardFromNavigation(idBoard: String, completion: @escaping (Bool) -> Void) {
+        persistentContainer.performBackgroundTask { childContext in
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "BoardDb")
+            let predicate = NSPredicate(format: "idName == %@", idBoard)
+            
+            request.predicate = predicate
+            
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+            deleteRequest.resultType = .resultTypeObjectIDs
+            
+            do {
+                // Executes batch
+                let result = try childContext.execute(deleteRequest) as? NSBatchDeleteResult
+                
+                // Retrieves the IDs deleted
+                guard let objectIDs = result?.result as? [NSManagedObjectID] else { return }
+                
+                // Updates the main context
+                let changes = [NSDeletedObjectsKey: objectIDs]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [childContext])
+                completion(true)
+            } catch {
+                completion(false)
+                fatalError("Failed to execute request: \(error)")
+            }
         }
     }
 
