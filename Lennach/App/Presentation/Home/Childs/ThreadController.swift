@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 protocol ThreadDelegate: class {
     func translateXState(threadX: CGFloat)
@@ -37,6 +38,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     var activateBoardGesture = false
     private var answerView: AnswerViewContainer?
     private var videoContainer: VideoPlayerContainer!
+    private var replyController: UIViewController?
 
     //for opening reply container
     private let containerView: UIView = {
@@ -223,6 +225,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.labelNumberAndDate.text = "№ " + post.num + ", " + post.date
 
             //IMAGE OR VIDEO CLICKABLE
+            cell.imagePost.image = nil
             if post.files![0].path.contains(".webm") || post.files![0].path.contains(".mp4") {
                 if post.files![0].path.contains(".mp4") {
                     DispatchQueue.global().async {
@@ -286,13 +289,13 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         return view
     }()
-    
-    private  func videoTransition(indexPath path: IndexPath, videoName: String) {
+
+    private func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer = VideoPlayerContainer()
-        
+
         videoContainer.currentVideoUrl = Constants.baseUrl + dataThread[path.row].files![0].path
         videoContainer.currentVideoName = dataThread[path.row].files![0].displayName
-        
+
         videoContainer.showVideo()
     }
 
@@ -311,7 +314,6 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 }
 
-private var replyController: UIViewController?
 extension ThreadController: ReplyClickable {
     func click(cell: UITableViewCell) {
 
@@ -351,9 +353,9 @@ extension ThreadController: ReplyClickable {
             self.containerView.alpha = 1
             self.blackView.alpha = 1
         }) { _ in
-            replyController = self.storyboard?.instantiateViewController(withIdentifier: "ReplyController")
+            self.replyController = self.storyboard?.instantiateViewController(withIdentifier: "ReplyController")
 
-            if let controller = ((replyController) as? ReplyController) {
+            if let controller = ((self.replyController) as? ReplyController) {
                 self.addChild(controller)
                 controller.view.translatesAutoresizingMaskIntoConstraints = false
                 self.containerView.addSubview(controller.view)
@@ -381,7 +383,7 @@ extension ThreadController: ReplyButtonClosable {
             self.containerView.alpha = 0
             self.blackView.alpha = 0
         }) { _ in
-            replyController?.removeFromParent()
+            self.replyController?.removeFromParent()
             self.containerView.removeFromSuperview()
             self.blackView.removeFromSuperview()
         }
@@ -420,8 +422,12 @@ extension ThreadController: UIGestureRecognizerDelegate {
 //MARK: Favourite and scroll to bottom buttons action
 extension ThreadController {
     @objc private func actionFavouriteBtn(_ sender: UIButton) {
-//        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
-//            print("RESULT: \(result)")
+        MainRepository.instance.provideSavingThreadToFavourite(comments: dataThread) { result in
+            if result {
+                let toast = Toast(text: "Добавлено!", delay: 0, duration: Delay.short)
+                toast.show()
+            }
+        }
     }
 
     @objc private func actionSkipToBottomBtn(_ sender: UIButton) {
@@ -434,7 +440,7 @@ extension ThreadController {
 
 //MARK: Load comments from network
 extension ThreadController {
-    func callbackFromTapAction(numThread: String) {
+    func callbackFromTapAction(board: String, numThread: String) {
         tableView.isHidden = true
         tableView.alpha == 0.5 ? tableView.alpha = 1: nil
 
@@ -444,7 +450,8 @@ extension ThreadController {
 
         dataThread.removeAll()
         self.tableView.reloadData()
-        MainRepository.instance.provideMessagesByThread(numThread) { (result, objects, error) in
+        
+        MainRepository.instance.provideMessagesByThread(board, numThread) { (result, objects, error) in
             self.progressAIV.isHidden = true
             self.progressAIV.stopAnimating()
             if result {

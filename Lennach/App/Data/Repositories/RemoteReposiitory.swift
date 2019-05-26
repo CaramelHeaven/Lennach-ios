@@ -34,7 +34,7 @@ class RemoteRepository {
 
     func getCommentsByThread(boardName name: String, threadNum: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
         let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_thread&board=" + name + "&thread=" + threadNum + "&post=0"
-        print("URL POSTS: \(url)")
+
         Alamofire.request(url).responseJSON { response in
             do {
                 let data = try JSONDecoder().decode([ThreadResponse].self, from: response.data!)
@@ -56,7 +56,6 @@ class RemoteRepository {
     }
 
     func getAllBoards(completion: @escaping (Bool, Any?) -> Void) {
-        //http(s)://2ch.hk/makaba/mobile.fcgi?task=get_boards
         let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_boards"
         Alamofire.request(url).responseJSON { response in
             do {
@@ -67,6 +66,18 @@ class RemoteRepository {
             } catch {
                 completion(false, nil)
                 print(error)
+            }
+        }
+    }
+
+    func getUpdatingMsgsValueInThread(boardName name: String, threadNum: String, completion: @escaping (Int) -> Void) {
+        let url = Constants.baseUrl + "makaba/mobile.fcgi?task=get_thread&board=" + name + "&thread=" + threadNum + "&post=0"
+        Alamofire.request(url).responseJSON { response in
+            do {
+                let data = try JSONDecoder().decode([ThreadResponse].self, from: response.data!)
+                completion(data.count)
+            } catch {
+                print("error: \(error)")
             }
         }
     }

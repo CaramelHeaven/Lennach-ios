@@ -18,12 +18,6 @@ class BaseController: UIViewController {
     private var homeVC: HomeController?
     private var favouriteVC: FavouriteController!
     private var bottomSheetNavigation: NavigationContainer?
-    // private let navigationBoard = NavigationExpandView()
-
-    //FIXME: find answer in this bug
-//    public override var prefersStatusBarHidden: Bool {
-//        return true
-//    }
 
     let bottomMenu: BottomMenuView = {
         let menu = BottomMenuView()
@@ -31,7 +25,6 @@ class BaseController: UIViewController {
 
         return menu
     }()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +56,8 @@ class BaseController: UIViewController {
             break
         case let favouriteVC as FavouriteController:
             self.favouriteVC = favouriteVC
+            self.favouriteVC.clickableFavourite = self
+            
             break
         default:
             break
@@ -82,11 +77,14 @@ extension BaseController: BottomListenable {
             
             break
         case 1:
+            favouriteVC.clearFavouriteContent()
+            
             manageStateContainer(currentShowContainer: homeContainer)
             break
         case 2:
             manageStateContainer(currentShowContainer: favouriteContainer)
-
+            homeVC?.returnToInitialStateScreens(duration: 0)
+            
             favouriteVC.showFavouriteContent()
             break
         default:
@@ -97,7 +95,7 @@ extension BaseController: BottomListenable {
 
 extension BaseController: BottomSheetDelegate {
     func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint) {
-        print("contentOffset: \(contentOffset.y)")
+        
         bottomSheetNavigation?.mainUIBottomSheet?.topDistance = max(30, -contentOffset.y)
     }
 }
@@ -105,5 +103,14 @@ extension BaseController: BottomSheetDelegate {
 extension BaseController: NavigationContainerClosable {
     func closed(boardName: String?) {
         if let board = boardName { homeVC?.loadNewPageOfBoard(boardName: board) }
+    }
+}
+
+extension BaseController: FavouriteClickable {
+    func selectThread(board: String, thread: String) {
+        homeVC?.returnToOpenThread(duration: 0)
+        manageStateContainer(currentShowContainer: homeContainer)
+        
+        homeVC!.threadController?.callbackFromTapAction(board: board, numThread: thread)
     }
 }

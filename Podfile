@@ -14,6 +14,7 @@ target 'Lennach' do
   pod 'Alamofire'
   pod 'Kingfisher' #imagff=es
   pod 'OGVKit/WebM'
+  pod 'Toaster'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

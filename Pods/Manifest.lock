@@ -36,11 +36,13 @@ PODS:
   - OGVKit/WebMDemuxer (0.5.13):
     - libnestegg (~> 0.2)
     - OGVKit/Core
+  - Toaster (2.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - OGVKit/WebM
+  - Toaster
 
 SPEC REPOS:
   https://github.com/brion/OGVKit-Specs.git:
@@ -53,6 +55,7 @@ SPEC REPOS:
     - Alamofire
     - Kingfisher
     - libopus
+    - Toaster
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -63,7 +66,8 @@ SPEC CHECKSUMS:
   libvorbis: b2c6a2c2bb22447d80403981185b213cf688fae7
   libvpx: 5abeaf729fa406fd65ae1c19adcf00329c40e02a
   OGVKit: 0e63492407aa2f3734ff18670ca09ecfe63d34e7
+  Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
 
-PODFILE CHECKSUM: 066ebbeb024c485210b88864487006d11fa3a6a4
+PODFILE CHECKSUM: 6f98678b7b4d104287b61b5e4cb5c7566dc13ee6
 
 COCOAPODS: 1.6.0

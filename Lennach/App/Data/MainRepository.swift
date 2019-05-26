@@ -18,7 +18,7 @@ class MainRepository {
     private init() { }
 
     //MARK: Remote
-    public func provideThreadsByBoard(board: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+    func provideThreadsByBoard(board: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
         currentBoard = board
 
         RemoteRepository.instance.getThreadsByBoard(boardName: currentBoard) { (state, data, error) in
@@ -26,20 +26,23 @@ class MainRepository {
         }
     }
 
-    public func provideMessagesByThread(_ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
+    func provideMessagesByThread(_ board: String, _ num: String, completion: @escaping (Bool, Any?, Error?) -> Void) {
         threadNum = num
+        let value = board != "" ? board : currentBoard
 
-        RemoteRepository.instance.getCommentsByThread(boardName: currentBoard, threadNum: num) { (result, data, error) in
+        RemoteRepository.instance.getCommentsByThread(boardName: value, threadNum: num) { (result, data, error) in
             completion(result, data, error)
         }
     }
 
-    func provideGetCaptcha(threadNum: String) {
-
+    func provideUpdateCountMsgsInThreadFavourite(_ board: String, _ num: String, completion: @escaping(Int) -> ()) {
+        RemoteRepository.instance.getUpdatingMsgsValueInThread(boardName: board, threadNum: num) { value in
+            completion(value)
+        }
     }
 
     //MARK: Local
-    public func provideAllBoards(completion: @escaping (Bool, Any?) -> Void) {
+    func provideAllBoards(completion: @escaping (Bool, Any?) -> Void) {
         let group = DispatchGroup()
 
         var localBoards: [BoardDescription] = []

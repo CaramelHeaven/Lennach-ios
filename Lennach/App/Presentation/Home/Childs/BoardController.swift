@@ -51,13 +51,13 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
+        cell.threadImage!.image = nil
 
         let usenet = boardData.usenets[indexPath.row]
         cell.labelDate?.text = usenet.date
 
         if usenet.thumbnail.contains(".webm") || usenet.thumbnail.contains(".mp4") {
             cell.initVideoOrImageClicker(state: "video")
-            cell.threadImage!.image = nil
 
             cell.videoClicker = { [self] in
                 self.videoTransition(indexPath: indexPath, videoName: usenet.thumbnailName)

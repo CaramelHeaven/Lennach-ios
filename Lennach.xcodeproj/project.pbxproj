@@ -67,6 +67,7 @@
 		FBEC27A3225FCCE1003B1406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC27A1225FCCE1003B1406 /* LaunchScreen.storyboard */; };
 		FBEC27AE225FCCE1003B1406 /* LennachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27AD225FCCE1003B1406 /* LennachTests.swift */; };
 		FBEC27B9225FCCE1003B1406 /* LennachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */; };
+		FBF9FDEB229A9B5D003045F7 /* FavouriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF9FDEA229A9B5D003045F7 /* FavouriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		FBEC27B4225FCCE1003B1406 /* LennachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LennachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC27B8225FCCE1003B1406 /* LennachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LennachUITests.swift; sourceTree = "<group>"; };
 		FBEC27BA225FCCE1003B1406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBF9FDEA229A9B5D003045F7 /* FavouriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 				FB3A6DF32294B94F002F03C6 /* ReplyCells */,
 				FB3FD3E6227317C700AF87E1 /* PostCells */,
 				FB2206282268DAD8006F2CA8 /* BoardTableViewCell.swift */,
+				FBF9FDEA229A9B5D003045F7 /* FavouriteTableViewCell.swift */,
 			);
 			path = "Cell code";
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/OGVKit/OGVKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 				"${BUILT_PRODUCTS_DIR}/libnestegg/nestegg.framework",
 				"${BUILT_PRODUCTS_DIR}/libogg/ogg.framework",
 				"${BUILT_PRODUCTS_DIR}/libopus/libopus.framework",
@@ -747,6 +751,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OGVKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nestegg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ogg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libopus.framework",
@@ -854,6 +859,7 @@
 				FB33823C22847BE80077289B /* VideoPlayerView.swift in Sources */,
 				FB0E6FB02268BBF300954081 /* RemoteReposiitory.swift in Sources */,
 				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
+				FBF9FDEB229A9B5D003045F7 /* FavouriteTableViewCell.swift in Sources */,
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
 				FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,

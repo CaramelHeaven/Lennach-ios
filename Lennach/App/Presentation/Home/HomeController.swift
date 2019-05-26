@@ -13,8 +13,8 @@ class HomeController: UIViewController {
     @IBOutlet weak var boardContainer: UIView!
     @IBOutlet weak var threadContainer: UIView!
 
-    private weak var threadController: ThreadController?
-    private weak var boardController: BoardController?
+    var threadController: ThreadController?
+    var boardController: BoardController?
 
     private var draggingStateX: CGFloat = 0
     private var initialThreadX: CGFloat = 0, initialBoardX: CGFloat = 0
@@ -65,7 +65,7 @@ extension HomeController: BoardTapDelegatable {
             self.boardContainer.frame.origin.x = -315
             self.threadContainer.frame.origin.x = 0
 
-            self.threadController?.callbackFromTapAction(numThread: numThread)
+            self.threadController?.callbackFromTapAction(board: "", numThread: numThread)
         }
     }
 }
@@ -76,21 +76,29 @@ extension HomeController: ThreadDelegate {
 
         // if true - user opened thread, else - not
         if draggingStateX < lastValueX || draggingStateX == lastValueX {
-            UIView.animate(withDuration: 0.3) {
-                self.boardContainer.frame.origin.x = -315
-                self.threadContainer.frame.origin.x = 0
-
-                self.threadController?.handlerDirectionGestureToThread = false
-                self.threadController?.backgroundThreadState(isClosingThread: false, isNewThread: self.boardController!.isOpeningNewThread)
-            }
+            returnToOpenThread(duration: 0.3)
         } else {
-            UIView.animate(withDuration: 0.3) {
-                self.boardContainer.frame.origin.x = 0
-                self.threadContainer.frame.origin.x = 280
+            returnToInitialStateScreens(duration: 0.3)
+        }
+    }
 
-                self.threadController?.handlerDirectionGestureToThread = true
-                self.threadController?.backgroundThreadState(isClosingThread: true)
-            }
+    func returnToInitialStateScreens(duration: Double) {
+        UIView.animate(withDuration: duration) {
+            self.boardContainer.frame.origin.x = 0
+            self.threadContainer.frame.origin.x = 280
+
+            self.threadController?.handlerDirectionGestureToThread = true
+            self.threadController?.backgroundThreadState(isClosingThread: true)
+        }
+    }
+
+    func returnToOpenThread(duration: Double) {
+        UIView.animate(withDuration: duration) {
+            self.boardContainer.frame.origin.x = -315
+            self.threadContainer.frame.origin.x = 0
+
+            self.threadController?.handlerDirectionGestureToThread = false
+            self.threadController?.backgroundThreadState(isClosingThread: false, isNewThread: self.boardController!.isOpeningNewThread)
         }
     }
 

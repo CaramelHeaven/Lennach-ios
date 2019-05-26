@@ -68,6 +68,7 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.clickable = self
 
             //load picture
+            cell.imagePost.image = nil
             Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
 
             return cell
