@@ -32,9 +32,13 @@ class MainUIBottomSheet: UIView {
 
     fileprivate var boardSelected: String?
     var navigationClosed: NavigationContainerClosable?
+    weak var btnRemovingPressed: ButtonRemovingStateControl?
 
     var tableController: NavigationCollectionViewController? {
-        didSet { sheetView = tableController?.view }
+        didSet {
+            sheetView = tableController?.view
+            btnRemovingPressed = tableController
+        }
     }
 
     override init(frame: CGRect) {
@@ -76,6 +80,15 @@ class MainUIBottomSheet: UIView {
     private let sheetBackground: BottomSheetBackgroundView = {
         let view = BottomSheetBackgroundView()
         view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    private let btnCancelRemovingItems: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setTitle("Отменить", for: .normal)
+        view.titleLabel?.font = UIFont(name: view.titleLabel!.font.fontName, size: 12)
 
         return view
     }()
@@ -135,12 +148,20 @@ class MainUIBottomSheet: UIView {
             ])
 
         menuBar.addSubview(menuText)
+        menuBar.addSubview(btnCancelRemovingItems)
+
         NSLayoutConstraint.activate([
             menuText.centerXAnchor.constraint(equalTo: menuBar.centerXAnchor),
             menuText.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor),
-            menuText.widthAnchor.constraint(equalToConstant: 100),
-            menuText.heightAnchor.constraint(equalToConstant: 20)
+            menuText.widthAnchor.constraint(equalToConstant: 90),
+            menuText.heightAnchor.constraint(equalToConstant: 20),
+
+            btnCancelRemovingItems.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor),
+            btnCancelRemovingItems.trailingAnchor.constraint(equalTo: menuBar.trailingAnchor, constant: -8),
+            btnCancelRemovingItems.heightAnchor.constraint(equalToConstant: 20),
+            btnCancelRemovingItems.widthAnchor.constraint(equalToConstant: 60),
             ])
+        // cell.btnAddBoard.addTarget(self, action: #selector(addMoreBoards), for: .touchUpInside)
 
         if let window = UIApplication.shared.keyWindow {
             sheetBackground.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
@@ -152,7 +173,9 @@ class MainUIBottomSheet: UIView {
                 self.sheetBackground.frame = CGRect(x: 0, y: 340, width: window.frame.width, height: window.frame.height)
                 self.menuBar.frame = CGRect(x: 0, y: 340, width: window.frame.width, height: window.frame.height)
             }
-        })
+        }) { _ in
+            self.btnCancelRemovingItems.addTarget(self, action: #selector(self.actionBtnRemovingItems(_:)), for: .touchUpInside)
+        }
     }
 
     override func layoutSubviews() {
@@ -161,7 +184,9 @@ class MainUIBottomSheet: UIView {
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if sheetBackground.bounds.contains(sheetBackground.convert(point, from: self)) {
+        if btnCancelRemovingItems.bounds.contains(btnCancelRemovingItems.convert(point, from: self)) {
+            return btnCancelRemovingItems.hitTest(btnCancelRemovingItems.convert(point, from: self), with: event)
+        } else if sheetBackground.bounds.contains(sheetBackground.convert(point, from: self)) {
             return sheetView!.hitTest(sheetView!.convert(point, from: self), with: event)
         }
         return blackView.hitTest(blackView.convert(point, from: self), with: event)
@@ -180,6 +205,10 @@ class MainUIBottomSheet: UIView {
             self.removeFromSuperview()
             self.navigationClosed?.closed(boardName: self.boardSelected)
         }
+    }
+
+    @objc func actionBtnRemovingItems(_ sender: UIButton) {
+        btnRemovingPressed?.pressed()
     }
 
     deinit {

@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Toaster
 
 protocol BoardNavigationSelectable: class {
     func selectedBoard (boardName: String)
+}
+
+protocol ButtonRemovingStateControl: class {
+    func pressed()
 }
 
 class ItemCell: UICollectionViewCell {
@@ -215,18 +220,16 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
 
     @objc private func selectingCurrentBoard(_ sender: UIButton) {
         if isShakingAnimationCellsWorking {
-            isShakingAnimationCellsWorking = false
-            enableShaskingInCollectionView(flag: false)
-
             collectionView.performBatchUpdates({
                 let index = collectionView.indexPath(for: sender.superview as! ItemCell)!
                 let boardId = (boardsData[index.row] as! BoardDescription).id
-                
+
                 boardsData.remove(at: index.row)
                 self.collectionView.deleteItems(at: [index])
-                
+
                 MainRepository.instance.provideDeleteBoardFromNavigation(boardId, completion: { result in
-                    print("REMOVED BOARD: \(result)")
+                    let toast = Toast(text: "Удалено!")
+                    toast.show()
                 })
             })
         } else {
@@ -273,3 +276,8 @@ class NavigationCollectionViewController: UICollectionViewController, BottomShee
     }
 }
 
+extension NavigationCollectionViewController: ButtonRemovingStateControl {
+    func pressed() {
+        print("CLICKED")
+    }
+}
