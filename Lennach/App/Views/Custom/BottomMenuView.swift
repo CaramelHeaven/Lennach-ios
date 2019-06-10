@@ -45,6 +45,13 @@ class BottomMenuView: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
 
         let selectedItem = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedItem, animated: false, scrollPosition: [])
+        
+        layer.shadowOffset = CGSize(width: 0, height: -1)
+        layer.shadowRadius = 1
+        layer.shadowOpacity = 1
+        layer.shadowColor = UIColor.lightGray.cgColor
+        
+        collectionView.backgroundColor = UIColor.black
     }
 
     required init?(coder aDecoder: NSCoder) {

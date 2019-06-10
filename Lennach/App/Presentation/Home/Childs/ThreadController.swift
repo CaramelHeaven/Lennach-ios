@@ -36,7 +36,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private var panGesture: UIPanGestureRecognizer!
     private var dataThread: [Comment] = []
     var activateBoardGesture = false
-    private var answerView: AnswerViewContainer?
+    //private var answerView: AnswerViewContainer?
     private var videoContainer: VideoPlayerContainer!
     private var replyController: UIViewController?
 
@@ -52,8 +52,11 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private let selectThreadLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Пожалуйста, выберите тред"
+        view.text = "Выберите пожалуйста обсуждение"
         view.textColor = .black
+        view.font = UIFont(name: view.font.fontName, size: 14)
+        view.isHidden=true
+        
         return view
     }()
 
@@ -96,7 +99,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
         NSLayoutConstraint.activate([
             selectThreadLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             selectThreadLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            selectThreadLabel.widthAnchor.constraint(equalToConstant: 230),
+            selectThreadLabel.widthAnchor.constraint(equalToConstant: 250),
             selectThreadLabel.heightAnchor.constraint(equalToConstant: 30),
             ])
     }
@@ -200,7 +203,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
 
         if let files = dataThread[indexPath.row].files {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithImageCell", for: indexPath as IndexPath) as! PostWithImageCell
-            cell.gestureCompletable = self
+            cell.gestureCompletable = self as! CellGestureCompletable
             let post = dataThread[indexPath.row]
 
             let exclusionPath: UIBezierPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: cell.imagePost.frame.width, height: cell.imagePost.frame.height))
@@ -229,7 +232,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             if post.files![0].path.contains(".webm") || post.files![0].path.contains(".mp4") {
                 if post.files![0].path.contains(".mp4") {
                     DispatchQueue.global().async {
-                        let asset = AVAsset(url: URL(string: Constants.baseUrl + post.files![0].path)!)
+                        let asset = AVAsset(url: URL(string: "https://2channel.hk/" + post.files![0].path)!)
                         let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                         assetImgGenerate.appliesPreferredTrackTransform = true
                         let time = CMTimeMake(value: 1, timescale: 2)
@@ -245,7 +248,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
                 }
             } else {
                 //load picture
-                Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+                Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: "https://2channel.hk/" + files[0].path, fade: false)
                 cell.initVideoOrImageClicker(state: "image")
 
                 cell.imageClicker = { [self] in
@@ -255,7 +258,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostWithoutImageCell", for: indexPath as IndexPath) as! PostWithoutImageCell
-            cell.gestureCompletable = self
+            cell.gestureCompletable = self as! CellGestureCompletable
             let post = dataThread[indexPath.row]
 
             cell.tvComment.linkTextAttributes = linkAttributes
@@ -293,7 +296,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer = VideoPlayerContainer()
 
-        videoContainer.currentVideoUrl = Constants.baseUrl + dataThread[path.row].files![0].path
+        videoContainer.currentVideoUrl = "https://2channel.hk/" + dataThread[path.row].files![0].path
         videoContainer.currentVideoName = dataThread[path.row].files![0].displayName
 
         videoContainer.showVideo()
@@ -387,17 +390,6 @@ extension ThreadController: ReplyButtonClosable {
             self.containerView.removeFromSuperview()
             self.blackView.removeFromSuperview()
         }
-    }
-}
-
-//NOT USED
-extension ThreadController: CellGestureCompletable {
-    func showingAnswerView(cell: UITableViewCell) {
-        if answerView == nil {
-            answerView = AnswerViewContainer()
-        }
-        answerView!.bindNumberPost = (dataThread[tableView.indexPath(for: cell)!.row]).num
-        answerView!.showAnswerView(mainView: self.view)
     }
 }
 

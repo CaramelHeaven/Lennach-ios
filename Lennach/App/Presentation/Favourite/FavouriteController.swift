@@ -54,10 +54,10 @@ class FavouriteController: UIViewController, UITableViewDelegate, UITableViewDat
         let data = dataFavourites[indexPath.row]
 
         //load image from cache
-        Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage, url: Constants.baseUrl + data.imageUrl, fade: false)
+        Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage, url: "https://2channel.hk/" + data.imageUrl, fade: false)
         cell.threadImage.layer.cornerRadius = cell.threadImage.frame.height / 2
 
-        cell.labelNewMessages.text = "Lol"
+        cell.labelNewMessages.text = "0 новых сообщений"
         if let value = data.countNewMessages {
             cell.labelNewMessages.text = "+\(value) новых сообщений"
         }
@@ -115,16 +115,17 @@ class FavouriteController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
 
+
         cell.threadLabel.text = data.opMessage
         cell.labelCountMessages.text = "\(data.quantityPosts) сообщений"
         print("RETURN CELL")
 
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let result = dataFavourites[indexPath.row]
-        
+
         clickableFavourite?.selectThread(board: result.boardName, thread: result.numThread)
     }
 }

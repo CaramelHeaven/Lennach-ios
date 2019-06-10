@@ -40,6 +40,10 @@ class BaseController: UIViewController {
         bottomMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     func manageStateContainer(currentShowContainer container: UIView) {
         container.isHidden = false
         for item in arrayContainers! {
@@ -57,7 +61,7 @@ class BaseController: UIViewController {
         case let favouriteVC as FavouriteController:
             self.favouriteVC = favouriteVC
             self.favouriteVC.clickableFavourite = self
-            
+
             break
         default:
             break
@@ -74,17 +78,17 @@ extension BaseController: BottomListenable {
             self.bottomSheetNavigation!.tableController!.bottomSheetDelegate = self
             self.bottomSheetNavigation?.mainUIBottomSheet!.navigationClosed = self
             self.bottomSheetNavigation!.showLayout()
-            
+
             break
         case 1:
             favouriteVC.clearFavouriteContent()
-            
+
             manageStateContainer(currentShowContainer: homeContainer)
             break
         case 2:
             manageStateContainer(currentShowContainer: favouriteContainer)
             homeVC?.returnToInitialStateScreens(duration: 0)
-            
+
             favouriteVC.showFavouriteContent()
             break
         default:
@@ -95,7 +99,7 @@ extension BaseController: BottomListenable {
 
 extension BaseController: BottomSheetDelegate {
     func bottomSheetScrolling(_ bottomSheet: BottomSheet, didScrollTO contentOffset: CGPoint) {
-        
+
         bottomSheetNavigation?.mainUIBottomSheet?.topDistance = max(30, -contentOffset.y)
     }
 }
@@ -110,7 +114,7 @@ extension BaseController: FavouriteClickable {
     func selectThread(board: String, thread: String) {
         homeVC?.returnToOpenThread(duration: 0)
         manageStateContainer(currentShowContainer: homeContainer)
-        
+
         homeVC!.threadController?.callbackFromTapAction(board: board, numThread: thread)
     }
 }

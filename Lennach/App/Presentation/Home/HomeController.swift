@@ -104,22 +104,9 @@ extension HomeController: ThreadDelegate {
 
     func translateXState(threadX: CGFloat) {
         draggingStateX = threadX
+        
         //update threadContainer
         threadContainer.frame.origin.x = threadContainer.frame.origin.x + threadX
         boardContainer.frame.origin.x = boardContainer.frame.origin.x + threadX
-
-//        print("x: \(threadX)")
-//
-//        if !firstValue {
-//            initialX = threadX
-//            firstValue = !firstValue
-//        }
-//        lastX = threadX
-//
-//        if threadX < initialX {
-//            let stateX = -1 * (initialX - lastX)
-//            print("stateX: \(stateX), boardContainer: \(boardContainer.frame.origin.x)")
-//            boardContainer.frame.origin.x = boardContainer.frame.origin.x + threadX
-//        }
     }
 }

@@ -59,7 +59,6 @@ class Mp4Player: UIView {
     //container for progress bar, current and common time, etc.
     private let backgroundContentView: UIView = {
         let view = UIView()
-        //  view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .red
 
         return view

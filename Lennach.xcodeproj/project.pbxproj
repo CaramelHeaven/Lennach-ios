@@ -43,8 +43,6 @@
 		FB65BC94226258A200C30F61 /* PostWithoutImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */; };
 		FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */; };
 		FB65BCA322625AAF00C30F61 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB65BCA222625AAF00C30F61 /* MainRepository.swift */; };
-		FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */; };
-		FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */; };
 		FB70EF102291F23B006F82D0 /* ThreadFavourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */; };
 		FB7406082267848600402315 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7406072267848600402315 /* BaseController.swift */; };
 		FB80B5FD2273366900B6DC18 /* PostWithImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */; };
@@ -59,8 +57,6 @@
 		FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */; };
 		FB9D0FAA227090300096A15C /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D0FA8227090300096A15C /* ImageController.swift */; };
 		FB9D0FAB227090300096A15C /* ImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB9D0FA9227090300096A15C /* ImageController.xib */; };
-		FBB375922281CFE0001EC00D /* AnswerViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB375912281CFE0001EC00D /* AnswerViewContainer.swift */; };
-		FBB375942281DFE5001EC00D /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB375932281DFE5001EC00D /* AnswerView.swift */; };
 		FBE15EFB226876F6005A29FB /* BottomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE15EFA226876F6005A29FB /* BottomMenuView.swift */; };
 		FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEC2798225FCCE0003B1406 /* AppDelegate.swift */; };
 		FBEC279E225FCCE0003B1406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBEC279C225FCCE0003B1406 /* Main.storyboard */; };
@@ -131,8 +127,6 @@
 		FB65BC92226258A200C30F61 /* PostWithoutImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithoutImageCell.swift; sourceTree = "<group>"; };
 		FB65BC9A22625A0700C30F61 /* Comment+Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Picture.swift"; sourceTree = "<group>"; };
 		FB65BCA222625AAF00C30F61 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
-		FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaView.swift; sourceTree = "<group>"; };
-		FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaViewContainer.swift; sourceTree = "<group>"; };
 		FB70EF0F2291F23B006F82D0 /* ThreadFavourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadFavourite.swift; sourceTree = "<group>"; };
 		FB7406072267848600402315 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		FB80B5FC2273366900B6DC18 /* PostWithImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithImageCell.swift; sourceTree = "<group>"; };
@@ -147,8 +141,6 @@
 		FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
 		FB9D0FA8227090300096A15C /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		FB9D0FA9227090300096A15C /* ImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageController.xib; sourceTree = "<group>"; };
-		FBB375912281CFE0001EC00D /* AnswerViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewContainer.swift; sourceTree = "<group>"; };
-		FBB375932281DFE5001EC00D /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		FBE15EFA226876F6005A29FB /* BottomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuView.swift; sourceTree = "<group>"; };
 		FBEC2795225FCCE0003B1406 /* Lennach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lennach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEC2798225FCCE0003B1406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -427,8 +419,6 @@
 		FB740604226752F300402315 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FBBF530222830CA500109CC9 /* CaptchaView */,
-				FB868E0D2281CFB40040E357 /* AnswerView */,
 				FB7406052267530D00402315 /* Childs */,
 				FB65BC7E22623F5500C30F61 /* HomeController.swift */,
 			);
@@ -460,15 +450,6 @@
 			path = Posts;
 			sourceTree = "<group>";
 		};
-		FB868E0D2281CFB40040E357 /* AnswerView */ = {
-			isa = PBXGroup;
-			children = (
-				FBB375912281CFE0001EC00D /* AnswerViewContainer.swift */,
-				FBB375932281DFE5001EC00D /* AnswerView.swift */,
-			);
-			path = AnswerView;
-			sourceTree = "<group>";
-		};
 		FB90012022942613009BE391 /* WatchingReplies */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,15 +478,6 @@
 				FB9D0F97227085270096A15C /* ImageViewerDismissalTransition.swift */,
 			);
 			path = Transition;
-			sourceTree = "<group>";
-		};
-		FBBF530222830CA500109CC9 /* CaptchaView */ = {
-			isa = PBXGroup;
-			children = (
-				FB6ADBA522830CE300DA5FA2 /* CaptchaView.swift */,
-				FB6ADBA722830CF700DA5FA2 /* CaptchaViewContainer.swift */,
-			);
-			path = CaptchaView;
 			sourceTree = "<group>";
 		};
 		FBE15EF9226876BB005A29FB /* Custom */ = {
@@ -861,7 +833,6 @@
 				FB9D0F8222706BA70096A15C /* ImageViewerConfiguration.swift in Sources */,
 				FBF9FDEB229A9B5D003045F7 /* FavouriteTableViewCell.swift in Sources */,
 				FB0E6FA92268B50D00954081 /* Usenet.swift in Sources */,
-				FB6ADBA822830CF700DA5FA2 /* CaptchaViewContainer.swift in Sources */,
 				FB65BC8322623F7C00C30F61 /* FavouriteController.swift in Sources */,
 				FB7406082267848600402315 /* BaseController.swift in Sources */,
 				FB29D704227181BC00D7D75D /* FilesThreadResponse.swift in Sources */,
@@ -871,12 +842,9 @@
 				FB2206242268CC13006F2CA8 /* RemoteMainMapper.swift in Sources */,
 				FBEC2799225FCCE0003B1406 /* AppDelegate.swift in Sources */,
 				FB900125229426C6009BE391 /* ReplyController.swift in Sources */,
-				FB6ADBA622830CE300DA5FA2 /* CaptchaView.swift in Sources */,
 				FB65BC9B22625A0700C30F61 /* Comment+Picture.swift in Sources */,
-				FBB375922281CFE0001EC00D /* AnswerViewContainer.swift in Sources */,
 				FB0E6FB22268BBFC00954081 /* LocalRepository.swift in Sources */,
 				FB3A6DF22294B945002F03C6 /* ReplyWithoutImageCell.swift in Sources */,
-				FBB375942281DFE5001EC00D /* AnswerView.swift in Sources */,
 				FB0E6FAB2268B8A800954081 /* BoardResponse.swift in Sources */,
 				FB06360A227B035D0073B4A1 /* PopupBoardsView+VC.swift in Sources */,
 				FB9D0F98227085270096A15C /* ImageViewerDismissalTransition.swift in Sources */,

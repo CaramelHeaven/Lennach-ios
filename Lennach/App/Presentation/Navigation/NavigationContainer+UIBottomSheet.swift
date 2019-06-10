@@ -73,6 +73,7 @@ class MainUIBottomSheet: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = UIColor.white
         view.text = "Навигация"
+        view.font = UIFont(name: view.font.fontName, size: 13)
 
         return view
     }()
@@ -89,6 +90,8 @@ class MainUIBottomSheet: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Отменить", for: .normal)
         view.titleLabel?.font = UIFont(name: view.titleLabel!.font.fontName, size: 12)
+        //set state
+        view.isHidden = true
 
         return view
     }()
@@ -153,11 +156,11 @@ class MainUIBottomSheet: UIView {
         NSLayoutConstraint.activate([
             menuText.centerXAnchor.constraint(equalTo: menuBar.centerXAnchor),
             menuText.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor),
-            menuText.widthAnchor.constraint(equalToConstant: 90),
+            menuText.widthAnchor.constraint(equalToConstant: 70),
             menuText.heightAnchor.constraint(equalToConstant: 20),
 
             btnCancelRemovingItems.centerYAnchor.constraint(equalTo: menuBar.centerYAnchor),
-            btnCancelRemovingItems.trailingAnchor.constraint(equalTo: menuBar.trailingAnchor, constant: -8),
+            btnCancelRemovingItems.trailingAnchor.constraint(equalTo: menuBar.trailingAnchor, constant: -16),
             btnCancelRemovingItems.heightAnchor.constraint(equalToConstant: 20),
             btnCancelRemovingItems.widthAnchor.constraint(equalToConstant: 60),
             ])

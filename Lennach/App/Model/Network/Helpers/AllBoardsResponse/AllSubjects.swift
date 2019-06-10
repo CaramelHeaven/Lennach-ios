@@ -496,7 +496,7 @@ struct Software: Codable {
 
 }
 
-struct JapanesCulture: Codable {
+struct Travel: Codable {
 
     let bumpLimit: Int?
     let category: String?

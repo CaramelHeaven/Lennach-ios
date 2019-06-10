@@ -15,6 +15,7 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet var labelCountMessages: UILabel!
     @IBOutlet var labelNewMessages: UILabel!
     @IBOutlet var aivProgress: UIActivityIndicatorView!
+    @IBOutlet var btnRemove: UIButton!
 
     private var permissionToUpdateData = true
 

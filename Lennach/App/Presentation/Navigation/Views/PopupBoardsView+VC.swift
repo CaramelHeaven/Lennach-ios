@@ -85,7 +85,6 @@ class PopupBoardView: NSObject, ButtonsClickable {
 
 
     func btnClicked(data: Any?) {
-        print("dat: \(data)")
         if data != nil {
             LocalRepository.instance.provideSaveBoardNavigation(array: data as! [BoardDescription]) { (result) in
                 if result {
@@ -122,8 +121,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     private let btnAdd: RippleButton = {
         let btn = RippleButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Add", for: .normal)
-        //btn.setTitle("fuck", for: .highlighted)
+        btn.setTitle("Добавить", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 8
         btn.addTarget(self, action: #selector(btnAddAction), for: .touchUpInside)
@@ -134,7 +132,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
     private let btnCancel: RippleButton = {
         let btn = RippleButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Cancel", for: .normal)
+        btn.setTitle("Назад", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.layer.cornerRadius = 8
         btn.addTarget(self, action: #selector(btnCancelAction), for: .touchUpInside)
@@ -165,7 +163,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         searchBar.translatesAutoresizingMaskIntoConstraints = false
 
         searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = " Search..."
+        searchBar.placeholder = "Поиск тематики"
         searchBar.sizeToFit()
         // searchBar.isTranslucent = false
         //searchBar.backgroundImage = UIImage()
@@ -216,7 +214,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         NSLayoutConstraint.activate([
             btnAdd.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             btnAdd.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: -52),
-            btnAdd.widthAnchor.constraint(equalToConstant: 60),
+            btnAdd.widthAnchor.constraint(equalToConstant: 90),
             btnAdd.heightAnchor.constraint(equalToConstant: 36)
             ])
 
@@ -261,7 +259,7 @@ class AllBoardsViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! ItemBoardCell
         let index = indexPath.row
 
-        cell.idLabel.text = filteringData[index].id
+        cell.idLabel.text = "/" + filteringData[index].id
         cell.descriptionLabel.text = filteringData[index].name
         cell.switchView.setOn(filteringData[index].isSelected, animated: false)
 
@@ -341,7 +339,7 @@ class ItemBoardCell: UITableViewCell {
 
     fileprivate let switchView: UISwitch = {
         let view = UISwitch()
-        view.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        view.transform = CGAffineTransform(scaleX: 0.55, y: 0.55)
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view

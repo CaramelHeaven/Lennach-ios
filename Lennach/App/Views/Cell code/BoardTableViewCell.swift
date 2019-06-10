@@ -13,6 +13,7 @@ class BoardTableViewCell: UITableViewCell {
     @IBOutlet var threadImage: UIImageView?
     @IBOutlet var threadLabel: UILabel?
     @IBOutlet var labelDate: UILabel?
+    @IBOutlet var imageVideoPlay: UIImageView!
 
     //MARK: image click listener
     var imageClicker: (() -> Void)? = nil

@@ -36,8 +36,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         tableView.tableFooterView = UIView()
 
-        //TODO: Make load this from cache
-        loadBoard(board: "b")
+        loadBoard(board: "fl")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,21 +51,21 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath as IndexPath) as! BoardTableViewCell
         cell.threadImage!.image = nil
-
+        
         let usenet = boardData.usenets[indexPath.row]
         cell.labelDate?.text = usenet.date
-
+        
         if usenet.thumbnail.contains(".webm") || usenet.thumbnail.contains(".mp4") {
             cell.initVideoOrImageClicker(state: "video")
-
+            
             cell.videoClicker = { [self] in
                 self.videoTransition(indexPath: indexPath, videoName: usenet.thumbnailName)
             }
-
+            
             //set thumbnail from first frame
             if usenet.thumbnail.contains(".mp4") {
                 DispatchQueue.global().async {
-                    let asset = AVAsset(url: URL(string: Constants.baseUrl + usenet.thumbnail)!)
+                    let asset = AVAsset(url: URL(string: "https://2channel.hk/" + usenet.thumbnail)!)
                     let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                     assetImgGenerate.appliesPreferredTrackTransform = true
                     let time = CMTimeMake(value: 1, timescale: 2)
@@ -80,22 +79,22 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
         } else {
-            Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: Constants.baseUrl + usenet.thumbnail, fade: true)
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: "https://2channel.hk/" + usenet.thumbnail, fade: true)
             cell.initVideoOrImageClicker(state: "image")
-
+            
             cell.imageClicker = { [self] in
                 self.makeTransition(indexPath: indexPath, imageTapped: cell.imageView)
             }
         }
-
+        
         let lol = usenet.threadMsg.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-
+        
         if let kek = Utilities.WorkWithUI.textHtmlConvert(text: lol) {
             cell.threadLabel?.attributedText = kek
         } else {
             cell.threadLabel?.text = lol
         }
-
+        
         return cell
     }
 
@@ -107,8 +106,8 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer = VideoPlayerContainer()
-
-        videoContainer.currentVideoUrl = Constants.baseUrl + boardData.usenets[path.row].thumbnail
+        
+        videoContainer.currentVideoUrl = "https://2channel.hk/" + boardData.usenets[path.row].thumbnail
         videoContainer.currentVideoName = boardData.usenets[path.row].thumbnailName
         
         videoContainer.showVideo()
@@ -140,7 +139,6 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     private func loadBoard(board: String) {
         MainRepository.instance.provideThreadsByBoard(board: board) { (state, data, error) in
             if state {
-                //print("data: \(data)")
                 self.boardData = data as! Board
 
                 self.tableView.reloadData()

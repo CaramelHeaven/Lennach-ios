@@ -9,6 +9,5 @@
 import Foundation
 
 struct Constants {
-    static let baseUrl = "https://2ch.hk/"
     static let CaptchaType = "2chaptcha"
 }

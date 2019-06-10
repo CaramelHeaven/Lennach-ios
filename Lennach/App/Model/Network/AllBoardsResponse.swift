@@ -10,7 +10,6 @@ import Foundation
 
 struct AllBoardsResponse: Codable {
 
-    let forAdults: [ForAdults]?
     let games: [Games]?
     let politics: [Politics]?
     let users: [Users]?
@@ -18,10 +17,9 @@ struct AllBoardsResponse: Codable {
     let creation: [Creation]?
     let subjects: [Subjects]?
     let software: [Software]?
-    let japanesCulture: [JapanesCulture]?
+    let travel: [Travel]?
 
     private enum CodingKeys: String, CodingKey {
-        case forAdults = "Взрослым"
         case games = "Игры"
         case politics = "Политика"
         case users = "Пользовательские"
@@ -29,12 +27,12 @@ struct AllBoardsResponse: Codable {
         case creation = "Творчество"
         case subjects = "Тематика"
         case software = "Техника и софт"
-        case japanesCulture = "Японская культура"
+        case travel = "Путешествия и культура"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        forAdults = try values.decodeIfPresent([ForAdults].self, forKey: .forAdults)
+
         games = try values.decodeIfPresent([Games].self, forKey: .games)
         politics = try values.decodeIfPresent([Politics].self, forKey: .politics)
         users = try values.decodeIfPresent([Users].self, forKey: .users)
@@ -42,12 +40,12 @@ struct AllBoardsResponse: Codable {
         creation = try values.decodeIfPresent([Creation].self, forKey: .creation)
         subjects = try values.decodeIfPresent([Subjects].self, forKey: .subjects)
         software = try values.decodeIfPresent([Software].self, forKey: .software)
-        japanesCulture = try values.decodeIfPresent([JapanesCulture].self, forKey: .japanesCulture)
+        travel = try values.decodeIfPresent([Travel].self, forKey: .travel)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(forAdults, forKey: .forAdults)
+
         try container.encodeIfPresent(games, forKey: .games)
         try container.encodeIfPresent(politics, forKey: .politics)
         try container.encodeIfPresent(users, forKey: .users)
@@ -55,7 +53,7 @@ struct AllBoardsResponse: Codable {
         try container.encodeIfPresent(creation, forKey: .creation)
         try container.encodeIfPresent(subjects, forKey: .subjects)
         try container.encodeIfPresent(software, forKey: .software)
-        try container.encodeIfPresent(japanesCulture, forKey: .japanesCulture)
+        try container.encodeIfPresent(travel, forKey: .travel)
     }
 
 }

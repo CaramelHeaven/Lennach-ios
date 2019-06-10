@@ -24,7 +24,7 @@ class VideoPlayerContainer: NSObject {
     
     private let backgroundBlackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.9)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.999)
         view.alpha = 0
 
         return view
@@ -134,7 +134,6 @@ class VideoPlayerContainer: NSObject {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .white
-        view.text = "fuck you"
 
         return view
     }()

@@ -69,7 +69,7 @@ class ReplyController: UIViewController, UITableViewDelegate, UITableViewDataSou
 
             //load picture
             cell.imagePost.image = nil
-            Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: Constants.baseUrl + files[0].path, fade: false)
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: "https://2channel.hk/" + files[0].path, fade: false)
 
             return cell
         } else {
