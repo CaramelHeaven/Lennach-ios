@@ -30,11 +30,6 @@ class ImageController: UIViewController {
         modalPresentationCapturesStatusBarAppearance = true
     }
     
-//    public override var prefersStatusBarHidden: Bool {
-//        return true
-//    }
-//
-
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,10 +37,8 @@ class ImageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageThread.image = configuration?.imageView?.image ?? configuration?.image
-        
-        print("image thread frame: \(imageThread.frame)")
 
-        Utilities.WorkWithUI.loadAsynsImage(image: imageThread, url: "https://2channel.hk/" + urlThumbnail, fade: false)
+        Utilities.WorkWithUI.loadAsynsImage(image: imageThread, url: baseUrl + urlThumbnail, fade: false)
 
         setupScrollView()
         setupGestureRecognizers()

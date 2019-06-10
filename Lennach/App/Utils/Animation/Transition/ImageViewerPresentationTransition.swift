@@ -49,7 +49,7 @@ final class ImageViewerPresentationTransition: NSObject, UIViewControllerAnimate
 
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
                 imageView.contentMode = .scaleAspectFit
-                print("container view frame: \(containerView.frame)")
+                
                 imageView.frame = containerView.frame
                 fadeView.alpha = 1.0
             }) { _ in

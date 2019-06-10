@@ -232,7 +232,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
             if post.files![0].path.contains(".webm") || post.files![0].path.contains(".mp4") {
                 if post.files![0].path.contains(".mp4") {
                     DispatchQueue.global().async {
-                        let asset = AVAsset(url: URL(string: "https://2channel.hk/" + post.files![0].path)!)
+                        let asset = AVAsset(url: URL(string: baseUrl + post.files![0].path)!)
                         let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                         assetImgGenerate.appliesPreferredTrackTransform = true
                         let time = CMTimeMake(value: 1, timescale: 2)
@@ -248,7 +248,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
                 }
             } else {
                 //load picture
-                Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: "https://2channel.hk/" + files[0].path, fade: false)
+                Utilities.WorkWithUI.loadAsynsImage(image: cell.imagePost, url: baseUrl + files[0].path, fade: false)
                 cell.initVideoOrImageClicker(state: "image")
 
                 cell.imageClicker = { [self] in
@@ -296,7 +296,7 @@ class ThreadController: UIViewController, UITableViewDataSource, UITableViewDele
     private func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer = VideoPlayerContainer()
 
-        videoContainer.currentVideoUrl = "https://2channel.hk/" + dataThread[path.row].files![0].path
+        videoContainer.currentVideoUrl = baseUrl + dataThread[path.row].files![0].path
         videoContainer.currentVideoName = dataThread[path.row].files![0].displayName
 
         videoContainer.showVideo()

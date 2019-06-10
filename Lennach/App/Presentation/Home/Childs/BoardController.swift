@@ -65,7 +65,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
             //set thumbnail from first frame
             if usenet.thumbnail.contains(".mp4") {
                 DispatchQueue.global().async {
-                    let asset = AVAsset(url: URL(string: "https://2channel.hk/" + usenet.thumbnail)!)
+                    let asset = AVAsset(url: URL(string: baseUrl + usenet.thumbnail)!)
                     let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                     assetImgGenerate.appliesPreferredTrackTransform = true
                     let time = CMTimeMake(value: 1, timescale: 2)
@@ -79,7 +79,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
         } else {
-            Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: "https://2channel.hk/" + usenet.thumbnail, fade: true)
+            Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage!, url: baseUrl + usenet.thumbnail, fade: true)
             cell.initVideoOrImageClicker(state: "image")
             
             cell.imageClicker = { [self] in
@@ -107,7 +107,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
     func videoTransition(indexPath path: IndexPath, videoName: String) {
         videoContainer = VideoPlayerContainer()
         
-        videoContainer.currentVideoUrl = "https://2channel.hk/" + boardData.usenets[path.row].thumbnail
+        videoContainer.currentVideoUrl = baseUrl + boardData.usenets[path.row].thumbnail
         videoContainer.currentVideoName = boardData.usenets[path.row].thumbnailName
         
         videoContainer.showVideo()

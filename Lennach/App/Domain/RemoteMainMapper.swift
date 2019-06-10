@@ -131,7 +131,7 @@ extension RemoteMainMapper {
     func filteringLine(_ line: String, regular: String) -> String {
         var str = ""
         let pattern = #"\#(regular)"#
-        print("PATTERN: \(pattern)")
+        
         let regex = try! NSRegularExpression(pattern: pattern)
         regex.enumerateMatches(in: line, range: NSRange(line.startIndex..., in: line)) { match, _, _ in
             if let nsRange = match?.range(at: 1), let range = Range(nsRange, in: line) {
