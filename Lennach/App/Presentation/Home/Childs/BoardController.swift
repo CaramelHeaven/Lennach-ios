@@ -37,7 +37,7 @@ class BoardController: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.tableFooterView = UIView()
 
         //TODO: Make load this from cache
-        loadBoard(board: "b")
+        loadBoard(board: "pr")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -57,7 +57,7 @@ class FavouriteController: UIViewController, UITableViewDelegate, UITableViewDat
         Utilities.WorkWithUI.loadAsynsImage(image: cell.threadImage, url: Constants.baseUrl + data.imageUrl, fade: false)
         cell.threadImage.layer.cornerRadius = cell.threadImage.frame.height / 2
 
-        cell.labelNewMessages.text = "Lol"
+        cell.labelNewMessages.text = "0 новых сообщений"
         if let value = data.countNewMessages {
             cell.labelNewMessages.text = "+\(value) новых сообщений"
         }

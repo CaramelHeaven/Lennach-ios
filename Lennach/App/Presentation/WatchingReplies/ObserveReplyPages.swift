@@ -17,6 +17,7 @@ class ObserveReplyPages {
 
     var baseThreadComments: [Comment]!
     var currentPage = 0
+    
     var page = [Int: [Comment]]()
 
     func addNewPage(comments: [Comment]) {
